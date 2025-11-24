@@ -1,0 +1,69 @@
+<style>
+    /* Fullscreen white background */
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 1s ease-in-out; /* smoother fade */
+    }
+
+    /* Logo style */
+    .preloader-logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 15px;
+        animation: fadeLogo 1.2s ease-in-out infinite alternate;
+    }
+
+    /* Simple spinner */
+    .spinner {
+        border: 4px solid #eee;
+        border-top: 4px solid #B4903A;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 0.8s linear infinite;
+    }
+
+    /* Animations */
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeLogo {
+        0% { opacity: 0.5; transform: scale(0.95); }
+        100% { opacity: 1; transform: scale(1.05); }
+    }
+</style>
+
+<!-- Page Preloader -->
+<div id="preloader">
+    <div class="preloader-content">
+        <img src="{{ url('public/assets/frontend/images/skin-canberra.svg') }}" alt="Logo" class="preloader-logo">
+        <!-- <div class="spinner"></div> -->
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", function() {
+        const preloader = document.getElementById('preloader');
+
+        // chhota sa delay (0.5s) for smoother perception
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 1000); // match with CSS transition duration
+        }, 1200); // delay before fading out
+    });
+</script>
