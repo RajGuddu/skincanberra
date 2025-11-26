@@ -55,6 +55,10 @@ Route::match(['get','post'],'get_available_time_by_ajax', [Home::class,'get_avai
 Route::match(['get','post'],'check_next_availability_by_ajax', [Home::class,'check_next_availability_by_ajax']);
 Route::match(['get','post'],'book-online', [Home::class,'book_online']);
 Route::match(['get','post'],'booking-form', [Home::class,'booking_form']);
+Route::get('booking-success', [Home::class,'booking_success']); // for data update 
+Route::get('payment-success', [Home::class,'payment_success']); // for thank you page
+Route::get('payment-cancel', [Home::class,'payment_cancel']);
+
 
 //for testing
 Route::get('/viewmail', [Home::class,'viewmail']);
@@ -82,6 +86,9 @@ Route::get('testcart', [Shop::class,'testcart1']);
 Route::get('getcart', [Shop::class,'view_cart']);
 Route::get('/pay', [Shop::class, 'pay']);
 Route::post('/stripe-payment', [Shop::class, 'payment']);
+Route::get('/stripe-success', [Shop::class, '_success']);
+Route::get('/stripe-cancel', [Shop::class, 'cancel']);
+
 // *************************End Testing url********************************
 
 
@@ -152,6 +159,7 @@ Route::middleware(['Authcheck'])->group(function () {
     Route::get('admin/appointment', [Appointment::class,'index']);
     Route::match(['get','post'], 'admin/appointment/{id}', [Appointment::class,'index']);
     Route::match(['get','post'],'admin/appointment-list', [Appointment::class,'appointment_list']);
+    Route::match(['get','post'],'admin/appointment-list/{id}', [Appointment::class,'appointment_list']);
 
     Route::get('admin/get-times-by-date', [Appointment::class,'get_times_by_date']); // ajax
 

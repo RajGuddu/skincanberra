@@ -61,6 +61,12 @@ class Common_model extends Model
         $result = $builder->first();
         return $result;
     }
+    public function getOneRecordArray($table, $whereArr = null){
+        $builder = DB::table($table);
+        $builder->where($whereArr);
+        $row = $builder->first();
+        return $row ? (array) $row : [];
+    }
     public function isExists($table, $whereArr = null){
         $builder = DB::table($table);
         $builder->where($whereArr);

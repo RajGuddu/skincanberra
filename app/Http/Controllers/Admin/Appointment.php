@@ -130,8 +130,49 @@ class Appointment extends Controller
         echo $html; exit;
     }
     // ==========================Appointment List==============================
-    public function appointment_list(){
+    public function appointment_list(Request $request, $id=null){
+        if($request->isMethod('POST')){
+            // echo '<pre>'; print_r($_POST); exit;
+            $post['sv_id'] = $_POST['sv_id'];
+            $post['vid'] = $_POST['vid'];
+            $post['st_id'] = $_POST['st_id'];
+            $post['service_date'] = $_POST['service_date'];
+            $post['first_name'] = $_POST['first_name'];
+            $post['last_name'] = $_POST['last_name'];
+            $post['email'] = $_POST['email'];
+            $post['country'] = 'AU';
+            $post['phone'] = $_POST['phone'];
+            $post['status'] = $_POST['status'];
+            $post['added_at'] = date('Y-m-d H:i:s');
+
+            if(!$id){
+                $post['added_at'] = date('Y-m-d H:i:s');
+                $inserted = $this->commonmodel->crudOperation('C','tbl_service_book_online',$post);
+            }else{
+                $post['update_at'] = date('Y-m-d H:i:s');
+                $updated = $this->commonmodel->crudOperation('U','tbl_service_book_online',$post,['id'=>$id]);
+            }
+            if(isset($inserted)){
+                $request->session()->flash('message',['msg'=>'Record added successfully!','type'=>'success']);
+            }elseif(isset($updated)){
+                $request->session()->flash('message',['msg'=>'Record updated successfully!','type'=>'success']);
+            }else{
+                $request->session()->flash('message',['msg'=>'Please Try After Sometimes...','type'=>'danger']);
+            }
+
+            return redirect()->to('admin/appointment-list');
+        }
+        if($id){
+            $record = $this->commonmodel->get_one_appointment_data($id);
+            if($record){
+                $data['availableTimes'] = $this->commonmodel->get_available_times($record->st_id, $record->service_date);
+                $data['variants'] = $this->commonmodel->crudOperation('RA','tbl_services_variants','',[['sv_id','=',$record->sv_id],['status','=',1]],['vid','DESC']);
+                $data['record'] = $record;
+            }
+            // $data['record'] = $this->commonmodel->crudOperation('R1','tbl_service_book_online','',['id'=>$id]);
+        }
         $data['listData'] = $this->commonmodel->get_appointment_list();
+        $data['services'] = $this->commonmodel->crudOperation('RA','tbl_services','',['status'=>1],['sv_id','DESC']);
         return view('admin.appointment.appointment_list', $data);
 
     }

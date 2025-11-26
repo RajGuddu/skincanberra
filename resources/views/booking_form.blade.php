@@ -21,12 +21,13 @@
                                 <label class="form-label">First Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control border-dark" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="Enter first name">
                                 <span class="text-danger error-first_name" style="display:none;">Please enter your first name!</span>
+                                @error('first_name') <span class="text-danger"> {{ $message }} </span> @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Last Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control border-dark" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="Enter last name">
                                 <span class="text-danger error-last_name" style="display:none;">Please enter your last name!</span>
-
+                                @error('last_name') <span class="text-danger"> {{ $message }} </span> @enderror
                             </div>
                         </div>
 
@@ -34,6 +35,7 @@
                             <label class="form-label">Email <span class="text-danger">*</span></label>
                             <input type="email" class="form-control border-dark" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
                             <span class="text-danger error-email" style="display:none;">Please enter a valid email!</span>
+                            @error('email') <span class="text-danger"> {{ $message }} </span> @enderror
                         </div>
 
                         <div class="mb-3">
@@ -50,6 +52,7 @@
                                 <input type="text" name="phone" value="{{ old('phone') }}" class="form-control border-dark " placeholder="Phone Number">
                             </div>
                             <span class="text-danger error-phone" style="display:none;">Please enter phone number!</span>
+                            @error('phone') <span class="text-danger"> {{ $message }} </span> @enderror
                         </div>
 
                         <div class="mb-3">
@@ -78,7 +81,7 @@
 
                     <div class="d-grid mt-4">
                         <!-- <button class="btn btn-outline-dark py-2 mb-2">Add to Cart</button> -->
-                        <button id="bookNowBtn" class="btn text-white py-2" style="background-color:#000;">Book Now</button>
+                        <button id="bookNowBtn" class="btn text-white py-2" style="background-color:#000;">Pay Now(${{ $serviceDtls->sp }})</button>
                     </div>
                 </div>
             </div>
@@ -107,6 +110,61 @@
 <script>
     $(document).ready(function() {
         $('#bookNowBtn').on('click', function(e) {
+            e.preventDefault();
+
+            // Hide old errors
+            $('.text-danger').hide();
+            $('#ajax-loader').show();
+
+            let isValid = true;
+
+            // Simple validation rules
+            let firstName = $('#first_name').val().trim();
+            let lastName  = $('#last_name').val().trim();
+            let email     = $('#email').val().trim();
+            let phone     = $('input[name="phone"]').val().trim();
+
+            if (firstName == "") {
+                $('.error-first_name').show();
+                isValid = false;
+            }
+
+            if (lastName === "") {
+                $('.error-last_name').show();
+                isValid = false;
+            }
+
+            if (email === "") {
+                $('.error-email').text("Email is required!").show();
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                $('.error-email').text("Invalid email format!").show();
+                isValid = false;
+            }
+
+            if (phone === "") {
+                $('.error-phone').show();
+                isValid = false;
+            }
+            $('#ajax-loader').hide();
+            // If validation fails → stop here
+
+            if (!isValid) {
+                
+                return;
+            }
+
+            // Disable button while submitting
+            $('#bookNowBtn').prop('disabled', true).text('Processing...');
+
+            // Submit the form 
+            $('#bookingClientForm').submit();
+        });
+        function validateEmail(email) {
+            let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        /* $('#bookNowBtn').on('click', function(e) {
             e.preventDefault();
 
             // Clear previous errors
@@ -150,7 +208,7 @@
                     $('#ajax-loader').hide();
                 }
             });
-        });
+        }); */
     });
 </script>
 @endsection

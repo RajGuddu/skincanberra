@@ -5,10 +5,12 @@ use Illuminate\Http\Request;
 
 use App\Services\CartService;
 use App\Models\Common_model;
-use Stripe;
+use App\Traits\StripePaymentTrait;
 
 class Shop extends Controller
 {
+    use StripePaymentTrait;
+
     private $commonmodel;
     private $cart;
     public function __construct(CartService $cart){
@@ -155,20 +157,87 @@ class Shop extends Controller
     }
     /*********************teting****************************** */
     public function pay(){
-        return view('stripe_payment');
+        return view('stripe_payment_test');
     }
     public function payment(Request $request)
     {
-        Stripe\Stripe::setApiKey(config('services.stripe.secret'));
-
-        Stripe\Charge::create([
-            'amount' => 5000, // 50 INR
-            'currency' => 'inr',
-            'description' => 'Test Payment',
-            'source' => $request->stripeToken,
+        $session = $this->createStripeCheckout([
+            'amount'      => 5000, // 50 INR (in paise)
+            'name'        => 'Service Charge',
+            'description' => 'Waxing (Side Locks)',
+            'images'      => [url('assets/uploads/images/svariant-qMcBCv49.webp')],
+            'metadata'    => [
+                                'order_id' => 1234,
+                                'user_id'  => 56,
+                                'my_note'  => "This is demo note",
+                            ],
+            'success_url' => url('/stripe-success') . '?sid={CHECKOUT_SESSION_ID}',
+            'cancel_url'  => url('/stripe-cancel'),
         ]);
+        /*\Stripe\Stripe::setApiKey(STRIPE_SECRET);
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'inr',
+                    'product_data' => [
+                        'name' => 'Service Charge',
+                        'description' => 'Waxing (Side Locks)',
+                        'images' => ['http://localhost/laravel/skincanberra/public/assets/uploads/images/svariant-AoeDN62a.webp'],
+                    ],
+                    'unit_amount' => 5000, // 50 INR (5000 paise)
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'metadata' => [
+                'order_id' => 1234,
+                'user_id'  => 56,
+                'my_note'  => "This is demo note",
+            ],
+            'success_url' => url('/stripe-success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => url('/stripe-cancel'),
+        ]); */
+        // echo '<pre>'; var_dump($session); exit;
 
-        return back()->with('success', 'Payment successful!');
+        return redirect($session->url);
+    }
+    public function _success(Request $request){
+        $sessionId = $request->get('sid');
+        
+        $result = $this->verifyStripeSuccess($sessionId);
+
+        if($result['success'] && $result['status'] == 'succeeded'){
+            echo '<pre>'; print_r($result);
+            // return redirect()->to(url('thank-you'));
+
+        }else{
+            echo 'Payment fail';
+        }
+
+
+        /*\Stripe\Stripe::setApiKey(STRIPE_SECRET);
+
+        $session = \Stripe\Checkout\Session::retrieve($sessionId);
+
+        if ($session->payment_status !== 'paid') {
+            return redirect('/'); // refresh रोक दिया
+        }
+
+        $paymentIntent = \Stripe\PaymentIntent::retrieve($session->payment_intent);
+        echo '<pre>'; var_dump($paymentIntent); 
+
+        $order_id = $session->metadata->order_id;
+        $user_id  = $session->metadata->user_id;
+        $note     = $session->metadata->my_note;
+        echo $order_id.' '.$user_id.' '.$note;
+        return $paymentIntent->status;*/
+    }
+    // public function success(){
+    //     echo 'Payment Successful';
+    // }
+    public function cancel(){
+        echo 'payment cancel';
     }
     public function testcart1(){
         // $product =  $this->commonmodel->get_product_for_cart(2, 3);

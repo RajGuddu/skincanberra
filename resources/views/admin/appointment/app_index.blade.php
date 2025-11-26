@@ -267,7 +267,7 @@
         $('#appointmentForm').submit();
     });
 
-});
+  });
 
 // Optional simple toast notification
 function showErrorToast(msg) {

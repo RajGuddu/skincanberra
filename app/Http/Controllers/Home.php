@@ -16,8 +16,10 @@ use App\Models\ServiceVariantsModel;
 use App\Models\ContactModel;
 use App\Models\Common_model;
 use App\Services\CartService;
+use App\Traits\StripePaymentTrait;
 class Home extends Controller
 {
+    use StripePaymentTrait;
     private $commonmodel;
     public function __construct(){
         $this->commonmodel = new Common_model;
@@ -346,6 +348,147 @@ class Home extends Controller
                     $post['status'] = 1; //for new
                     $post['added_at'] = Carbon::now();
 
+                    $insertId = $this->commonmodel->crudOperation('C','tbl_service_book_log',$post);
+
+                    if($insertId){
+                        
+                        $service = $this->commonmodel->crudOperation('R1','tbl_services','',['sv_id'=>$post['sv_id']]);
+                        $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$post['vid']]);
+                        $serviceTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>$post['st_id']]);
+
+                        $serviceName = $service->service_name ?? '';
+                        $variantName = $variant->v_name ?? '';
+                        $selected_time = $serviceTime->serv_time ?? '';
+                        $amount = (int)$variant->sp;
+
+                        session()->forget([
+                            'vid',
+                            'sv_id',
+                            'selected_date',
+                            'selected_st_id',
+                            'isBooking'
+                        ]);
+
+                        $session = $this->createStripeCheckout([
+                            'amount'      => $amount * 100, // (in paise)
+                            'name'        => $serviceName.' ('.$variantName.')',
+                            'description' => Carbon::parse($post['service_date'] . ' ' . $selected_time)->format('d F Y \a\t h:i a'),
+                            'images'      => [url(IMAGE_PATH.$variant->photo)],
+                            'metadata'    => [
+                                                'log_id' => $insertId,
+                                                'txnId'  => 'TXN' . time() . rand(1000, 9999),
+                                            ],
+                            'success_url' => url('/booking-success') . '?sid={CHECKOUT_SESSION_ID}',
+                            'cancel_url'  => url('/payment-cancel'),
+                        ]);
+                        return redirect($session->url);
+                        
+                    }
+                }
+            }
+            $data['cms'] = $this->commonmodel->getOneRecord('tbl_cms',['status'=>1,'page'=>'privacy-policy']);
+            $serviceTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>session('selected_st_id')]);
+            $data['formattedDateTime'] = Carbon::parse(session('selected_date') . ' ' . $serviceTime->serv_time)->format('d F Y \a\t h:i a');
+            $data['serviceDtls'] = $this->commonmodel->get_booking_service();
+            $data['countries'] = $this->commonmodel->crudOperation('RA','tbl_countries','',['status'=>1],['countries_iso_code','ASC']);
+
+            return view('booking_form', $data);
+        }
+        return redirect()->to(url('book-online'));
+    }
+    public function booking_success(Request $request){
+        $sessionId = $request->get('sid');
+        
+        $result = $this->verifyStripeSuccess($sessionId);
+
+        if($result['success'] && $result['status'] == 'succeeded'){
+            // echo '<pre>'; print_r($result);
+            $paymentIntentId = $result['paymentIntentId'];
+            $paymentIntentExists = $this->commonmodel->isExists('tbl_service_book_online', ['paymentIntentId'=>$paymentIntentId]);
+            if($paymentIntentExists){
+                return redirect()->to(url('/'));
+            }
+            $paymentMode = $result['paymentMode'];
+            $log_id = $result['meta']['log_id'];
+            $txnId = $result['meta']['txnId'];
+
+            $logData = $this->commonmodel->getOneRecordArray('tbl_service_book_log',['log_id'=>$log_id]);
+            if($logData){
+                unset($logData['log_id']);
+                $logData['payment_mode'] = $paymentMode;
+                $logData['payment_status'] = 'succeeded';
+                $logData['paymentIntentId'] = $paymentIntentId;
+                $logData['txnId'] = $txnId;
+
+                $insertId = $this->commonmodel->crudOperation('C','tbl_service_book_online',$logData);
+                if($insertId){
+                    $service = $this->commonmodel->crudOperation('R1','tbl_services','',['sv_id'=>$logData['sv_id']]);
+                    $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$logData['vid']]);
+                    $serviceTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>$logData['st_id']]);
+
+                    $serviceName = $service->service_name ?? '';
+                    $variantName = $variant->v_name ?? '';
+                    $selected_time = $serviceTime->serv_time ?? '';
+                    $mailData = [
+                        'client_name'   => $logData['first_name'].' '.$logData['last_name'],
+                        'client_email'  => $logData['email'],
+                        'client_phone'  => $logData['phone'],
+                        'service_name'  => $serviceName.' ('.$variantName.')',
+                        'selected_date' => Carbon::parse($logData['service_date'])->format('l j F'),
+                        'selected_time' => $selected_time,
+                        'date_time'     => Carbon::parse($logData['service_date'] . ' ' . $selected_time)->format('d F Y \a\t h:i a')
+                    ];
+                    Mail::to($logData['email'])->send(new ClientBookingMail($mailData));
+                    // Mail::to(ADMIN_MAIL_TO)->send(new AdminBookingMail($data));
+                    Mail::send('emailer.admin-booking', $mailData, function ($message) use ($mailData){
+                        $message->to(ADMIN_MAIL_TO)
+                                ->subject('New Booking Request Received –'.$mailData['client_name']);
+                    });
+                    
+                }
+
+            }
+            return redirect()->to(url('payment-success'));
+
+        }else{
+            return redirect()->to(url('payment-cancel'));
+        }
+    }
+    public function payment_success(Request $request){
+        return view('payment_success');
+    }
+    public function payment_cancel(Request $request){
+        return view('payment_cancel');
+    }
+    /*public function booking_form(Request $request){
+
+        if(session()->has('isBooking')){
+            // dd(session()->all()); exit;
+            if($request->isMethod('POST')){
+                
+                $rules = [
+                    'first_name' => 'required|string',
+                    'last_name' => 'required|string',
+                    'email' => 'required|email',
+                    'phone' => 'required|numeric|digits:10',
+                    
+                ];
+                $validated = $this->validate($request, $rules);
+                if($validated){
+                    // print_r($_POST); exit;
+                    $post['sv_id'] = $request->input('sv_id');
+                    $post['vid'] = $request->input('vid');
+                    $post['st_id'] = $request->input('selected_st_id');
+                    $post['service_date'] = $request->input('selected_date');
+                    $post['first_name'] = $request->input('first_name');
+                    $post['last_name'] = $request->input('last_name');
+                    $post['email'] = $request->input('email');
+                    $post['country'] = $request->input('country');
+                    $post['phone'] = $request->input('phone');
+                    $post['message'] = $request->input('message');
+                    $post['status'] = 1; //for new
+                    $post['added_at'] = Carbon::now();
+
                     $inserted = $this->commonmodel->crudOperation('C','tbl_service_book_online',$post);
 
                     if($inserted){
@@ -395,7 +538,7 @@ class Home extends Controller
             return view('booking_form', $data);
         }
         return redirect()->to(url('book-online'));
-    }
+    }*/
     public function save_book_appointment_h(Request $request){
         if($request->isMethod('POST')){
             $post = array();
