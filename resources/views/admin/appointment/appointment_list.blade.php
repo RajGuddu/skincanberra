@@ -15,13 +15,13 @@
                 <h1 class="app-page-title mb-4">Appointment List</h1>
             </div>
             <div class="col-auto">
-            <form action="{{ url()->current() }}" method="post" class="mb-3">
+            <form action="{{ url('admin/search_appointment') }}" method="post" class="mb-3">
                 @csrf
                 <div class="input-group" style="max-width:400px;">
                     <input type="text" name="search" class="form-control" placeholder="Search by name or email"
-                        value="{{ old('search', $search ?? '') }}">
+                        value="{{ old('search', session('search')) }}" required>
                     <button class="btn btn-primary" type="submit">Search</button>
-                    <a href="{{ url('admin/appointment-list') }}" class="btn btn-secondary ms-2">Reset</a>
+                    <a href="{{ url('admin/search_reset') }}" class="btn btn-secondary ms-2">Reset</a>
                     <a href="{{ url('admin/appointment-list').'?add=1' }}" class="btn btn-secondary ms-2">Add</a>
                 </div>
             </form>
@@ -40,7 +40,7 @@
             <div class="col-lg-{{ $tableCol }}">
                 <div class="app-card app-card-orders-table shadow-sm mb-5">
                     <div class="app-card-body">
-                        <!-- <div class="table-responsive"> -->
+                        <div class="table-responsive">
                             <table class="table app-table-hover mb-0 text-left table-fixed">
                                 <thead>
                                     <tr>
@@ -92,7 +92,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                        <!-- </div>//table-responsive -->
+                        </div><!-- table-responsive -->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
             </div>
@@ -182,16 +182,16 @@
                                 @endforeach
                                 @endif
                             </select>
-                            
+                            <input type="hidden" name="old_vid" value="{{ $record->vid ?? '' }}" >
                         </div>
 
                         <div class="mb-3">
                         <label class="form-label">Status</label>
                         <select id="status" class="form-select" name="status">
-                            <option value="1" {{ (isset($record) && $record->status == 1)?'selected':'' }}>Pending</option>
                             <option value="2" {{ (isset($record) && $record->status == 2)?'selected':'' }}>Approved</option>
                             <option value="3" {{ (isset($record) && $record->status == 3)?'selected':'' }}>Declined</option>
                             <option value="4" {{ (isset($record) && $record->status == 4)?'selected':'' }}>Completed</option>
+                            <option value="1" {{ (isset($record) && $record->status == 1)?'selected':'' }}>Pending</option>
                         </select>
                         <input type="hidden" name="old_status" value="{{ $record->status ?? '' }}" >
                         </div>

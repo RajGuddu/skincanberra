@@ -390,6 +390,11 @@ class Common_model extends Model
                 'v.sp as price',
                 't.serv_time',
             );
+        if(session()->has('search')){
+            $search = session('search');
+            $builder->where('first_name', 'like', '%'.$search.'%');
+            $builder->orWhere('last_name', 'like', '%'.$search.'%');
+        }
         $builder->orderBy('b.id', 'DESC');
         $result = $builder->get();
         return $result;

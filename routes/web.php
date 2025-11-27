@@ -160,6 +160,9 @@ Route::middleware(['Authcheck'])->group(function () {
     Route::match(['get','post'], 'admin/appointment/{id}', [Appointment::class,'index']);
     Route::match(['get','post'],'admin/appointment-list', [Appointment::class,'appointment_list']);
     Route::match(['get','post'],'admin/appointment-list/{id}', [Appointment::class,'appointment_list']);
+    Route::match(['get','post'],'admin/delete_appointment/{id}', [Appointment::class,'delete_appointment']);
+    Route::match(['get','post'],'admin/search_appointment', [Appointment::class,'search_appointment']);
+    Route::match(['get','post'],'admin/search_reset', [Appointment::class,'search_reset']);
 
     Route::get('admin/get-times-by-date', [Appointment::class,'get_times_by_date']); // ajax
 

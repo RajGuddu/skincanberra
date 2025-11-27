@@ -57,7 +57,7 @@
             <div class="col-lg-6">
                 <div class="contact-img">
                     @php
-                        $Image = url('public/assets/frontend/images/contact-makup.jpg');
+                        $Image = url('assets/frontend/images/contact-makup.jpg');
                         if($content->contact_page_image != '')
                             $Image = url(IMAGE_PATH.$content->contact_page_image);
                     @endphp
@@ -89,7 +89,7 @@
             <div class="col-lg-6">
                 <div class="canberra">
                     @php
-                        $sec1Image = url('public/assets/frontend/images/canberra.png');
+                        $sec1Image = url('assets/frontend/images/canberra.png');
                         if($content->about_image != '')
                             $sec1Image = url(IMAGE_PATH.$content->about_image);
                     @endphp

@@ -3,7 +3,7 @@
   
 <!-- banner panel -->
 @php
-    $url = url('public/assets/frontend/images/service-lising-banner.jpg');
+    $url = url('assets/frontend/images/service-lising-banner.jpg');
     if(isset($service) && $service->banner_image != ''){
         $url = url(IMAGE_PATH.$service->banner_image);
     }
@@ -83,7 +83,7 @@
                 <a href="#">
                     <div class="product-card">
                         <div class="product-img position-relative mb-3">
-                            <img src="{{ url('public/assets/frontend/images/service2.png') }}" alt="Lifting Lymphatic Drainage" class="img-fluid rounded-4">
+                            <img src="{{ url('assets/frontend/images/service2.png') }}" alt="Lifting Lymphatic Drainage" class="img-fluid rounded-4">
                         </div>
                         <div class="product-info">
                             <h5 class="fw-semibold mb-1 text-black">Brightening / Glow Facial</h5>
@@ -109,7 +109,7 @@
                 <a href="#">
                     <div class="product-card">
                         <div class="product-img position-relative mb-3">
-                            <img src="{{ url('public/assets/frontend/images/service4.png') }}" alt="Lifting Lymphatic Drainage" class="img-fluid rounded-4">
+                            <img src="{{ url('assets/frontend/images/service4.png') }}" alt="Lifting Lymphatic Drainage" class="img-fluid rounded-4">
                         </div>
                         <div class="product-info">
                             <h5 class="fw-semibold mb-1 text-black">Lifting Lymphatic Drainage</h5>

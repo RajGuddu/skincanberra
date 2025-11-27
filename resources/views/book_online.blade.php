@@ -1,8 +1,8 @@
 @extends('_layouts.master')
 @section('content')
 
-<link rel="stylesheet" href="{{ url('public/assets/calender/assets/simple-calendar.css') }}">
-<script src="{{ url('public/assets/calender/assets/jquery.simple-calendar.js') }}"></script>
+<link rel="stylesheet" href="{{ url('assets/calender/assets/simple-calendar.css') }}">
+<script src="{{ url('assets/calender/assets/jquery.simple-calendar.js') }}"></script>
 
 
 <section class="py-2" style="background-color:#B4903A1A;">

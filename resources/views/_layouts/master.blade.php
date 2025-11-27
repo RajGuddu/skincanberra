@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title> Skin Canberra </title>
-    <link rel="icon" type="image/png" href="{{ url('public/assets/frontend/images/skin-canberra.svg') }}">
-    <link rel="stylesheet" href="{{ url('public/assets/frontend/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url('public/assets/frontend/css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ url('public/assets/frontend/css/style.css') }}">
-    <link rel="stylesheet" href="{{ url('public/assets/frontend/css/media-query.css') }}">
+    <link rel="icon" type="image/png" href="{{ url('assets/frontend/images/skin-canberra.svg') }}">
+    <link rel="stylesheet" href="{{ url('assets/frontend/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/frontend/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/frontend/css/media-query.css') }}">
     <!-- for datepicker and timepicker -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
@@ -100,7 +100,7 @@
                     <div class="ratio ratio-16x9">
                         <div class="ratio ratio-16x9">
                             <!-- <video id="myVideo" controls>
-                                <source src="{{ url('public/assets/frontend/images/doctor.mp4') }}" type="video/mp4">
+                                <source src="{{ url('assets/frontend/images/doctor.mp4') }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video> -->
                             <iframe id="youtubeVideo" width="600" height="500" src="" title="Skin Canberra" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -217,8 +217,8 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
     
-    <script src="{{ url('public/assets/frontend/js/custom.js') }}"></script>
-    <script src="{{ url('public/assets/frontend/js/owl.carousel.js') }}"></script>
+    <script src="{{ url('assets/frontend/js/custom.js') }}"></script>
+    <script src="{{ url('assets/frontend/js/owl.carousel.js') }}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Lightbox2 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>

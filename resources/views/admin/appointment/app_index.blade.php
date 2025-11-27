@@ -45,6 +45,11 @@
     box-sizing: border-box;
     vertical-align: middle;
   }
+  .table-fixed {
+      width: 100%;
+      table-layout: fixed;   
+      word-wrap: break-word; 
+  }
 </style>
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -71,8 +76,8 @@
           </div>
         </div>
 
-        <div class="table-responsive border">
-          <table class="table table-bordered text-center mb-0" id="calendarTable">
+        <div class="table-responsive border ">
+          <table class="table table-bordered text-center table-fixed mb-0" id="calendarTable">
             <thead class="table-light">
               <tr id="dayHeader">
                 <th style="width:100px;">Time</th>

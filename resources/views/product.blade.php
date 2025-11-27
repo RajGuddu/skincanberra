@@ -92,7 +92,7 @@
 
     <!-- banner panel -->
 
-    <div class="banner" style="background-image: url({{ url('public/assets/frontend/images/product-banner.jpg')}});">
+    <div class="banner" style="background-image: url({{ url('assets/frontend/images/product-banner.jpg')}});">
         <div class="container">
             <h1 class="banner-title cormorant aos-init aos-animate" data-aos="fade-up">All Products</h1>
             <p class="banner-content mt-3 text-black">Browse our complete collection of skincare, haircare, makeup, and
@@ -119,7 +119,7 @@
                             <div class="d-flex align-items-center gap-4">
                                 <!-- fliter button -->
                                 <button class="filter-btn">
-                                    <img src="{{ url('public/assets/frontend/images/filter-icon.svg') }}" alt="">
+                                    <img src="{{ url('assets/frontend/images/filter-icon.svg') }}" alt="">
                                     Filters
                                 </button>
                                 <!-- Sort Dropdown -->
@@ -216,7 +216,7 @@
                                         </div>
 
                                         <span class="btn add-cart-btn w-100 mt-3 addToCart" data-pro_id="{{ $list->pro_id }}" data-attrid="{{ $list->attrId }}">
-                                            <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                            <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                             Add To Cart
                                         </span>
                                     </div>
@@ -230,7 +230,7 @@
                                 <a href="#" class="d-block">
                                     <div class="product-card">
                                         <div class="product-img position-relative mb-3">
-                                            <img src="{{ url('public/assets/frontend/images/product2.png') }}" alt="Silk Repair Hair Mask"
+                                            <img src="{{ url('assets/frontend/images/product2.png') }}" alt="Silk Repair Hair Mask"
                                                 class="img-fluid rounded-4">
                                             <span class="badge bg-light text-dark hair-mask-badge">Face Wash</span>
                                         </div>
@@ -251,7 +251,7 @@
                                             </div>
 
                                             <span class="btn add-cart-btn w-100 mt-3">
-                                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                                 Add To Cart
                                             </span>
                                         </div>
@@ -263,7 +263,7 @@
                                 <a href="#" class="d-block">
                                     <div class="product-card">
                                         <div class="product-img position-relative mb-3">
-                                            <img src="{{ url('public/assets/frontend/images/product3.png') }}" alt="Silk Repair Hair Mask"
+                                            <img src="{{ url('assets/frontend/images/product3.png') }}" alt="Silk Repair Hair Mask"
                                                 class="img-fluid rounded-4">
                                             <span class="badge bg-light text-dark hair-mask-badge">Sunscreen</span>
                                         </div>
@@ -284,7 +284,7 @@
                                             </div>
 
                                             <span class="btn add-cart-btn w-100 mt-3">
-                                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                                 Add To Cart
                                             </span>
                                         </div>
@@ -296,7 +296,7 @@
                                 <a href="#" class="d-block">
                                     <div class="product-card">
                                         <div class="product-img position-relative mb-3">
-                                            <img src="{{ url('public/assets/frontend/images/product4.png') }}" alt="Silk Repair Hair Mask"
+                                            <img src="{{ url('assets/frontend/images/product4.png') }}" alt="Silk Repair Hair Mask"
                                                 class="img-fluid rounded-4">
                                             <span class="badge bg-light text-dark hair-mask-badge">Hair Mask</span>
                                         </div>
@@ -318,7 +318,7 @@
                                             </div>
 
                                             <span class="btn add-cart-btn w-100 mt-3">
-                                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                                 Add To Cart
                                             </span>
                                         </div>
@@ -330,7 +330,7 @@
                                 <a href="#" class="d-block">
                                     <div class="product-card">
                                         <div class="product-img position-relative mb-3">
-                                            <img src="{{ url('public/assets/frontend/images/product1.png') }}" alt="Silk Repair Hair Mask"
+                                            <img src="{{ url('assets/frontend/images/product1.png') }}" alt="Silk Repair Hair Mask"
                                                 class="img-fluid rounded-4">
                                             <span class="badge bg-light text-dark hair-mask-badge">Serum</span>
                                         </div>
@@ -352,7 +352,7 @@
                                             </div>
 
                                             <span class="btn add-cart-btn w-100 mt-3">
-                                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                                 Add To Cart
                                             </span>
                                         </div>
@@ -364,7 +364,7 @@
                                 <a href="#" class="d-block">
                                     <div class="product-card">
                                         <div class="product-img position-relative mb-3">
-                                            <img src="{{ url('public/assets/frontend/images/product2.png') }}" alt="Silk Repair Hair Mask"
+                                            <img src="{{ url('assets/frontend/images/product2.png') }}" alt="Silk Repair Hair Mask"
                                                 class="img-fluid rounded-4">
                                             <span class="badge bg-light text-dark hair-mask-badge">Face Wash</span>
                                         </div>
@@ -385,7 +385,7 @@
                                             </div>
 
                                             <span class="btn add-cart-btn w-100 mt-3">
-                                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                                 Add To Cart
                                             </span>
                                         </div>
@@ -397,7 +397,7 @@
                                 <a href="#" class="d-block">
                                     <div class="product-card">
                                         <div class="product-img position-relative mb-3">
-                                            <img src="{{ url('public/assets/frontend/images/product3.png') }}" alt="Silk Repair Hair Mask"
+                                            <img src="{{ url('assets/frontend/images/product3.png') }}" alt="Silk Repair Hair Mask"
                                                 class="img-fluid rounded-4">
                                             <span class="badge bg-light text-dark hair-mask-badge">Sunscreen</span>
                                         </div>
@@ -418,7 +418,7 @@
                                             </div>
 
                                             <span class="btn add-cart-btn w-100 mt-3">
-                                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                                 Add To Cart
                                             </span>
                                         </div>
@@ -430,7 +430,7 @@
                                 <a href="#" class="d-block">
                                     <div class="product-card">
                                         <div class="product-img position-relative mb-3">
-                                            <img src="{{ url('public/assets/frontend/images/product4.png') }}" alt="Silk Repair Hair Mask"
+                                            <img src="{{ url('assets/frontend/images/product4.png') }}" alt="Silk Repair Hair Mask"
                                                 class="img-fluid rounded-4">
                                             <span class="badge bg-light text-dark hair-mask-badge">Hair Mask</span>
                                         </div>
@@ -452,7 +452,7 @@
                                             </div>
 
                                             <span class="btn add-cart-btn w-100 mt-3">
-                                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                                 Add To Cart
                                             </span>
                                         </div>
@@ -517,7 +517,7 @@
                                         </div>
 
                                         <span class="btn add-cart-btn w-100 mt-3 addToCart" data-pro_id="{{ $list->pro_id }}" data-attrid="{{ $list->attrId }}">
-                                            <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                            <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                             Add To Cart
                                         </span>
                                     </div>

@@ -47,29 +47,11 @@
                         </div>
                         <?php } } }  ?>
                         <?php /* <div class="testimonial-card video-card" data-bs-toggle="modal" data-bs-target="#videoModal">
-                            <img src="{{ url('public/assets/frontend/images/service4.png') }}" alt="Facial video">
+                            <img src="{{ url('assets/frontend/images/service4.png') }}" alt="Facial video">
                             <div class="play-btn"></div>
                         </div>
                         <div class="testimonial-card video-card" data-bs-toggle="modal" data-bs-target="#videoModal">
-                            <img src="{{ url('public/assets/frontend/images/service3.png') }}" alt="Facial video">
-                            <div class="play-btn"></div>
-                        </div>
-                        <div class="testimonial-card text-card">
-                            <p>The best place and AMAZING people ❤️ I just loved their work.</p>
-                            <div class="profile">
-                                <img src="https://i.pravatar.cc/32?img=3" alt="">
-                                <div>
-                                    <p class="name">Priya S.</p>
-                                    <p class="role">Skin Therapy</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card video-card" data-bs-toggle="modal" data-bs-target="#videoModal">
-                            <img src="{{ url('public/assets/frontend/images/service4.png') }}" alt="Facial video">
-                            <div class="play-btn"></div>
-                        </div>
-                        <div class="testimonial-card video-card" data-bs-toggle="modal" data-bs-target="#videoModal">
-                            <img src="{{ url('public/assets/frontend/images/service3.png') }}" alt="Facial video">
+                            <img src="{{ url('assets/frontend/images/service3.png') }}" alt="Facial video">
                             <div class="play-btn"></div>
                         </div>
                         <div class="testimonial-card text-card">
@@ -83,7 +65,25 @@
                             </div>
                         </div>
                         <div class="testimonial-card video-card" data-bs-toggle="modal" data-bs-target="#videoModal">
-                            <img src="{{ url('public/assets/frontend/images/service4.png') }}" alt="Facial video">
+                            <img src="{{ url('assets/frontend/images/service4.png') }}" alt="Facial video">
+                            <div class="play-btn"></div>
+                        </div>
+                        <div class="testimonial-card video-card" data-bs-toggle="modal" data-bs-target="#videoModal">
+                            <img src="{{ url('assets/frontend/images/service3.png') }}" alt="Facial video">
+                            <div class="play-btn"></div>
+                        </div>
+                        <div class="testimonial-card text-card">
+                            <p>The best place and AMAZING people ❤️ I just loved their work.</p>
+                            <div class="profile">
+                                <img src="https://i.pravatar.cc/32?img=3" alt="">
+                                <div>
+                                    <p class="name">Priya S.</p>
+                                    <p class="role">Skin Therapy</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card video-card" data-bs-toggle="modal" data-bs-target="#videoModal">
+                            <img src="{{ url('assets/frontend/images/service4.png') }}" alt="Facial video">
                             <div class="play-btn"></div>
                         </div> */ ?>
                     </div>
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="testimonial-card video-card">
-                            <img src="{{ url('public/assets/frontend/images/service4.png') }}" alt="Facial video">
+                            <img src="{{ url('assets/frontend/images/service4.png') }}" alt="Facial video">
                             <div class="play-btn"></div>
                         </div>
                         <div class="testimonial-card text-card">
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="testimonial-card video-card">
-                            <img src="{{ url('public/assets/frontend/images/service4.png') }}" alt="Facial video">
+                            <img src="{{ url('assets/frontend/images/service4.png') }}" alt="Facial video">
                             <div class="play-btn"></div>
                         </div>
                         <div class="testimonial-card text-card">

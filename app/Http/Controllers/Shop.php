@@ -183,7 +183,7 @@ class Shop extends Controller
                     'product_data' => [
                         'name' => 'Service Charge',
                         'description' => 'Waxing (Side Locks)',
-                        'images' => ['http://localhost/laravel/skincanberra/public/assets/uploads/images/svariant-AoeDN62a.webp'],
+                        'images' => ['http://localhost/laravel/skincanberra/assets/uploads/images/svariant-AoeDN62a.webp'],
                     ],
                     'unit_amount' => 5000, // 50 INR (5000 paise)
                 ],

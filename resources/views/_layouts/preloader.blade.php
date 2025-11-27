@@ -49,7 +49,7 @@
 <!-- Page Preloader -->
 <div id="preloader">
     <div class="preloader-content">
-        <img src="{{ url('public/assets/frontend/images/skin-canberra.svg') }}" alt="Logo" class="preloader-logo">
+        <img src="{{ url('assets/frontend/images/skin-canberra.svg') }}" alt="Logo" class="preloader-logo">
         <!-- <div class="spinner"></div> -->
     </div>
 </div>

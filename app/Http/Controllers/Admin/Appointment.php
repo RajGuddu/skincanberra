@@ -160,7 +160,57 @@ class Appointment extends Controller
                 $request->session()->flash('message',['msg'=>'Please Try After Sometimes...','type'=>'danger']);
             }
 
-            return redirect()->to('admin/appointment-list');
+            //mail
+            $bookedId = (isset($inserted))?$inserted:$id;
+            $record = $this->commonmodel->get_one_appointment_data($bookedId);
+            $mailTo = $record->email;
+
+            $mailData = [
+                'client_name' => $record->name,
+                'service_name' => $record->service_name.' ('.$record->variant.')',
+                'selected_date' => Carbon::parse($record->service_date . ' ' . $record->serv_time)->format('d F Y \a\t h:i a'),
+            ];
+
+            if($_POST['status'] != $_POST['old_status']){
+                if($_POST['status'] == 2){ // approved
+                    Mail::send('emailer.approve_appoint', $mailData, function ($message) use ($mailTo){
+                        $message->to($mailTo)
+                                ->subject('Your Appointment is Confirmed – Skin Canberra');
+                    });
+                    Mail::send('emailer.approve_appoint_admin', $mailData, function ($message) use ($mailData){
+                        $message->to(ADMIN_MAIL_TO)
+                                ->subject('Booking Approved –'.$mailData['client_name']);
+                    });
+                }else if($_POST['status'] == 3){ // Declined
+                    Mail::send('emailer.declined_appoint', $mailData, function ($message) use ($mailTo){
+                        $message->to($mailTo)
+                                ->subject('Update on Your Booking Request – Skin Canberra');
+                    });
+                    Mail::send('emailer.declined_appoint_admin', $mailData, function ($message) use ($mailData){
+                        $message->to(ADMIN_MAIL_TO)
+                                ->subject('Booking Declined –'.$mailData['client_name']);
+                    });
+                }
+            }
+            if($id && ($_POST['service_date'] != $_POST['old_service_date'] || $_POST['st_id'] != $_POST['old_st_id'] || $_POST['sv_id'] != $_POST['old_sv_id'] || $_POST['vid'] != $_POST['old_vid'])){
+                Mail::send('emailer.reschedule_appoint', $mailData, function ($message) use ($mailTo){
+                    $message->to($mailTo)
+                            ->subject('Your Appointment Has Been Rescheduled – Skin Canberra');
+                });
+
+                $oldTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>$_POST['old_st_id']]);
+                $mailData['old_date'] = Carbon::parse($_POST['old_service_date'] . ' ' . $oldTime->serv_time)->format('d F Y \a\t h:i a');
+                Mail::send('emailer.reschedule_appoint_admin', $mailData, function ($message) use ($mailData){
+                    $message->to(ADMIN_MAIL_TO)
+                            ->subject('Reschedule Approved –'.$mailData['client_name']);
+                });
+            }
+            if($id){
+                $redirect = url('admin/appointment-list/'.$id);
+            }else{
+                $redirect = url('admin/appointment-list');
+            }
+            return redirect()->to($redirect);
         }
         if($id){
             $record = $this->commonmodel->get_one_appointment_data($id);
@@ -169,11 +219,36 @@ class Appointment extends Controller
                 $data['variants'] = $this->commonmodel->crudOperation('RA','tbl_services_variants','',[['sv_id','=',$record->sv_id],['status','=',1]],['vid','DESC']);
                 $data['record'] = $record;
             }
-            // $data['record'] = $this->commonmodel->crudOperation('R1','tbl_service_book_online','',['id'=>$id]);
         }
         $data['listData'] = $this->commonmodel->get_appointment_list();
         $data['services'] = $this->commonmodel->crudOperation('RA','tbl_services','',['status'=>1],['sv_id','DESC']);
         return view('admin.appointment.appointment_list', $data);
 
+    }
+    public function delete_appointment(Request $request, $id=null){
+        if($id){
+            
+            if($this->commonmodel->crudOperation('D','tbl_service_book_online','',['id'=>$id])){
+                $request->session()->flash('message',['msg'=>'Record Deleted.','type'=>'success']);
+            }else{
+                $request->session()->flash('message',['msg'=>'Please Try After Sometimes...','type'=>'danger']);
+            }
+        }
+        return redirect()->to('admin/appointment-list');
+    }
+    public function search_appointment(Request $request){
+        if($request->isMethod('POST')){
+            session([
+                'search' => $request->search,
+                // 'search_email' => $request->email,
+            ]);
+        }
+        return redirect()->to('admin/appointment-list');
+    }
+    public function search_reset(Request $request){
+        if(session()->has('search')){
+            session()->remove('search');
+        }
+        return redirect()->to('admin/appointment-list');
     }
 }

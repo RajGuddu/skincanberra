@@ -4,7 +4,7 @@
     @php
         use App\Models\Common_model;
 
-        $url = url('public/assets/frontend/images/hero-banner.jpg');
+        $url = url('assets/frontend/images/hero-banner.jpg');
         if(isset($banner) && $banner->image != '')
             $url = url(IMAGE_PATH.$banner->image);
         $commonmodel = new Common_model;
@@ -40,7 +40,7 @@
                     <?php /* <div class="col-lg-3 col-md-6">
                         <a href="#">
                             <div class="service-card position-relative overflow-hidden">
-                                <img src="{{ url('public/assets/frontend/images/service2.png') }}" alt="Skin Care" class="img-fluid w-100">
+                                <img src="{{ url('assets/frontend/images/service2.png') }}" alt="Skin Care" class="img-fluid w-100">
                                 <div class="overlay d-flex align-items-center justify-content-center">
                                     <h3 class="text-white fw-bold text-uppercase mb-0">Skin Care</h3>
                                 </div>
@@ -50,7 +50,7 @@
                     <div class="col-lg-3 col-md-6">
                         <a href="#">
                             <div class="service-card position-relative overflow-hidden">
-                                <img src="{{ url('public/assets/frontend/images/service3.png') }}" alt="Hair Care" class="img-fluid w-100">
+                                <img src="{{ url('assets/frontend/images/service3.png') }}" alt="Hair Care" class="img-fluid w-100">
                                 <div class="overlay d-flex align-items-center justify-content-center">
                                     <h3 class="text-white fw-bold text-uppercase mb-0">Hair Care</h3>
                                 </div>
@@ -60,7 +60,7 @@
                     <div class="col-lg-3 col-md-6">
                         <a href="#">
                             <div class="service-card position-relative overflow-hidden">
-                                <img src="{{ url('public/assets/frontend/images/service4.png') }}" alt="Facials" class="img-fluid w-100">
+                                <img src="{{ url('assets/frontend/images/service4.png') }}" alt="Facials" class="img-fluid w-100">
                                 <div class="overlay d-flex align-items-center justify-content-center">
                                     <h3 class="text-white fw-bold text-uppercase mb-0">Facials</h3>
                                 </div>
@@ -89,7 +89,7 @@
                 <div class="col-lg-6">
                     <div class="canberra">
                         @php
-                            $sec1Image = url('public/assets/frontend/images/canberra.png');
+                            $sec1Image = url('assets/frontend/images/canberra.png');
                             if($content->about_image != '')
                                 $sec1Image = url(IMAGE_PATH.$content->about_image);
                         @endphp
@@ -162,7 +162,7 @@
                                                 <span class="ms-auto ml-size">Size: {{ $list->value }} {{ $list->unit }}</span>
                                             </div>
                                             <span class="btn add-cart-btn w-100 mt-3 addToCart" data-pro_id="{{ $list->pro_id }}" data-attrid="{{ $list->attrId }}">
-                                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                                 Add To Cart
                                             </span>
                                         </div>
@@ -209,7 +209,7 @@
                                                 <span class="ms-auto ml-size">Size: {{ $list->value }} {{ $list->unit }}</span>
                                             </div>
                                             <span class="btn add-cart-btn w-100 mt-3 addToCart" data-pro_id="{{ $list->pro_id }}" data-attrid="{{ $list->attrId }}">
-                                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
+                                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2">
                                                 Add To Cart
                                             </span>
                                         </div>
@@ -264,7 +264,7 @@
                                                     <span class="ms-auto ml-size">Size: {{ $list->value }} {{ $list->unit }}</span>
                                                 </div>
                                                 <span class="btn add-cart-btn w-100 mt-3 addToCart" data-pro_id="{{ $list->pro_id }}" data-attrid="{{ $list->attrId }}">
-                                                    <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart"
+                                                    <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart"
                                                         class="cart-icon me-2">
                                                     Add To Cart
                                                 </span>
@@ -320,7 +320,7 @@
                                                     <span class="ms-auto ml-size">Size: {{ $list->value }} {{ $list->unit }}</span>
                                                 </div>
                                                 <span class="btn add-cart-btn w-100 mt-3 addToCart" data-pro_id="{{ $list->pro_id }}" data-attrid="{{ $list->attrId }}">
-                                                    <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart"
+                                                    <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart"
                                                         class="cart-icon me-2">
                                                     Add To Cart
                                                 </span>
@@ -354,7 +354,7 @@
                     <a href="#" class="cstm-btn mt-md-5">View All Products</a>
                 </div>
                 <div class="col-md-5">
-                    <img src="{{ url('public/assets/frontend/images/discover.png') }}" alt="">
+                    <img src="{{ url('assets/frontend/images/discover.png') }}" alt="">
                 </div>
             </div>
         </div>
@@ -386,7 +386,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="canberra">
-                            @php $sec5Image1 = url('public/assets/frontend/images/expert-care.jpg');
+                            @php $sec5Image1 = url('assets/frontend/images/expert-care.jpg');
                             if($content->sec5_content_image1 != '')
                                 $sec5Image1 = url(IMAGE_PATH.$content->sec5_content_image1);
                             @endphp
@@ -399,7 +399,7 @@
                 <div class="row align-items-center g-5">
                     <div class="col-lg-6">
                         <div class="canberra">
-                            @php $sec5Image2 = url('public/assets/frontend/images/premium-products.jpg');
+                            @php $sec5Image2 = url('assets/frontend/images/premium-products.jpg');
                             if($content->sec5_content_image2 != '')
                                 $sec5Image2 = url(IMAGE_PATH.$content->sec5_content_image2);
                             @endphp
@@ -422,7 +422,7 @@
                     
                     <div class="col-lg-6">
                         <div class="canberra">
-                            @php $sec5Image3 = url('public/assets/frontend/images/personalized-experience.jpg');
+                            @php $sec5Image3 = url('assets/frontend/images/personalized-experience.jpg');
                             if($content->sec5_content_image3 != '')
                                 $sec5Image3 = url(IMAGE_PATH.$content->sec5_content_image3);
                             @endphp
@@ -450,7 +450,7 @@
         <div class="container-fluid">
             <div class="row g-4">
                 <div class="col-md-12">
-                            @php $pic1 = url('public/assets/frontend/images/treatment.jpg');
+                            @php $pic1 = url('assets/frontend/images/treatment.jpg');
                             if($content->pic1 != '')
                                 $pic1 = url(IMAGE_PATH.$content->pic1);
                             @endphp
@@ -472,7 +472,7 @@
                 <div class="col-md-4">
                     <div class="card-treatment" role="group" aria-label="Signature Glow Facial card">
                         <!-- use your own image path if needed -->
-                            @php $pic2 = url('public/assets/frontend/images/treatment.jpg');
+                            @php $pic2 = url('assets/frontend/images/treatment.jpg');
                             if($content->pic2 != '')
                                 $pic2 = url(IMAGE_PATH.$content->pic2);
                             @endphp
@@ -486,7 +486,7 @@
                 <div class="col-md-4">
                     <div class="card-treatment" role="group" aria-label="Signature Glow Facial card">
                         <!-- use your own image path if needed -->
-                            @php $pic3 = url('public/assets/frontend/images/hair-therepy.jpg');
+                            @php $pic3 = url('assets/frontend/images/hair-therepy.jpg');
                             if($content->pic3 != '')
                                 $pic3 = url(IMAGE_PATH.$content->pic3);
                             @endphp
@@ -500,7 +500,7 @@
                 <div class="col-md-4">
                     <div class="card-treatment" role="group" aria-label="Signature Glow Facial card">
                         <!-- use your own image path if needed -->
-                            @php $pic4 = url('public/assets/frontend/images/chemical-peeling.jpg');
+                            @php $pic4 = url('assets/frontend/images/chemical-peeling.jpg');
                             if($content->pic4 != '')
                                 $pic4 = url(IMAGE_PATH.$content->pic4);
                             @endphp

@@ -11,7 +11,7 @@
 
 	<meta name="description" content="Skin Canberra">
 	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-	<link rel="shortcut icon" href="{{ url('public/assets/frontend/images/skin-canberra.svg') }}">
+	<link rel="shortcut icon" href="{{ url('assets/frontend/images/skin-canberra.svg') }}">
 
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<!-- Multiselect CSS -->
@@ -24,10 +24,10 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-ui-multiselect-widget@3.0.0/src/jquery.multiselect.min.js"></script>
 
 	<!-- FontAwesome JS-->
-	<script defer src="{{ url('public/assets/admin/plugins/fontawesome/js/all.min.js') }} "></script>
+	<script defer src="{{ url('assets/admin/plugins/fontawesome/js/all.min.js') }} "></script>
 
 	<!-- App CSS -->
-	<link id="theme-style" rel="stylesheet" href="{{ url('public/assets/admin/css/portal.css') }}">
+	<link id="theme-style" rel="stylesheet" href="{{ url('assets/admin/css/portal.css') }}">
 	<!-- Font Awesome CDN -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papNM3+zR+xVQ1BM8DT6vKrrf5gYv7FpC18JNpDutVdGs14Q6gttxyPjdvVSKuGInxjeaUp43EIBoszq3fRW1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	
@@ -132,15 +132,15 @@
 
 
 	<!-- Javascript -->
-	<script src="{{ url('public/assets/admin/plugins/popper.min.js') }}"></script>
-	<script src="{{ url('public/assets/admin/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+	<script src="{{ url('assets/admin/plugins/popper.min.js') }}"></script>
+	<script src="{{ url('assets/admin/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
 	<!-- Charts JS -->
-	<script src="{{ url('public/assets/admin/plugins/chart.js/chart.min.js') }}"></script>
-	<script src="{{ url('public/assets/admin/js/index-charts.js') }}"></script>
+	<script src="{{ url('assets/admin/plugins/chart.js/chart.min.js') }}"></script>
+	<script src="{{ url('assets/admin/js/index-charts.js') }}"></script>
 
 	<!-- Page Specific JS -->
-	<script src="{{ url('public/assets/admin/js/app.js') }}"></script>
+	<script src="{{ url('assets/admin/js/app.js') }}"></script>
 	
 	<script>
 		function cancel_image_(table, field, pkey, id) {

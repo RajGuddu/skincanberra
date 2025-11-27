@@ -7,22 +7,22 @@
     $services = $commonmodel->crudOperation('RA','tbl_services','',['status'=>1],['sv_id','DESC']);
 @endphp
 <footer class="footer panel-space pb-4"
-    style="background-image: url({{ url('public/assets/frontend/images/footer-bg-img.png') }});">
+    style="background-image: url({{ url('assets/frontend/images/footer-bg-img.png') }});">
     <div class="container-fluid">
         <div class="row g-5">
             <div class="col-lg-4 pe-lg-5">
                 <a href="{{ url('/') }}" class="footer-logo mb-4 d-block"><img
-                        src="{{ url('public/assets/frontend/images/skin-canberra.svg') }}" alt=""></a>
+                        src="{{ url('assets/frontend/images/skin-canberra.svg') }}" alt=""></a>
                 <p class="text-black mb-4">Personalised, evidence-led skin and hair care that helps you feel
                     confident —
                     naturally.</p>
                 <h5 class="mb-3">Follow us </h5>
                 <div class="social-links">
-                    <a href="{{ $settings->instagram_link }}" target="blank"><img src="{{ url('public/assets/frontend/images/instagram.svg') }}" alt="instagram"></a>
-                    <a href="{{ $settings->facebook_link }}" target="blank"><img src="{{ url('public/assets/frontend/images/facebook.svg') }}" alt="facebook"></a>
-                    <a href="http://tiktok.com/@shikhabeautystudio" target="blank"><img src="{{ url('public/assets/frontend/images/tiktok.svg') }}" alt="tiktok"></a>
-                    <?php /* <?php /* <a href="{{ $settings->youtube_link }}" target="blank"><img src="{{ url('public/assets/frontend/images/youtube.svg') }}" alt="youtube"></a> 
-                    <a href="{{ $settings->twitter_link }}" target="blank"><img src="{{ url('public/assets/frontend/images/twitter.svg') }}" alt="twitter"></a>*/ ?>
+                    <a href="{{ $settings->instagram_link }}" target="blank"><img src="{{ url('assets/frontend/images/instagram.svg') }}" alt="instagram"></a>
+                    <a href="{{ $settings->facebook_link }}" target="blank"><img src="{{ url('assets/frontend/images/facebook.svg') }}" alt="facebook"></a>
+                    <a href="http://tiktok.com/@shikhabeautystudio" target="blank"><img src="{{ url('assets/frontend/images/tiktok.svg') }}" alt="tiktok"></a>
+                    <?php /* <?php /* <a href="{{ $settings->youtube_link }}" target="blank"><img src="{{ url('assets/frontend/images/youtube.svg') }}" alt="youtube"></a> 
+                    <a href="{{ $settings->twitter_link }}" target="blank"><img src="{{ url('assets/frontend/images/twitter.svg') }}" alt="twitter"></a>*/ ?>
                 </div>
             </div>
             <div class="col-lg-8">

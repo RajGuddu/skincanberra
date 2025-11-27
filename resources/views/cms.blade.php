@@ -1,7 +1,7 @@
 @extends('_layouts.master')
 @section('content')
     @php
-        $url = url('public/assets/frontend/images/course-banner.jpg');
+        $url = url('assets/frontend/images/course-banner.jpg');
         if(isset($cms) && $cms->cms_banner != ''){
             $url = url(IMAGE_PATH.$cms->cms_banner);
         }

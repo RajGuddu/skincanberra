@@ -106,10 +106,10 @@
 							@endphp
 							<tr>
 								<td class="cell">{{ $n++ }}</td>
-								<td class="cell"><img src="{{ url('public/assets/uploads/images/'.$list->photo) }}" alt="service-image" width="70px" height="60px"></td>
+								<td class="cell"><img src="{{ url('assets/uploads/images/'.$list->photo) }}" alt="service-image" width="70px" height="60px"></td>
 								<td class="cell">{{ $list->service_name }}</td>
 								<td class="cell">{{ $list->banner_title }}</td>
-								<td class="cell"><img src="{{ url('public/assets/uploads/images/'.$list->banner_image) }}" alt="banner-image" width="100px" height="60px"></td>
+								<td class="cell"><img src="{{ url('assets/uploads/images/'.$list->banner_image) }}" alt="banner-image" width="100px" height="60px"></td>
 								<td class="cell">{!! $status !!}</td>
 								<td class="cell">{!! $front !!}</td>
 								<td class="cell">{{ $variantsCount }}</td>

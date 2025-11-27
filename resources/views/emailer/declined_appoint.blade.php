@@ -11,7 +11,7 @@
         <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0;">
           <tr>
             <td style="background-color: #fff; padding: 20px; text-align: center;">
-              <img src="{{ url('public/assets/frontend/images/skin-canberra.svg') }}" alt="Skin Canberra" width="160">
+              <img src="{{ url('assets/frontend/images/skin-canberra.svg') }}" alt="Skin Canberra" width="160">
             </td>
           </tr>
           <tr>

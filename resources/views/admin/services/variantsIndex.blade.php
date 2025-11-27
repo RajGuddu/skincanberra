@@ -68,7 +68,7 @@
                                     <tr>
                                         <td class="cell">{{ $n++ }}</td>
                                         <td class="cell">
-                                            <img src="{{ url('public/assets/uploads/images/'.$list->photo) }}"
+                                            <img src="{{ url('assets/uploads/images/'.$list->photo) }}"
                                                 width="60" height="50" alt="variant">
                                         </td>
                                         <td class="cell">{{ $list->v_name }}</td>
@@ -205,7 +205,7 @@
                                     onclick="cancel_image_('tbl_services_variants','photo','vid', {{ $variant->vid }})">
                                     ×
                                 </span>
-                                <img src="{{ url('public/assets/uploads/images/'.$variant->photo) }}"
+                                <img src="{{ url('assets/uploads/images/'.$variant->photo) }}"
                                     class="img-fluid rounded shadow-sm" alt="Variant Image">
                                 <small class="text-muted d-block mt-1" style="font-size: 0.8rem;">Variant Image</small>
                             </div>

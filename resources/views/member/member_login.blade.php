@@ -4,7 +4,7 @@
   <div class="row align-items-center">
     <!-- Left side image -->
     <div class="col-md-6 mb-4 mb-md-0 text-center">
-      <img src="{{ url('public/assets/frontend/images/our-mission.jpg') }}" 
+      <img src="{{ url('assets/frontend/images/our-mission.jpg') }}" 
            alt="Product Image" 
            class="img-fluid rounded shadow">
     </div>

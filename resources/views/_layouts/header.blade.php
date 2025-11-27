@@ -64,7 +64,7 @@
     <nav class="navbar navbar-expand-lg clear-fix" aria-label="Fourth navbar example">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img class="d-lg-block" src="{{ url('public/assets/frontend/images/skin-canberra.svg') }}" alt="logo">
+                <img class="d-lg-block" src="{{ url('assets/frontend/images/skin-canberra.svg') }}" alt="logo">
             </a>
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
@@ -140,9 +140,9 @@
             </div>
             <?php /* <div class="header-button">
                 <a href="javascript:void(0)" class="cstm-btn" onclick="open_appoint_modal()" >book an appointment </a>
-                <a href="javascript:void(0)" class="cart-icon"><img src="{{ url('public/assets/frontend/images/cart-icon.svg') }}"
+                <a href="javascript:void(0)" class="cart-icon"><img src="{{ url('assets/frontend/images/cart-icon.svg') }}"
                         alt=""></a>
-                <a href="javascript:void(0)" class="user-icon"><img src="{{ url('public/assets/frontend/images/user-icon.svg') }}"
+                <a href="javascript:void(0)" class="user-icon"><img src="{{ url('assets/frontend/images/user-icon.svg') }}"
                         alt=""></a>
             </div> */ ?>
             <div class="header-button d-flex align-items-center gap-3">
@@ -157,7 +157,7 @@
                 @endphp
                 <?php /* <div class="position-relative">
                     <a href="{{ $checkoutUrl }}" class="cart-icon" id="cart-icon">
-                        <img src="{{ url('public/assets/frontend/images/cart-icon.svg') }}" alt="Cart">
+                        <img src="{{ url('assets/frontend/images/cart-icon.svg') }}" alt="Cart">
                     </a>
                     <!-- Bootstrap 5 badge for counter -->
                     <?php /* <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -167,7 +167,7 @@
                 </div>
 
                 <a href="javascript:void(0)" class="user-icon">
-                    <img src="{{ url('public/assets/frontend/images/user-icon.svg') }}" alt="User">
+                    <img src="{{ url('assets/frontend/images/user-icon.svg') }}" alt="User">
                 </a>
                 <?php /* <div class="dropdown">
                     <a class="dropdown-toggle d-inline-block" 
@@ -176,7 +176,7 @@
                         role="button" 
                         data-bs-toggle="dropdown" 
                         aria-expanded="false">
-                        <img src="{{ url('public/assets/frontend/images/user-icon.svg') }}" 
+                        <img src="{{ url('assets/frontend/images/user-icon.svg') }}" 
                             alt="User" 
                             style="width:30px; height:30px; cursor:pointer;">
                     </a>

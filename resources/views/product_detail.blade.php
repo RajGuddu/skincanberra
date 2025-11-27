@@ -311,7 +311,7 @@
                                 </div>
 
                                 <span class="add-cart-btn w-50 mt-4 mb-5 addToCart" id="detailCartBtn" data-pro_id="{{ $product->pro_id }}" data-attrid="{{ $product->attrId }}">
-                                    <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}"  alt="Cart" class="cart-icon me-2 " >
+                                    <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}"  alt="Cart" class="cart-icon me-2 " >
                                     Add To Cart
                                 </span>
 
@@ -366,7 +366,7 @@
                             </div>
 
                             <span class="btn add-cart-btn w-100 mt-3 addToCart" data-pro_id="{{ $list->pro_id }}" data-attrid="{{ $list->attrId }}">
-                                <img src="{{ url('public/assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2" data-pro_id="" data-attrid="">
+                                <img src="{{ url('assets/frontend/images/add-to-cart.svg') }}" alt="Cart" class="cart-icon me-2" data-pro_id="" data-attrid="">
                                 Add To Cart
                             </span>
                         </div>

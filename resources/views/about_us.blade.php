@@ -88,7 +88,7 @@
 
     <!-- banner panel -->
     @php
-        $url = url('public/assets/frontend/images/course-banner.jpg');
+        $url = url('assets/frontend/images/course-banner.jpg');
         if(isset($banner) && $banner->image != '')
             $url = url(IMAGE_PATH.$banner->image);
     @endphp
@@ -108,7 +108,7 @@
                 <div class="col-lg-6">
                     <div class="canberra">
                         @php
-                            $sec1Image = url('public/assets/frontend/images/canberra.png');
+                            $sec1Image = url('assets/frontend/images/canberra.png');
                             if($content->about_image != '')
                                 $sec1Image = url(IMAGE_PATH.$content->about_image);
                         @endphp
@@ -158,7 +158,7 @@
                     <div class="image-card">
                         <div class="color-bg"></div>
                         @php
-                            $sec3Image1 = url('public/assets/frontend/images/our-mission.jpg');
+                            $sec3Image1 = url('assets/frontend/images/our-mission.jpg');
                             if($content->sec3_image1 != '')
                                 $sec3Image1 = url(IMAGE_PATH.$content->sec3_image1);
                         @endphp
@@ -183,7 +183,7 @@
                     <div class="image-card our-vission ps-0 ">
                         <div class="color-bg"></div>
                         @php
-                            $sec3Image2 = url('public/assets/frontend/images/our-vision.jpg');
+                            $sec3Image2 = url('assets/frontend/images/our-vision.jpg');
                             if($content->sec3_image2 != '')
                                 $sec3Image2 = url(IMAGE_PATH.$content->sec3_image2);
                         @endphp

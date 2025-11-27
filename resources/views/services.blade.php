@@ -2,7 +2,7 @@
 @section('content')
 <!-- banner panel -->
 @php
-    $url = url('public/assets/frontend/images/service-banner.jpg');
+    $url = url('assets/frontend/images/service-banner.jpg');
     if(isset($banner) && $banner->image != '')
         $url = url(IMAGE_PATH.$banner->image);
 @endphp
@@ -79,7 +79,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="canberra">
-                        <img src="{{ url('public/assets/frontend/images/waxing.jpg') }}" alt="" class="w-100">
+                        <img src="{{ url('assets/frontend/images/waxing.jpg') }}" alt="" class="w-100">
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
                     <div class="canberra">
-                        <img src="{{ url('public/assets/frontend/images/make-up.jpg') }}" alt="" class="w-100">
+                        <img src="{{ url('assets/frontend/images/make-up.jpg') }}" alt="" class="w-100">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -125,7 +125,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="canberra">
-                        <img src="{{ url('public/assets/frontend/images/hair-cut.jpg') }}" alt="" class="w-100">
+                        <img src="{{ url('assets/frontend/images/hair-cut.jpg') }}" alt="" class="w-100">
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
                     <div class="canberra">
-                        <img src="{{ url('public/assets/frontend/images/threading.jpg') }}" alt="" class="w-100">
+                        <img src="{{ url('assets/frontend/images/threading.jpg') }}" alt="" class="w-100">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -170,7 +170,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="canberra">
-                        <img src="{{ url('public/assets/frontend/images/tattoo.jpg') }}" alt="" class="w-100">
+                        <img src="{{ url('assets/frontend/images/tattoo.jpg') }}" alt="" class="w-100">
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
                     <div class="canberra">
-                        <img src="{{ url('public/assets/frontend/images/laser-treatments.jpg') }}" alt="" class="w-100">
+                        <img src="{{ url('assets/frontend/images/laser-treatments.jpg') }}" alt="" class="w-100">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -216,7 +216,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="canberra">
-                        <img src="{{ url('public/assets/frontend/images/hair-foils.jpg') }}" alt="" class="w-100">
+                        <img src="{{ url('assets/frontend/images/hair-foils.jpg') }}" alt="" class="w-100">
                     </div>
                 </div>
             </div>
@@ -233,80 +233,80 @@
         <!-- Each image should be inside an <a> tag for Lightbox -->
         <div class="top-curve"></div>
         <div class="gallery-slider">
-            <div class="item"> <a href="{{ url('public/assets/frontend/images/product1.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/product1.png?auto=compress&h=400') }}" alt="Makeup 1">
+            <div class="item"> <a href="{{ url('assets/frontend/images/product1.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/product1.png?auto=compress&h=400') }}" alt="Makeup 1">
                 </a></div>
-            <div class="item"> <a href="{{ url('public/assets/frontend/images/product2.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/product2.png?auto=compress&h=400') }}" alt="Nail Art">
+            <div class="item"> <a href="{{ url('assets/frontend/images/product2.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/product2.png?auto=compress&h=400') }}" alt="Nail Art">
                 </a></div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/product3.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/product3.png?auto=compress&h=400') }}" alt="Makeup Look">
+                <a href="{{ url('assets/frontend/images/product3.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/product3.png?auto=compress&h=400') }}" alt="Makeup Look">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/product4.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/product4.png?auto=compress&h=400') }}" alt="Facial">
+                <a href="{{ url('assets/frontend/images/product4.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/product4.png?auto=compress&h=400') }}" alt="Facial">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/service1.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/service1.png?auto=compress&h=400') }}" alt="Makeup Eye">
+                <a href="{{ url('assets/frontend/images/service1.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/service1.png?auto=compress&h=400') }}" alt="Makeup Eye">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/service2.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/service2.png?auto=compress&h=400') }}" alt="Salon Look">
+                <a href="{{ url('assets/frontend/images/service2.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/service2.png?auto=compress&h=400') }}" alt="Salon Look">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/service3.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/service3.png?auto=compress&h=400') }}" alt="Face Treatment">
+                <a href="{{ url('assets/frontend/images/service3.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/service3.png?auto=compress&h=400') }}" alt="Face Treatment">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/service4.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/service4.png?auto=compress&h=400') }}" alt="Beauty 2">
+                <a href="{{ url('assets/frontend/images/service4.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/service4.png?auto=compress&h=400') }}" alt="Beauty 2">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/product1.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/product1.png?auto=compress&h=400') }}" alt="Makeup 1">
+                <a href="{{ url('assets/frontend/images/product1.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/product1.png?auto=compress&h=400') }}" alt="Makeup 1">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/product2.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/product2.png?auto=compress&h=400') }}" alt="Nail Art">
+                <a href="{{ url('assets/frontend/images/product2.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/product2.png?auto=compress&h=400') }}" alt="Nail Art">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/product3.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/product3.png?auto=compress&h=400') }}" alt="Makeup Look">
+                <a href="{{ url('assets/frontend/images/product3.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/product3.png?auto=compress&h=400') }}" alt="Makeup Look">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/product4.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/product4.png?auto=compress&h=400') }}" alt="Facial">
+                <a href="{{ url('assets/frontend/images/product4.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/product4.png?auto=compress&h=400') }}" alt="Facial">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/service1.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/service1.png?auto=compress&h=400') }}" alt="Makeup Eye">
+                <a href="{{ url('assets/frontend/images/service1.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/service1.png?auto=compress&h=400') }}" alt="Makeup Eye">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/service2.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/service2.png?auto=compress&h=400') }}" alt="Salon Look">
+                <a href="{{ url('assets/frontend/images/service2.png') }}" data-lightbox="beauty-gallery" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/service2.png?auto=compress&h=400') }}" alt="Salon Look">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/service3.png" data-lightbox="beauty-gallery') }}" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/service3.png?auto=compress&h=400') }}" alt="Face Treatment">
+                <a href="{{ url('assets/frontend/images/service3.png" data-lightbox="beauty-gallery') }}" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/service3.png?auto=compress&h=400') }}" alt="Face Treatment">
                 </a>
             </div>
             <div class="item">
-                <a href="{{ url('public/assets/frontend/images/service4.png" data-lightbox="beauty-gallery') }}" class="gallery-item">
-                    <img src="{{ url('public/assets/frontend/images/service4.png?auto=compress&h=400') }}" alt="Beauty 2">
+                <a href="{{ url('assets/frontend/images/service4.png" data-lightbox="beauty-gallery') }}" class="gallery-item">
+                    <img src="{{ url('assets/frontend/images/service4.png?auto=compress&h=400') }}" alt="Beauty 2">
                 </a>
             </div>
         </div>
