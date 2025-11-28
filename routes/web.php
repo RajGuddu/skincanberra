@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\Customers;
 use App\Http\Controllers\Admin\Appointment;
 use App\Http\Controllers\Shop;
 use App\Http\Controllers\Member;
+use App\Http\Controllers\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,7 @@ Route::get('payment-cancel', [Home::class,'payment_cancel']);
 Route::get('/viewmail', [Home::class,'viewmail']);
 Route::match(['get','post'],'add_to_cart', [Shop::class,'add_to_cart']);
 Route::match(['get','post'],'remove-item/{id}', [Shop::class,'remove_item']);
+Route::get('book48', [Test::class,'book48']);
 
 Route::middleware(['MemberAuth'])->group(function () {
     Route::match(['get','post'],'checkout', [Shop::class,'checkout']);

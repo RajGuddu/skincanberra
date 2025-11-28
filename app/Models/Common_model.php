@@ -399,6 +399,25 @@ class Common_model extends Model
         $result = $builder->get();
         return $result;
     }
+    public function get_upcomming_appointment_list(){
+        $builder = DB::table('tbl_service_book_online as b')
+            ->join('tbl_services as s', 's.sv_id', '=', 'b.sv_id')
+            ->join('tbl_services_variants as v', 'v.vid', '=', 'b.vid')
+            ->join('tbl_service_time as t', 't.st_id', '=', 'b.st_id');
+
+        $builder->select(
+                DB::raw("b.*, CONCAT(b.first_name, ' ', b.last_name) AS name"),
+                's.service_name',
+                'v.v_name as variant',
+                'v.duration',
+                'v.sp as price',
+                't.serv_time',
+            );
+        $builder->where('b.remind', '<', 1);
+        $builder->whereDate('b.service_date', '=', now()->addDays(2)->toDateString());
+        $result = $builder->get();
+        return $result;
+    }
 
     /**************************settings********************** */
     /*public function get_setting(){
