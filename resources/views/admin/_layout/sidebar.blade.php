@@ -106,7 +106,7 @@ $newOrdersCount = $commonmodel->get_all_new_product_order()->count();
                     </a><!--//nav-link-->
                     <div id="Customer" class="collapse submenu Customer {{ ($segment2 == 'appointment' || $segment2 == 'appointment-list' || $segment2 == 'customers' || $segment2 == 'customer_orders' || $segment2 == 'new_orders' || $segment2 == 'testimonials' || $segment2 == 'add_edit_testimonial' || $segment2 == 'contact_us' )?'show':'' }}" data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
-                            <?php /* <li class="submenu-item"><a class="submenu-link {{ ($segment2 == 'customers' || $segment2 == 'customer_orders')?'active':'' }}" href="{{ url('admin/customers') }}">Customers</a>
+                            <li class="submenu-item"><a class="submenu-link {{ ($segment2 == 'customers' || $segment2 == 'customer_orders')?'active':'' }}" href="{{ url('admin/customers') }}">Customers</a>
                             </li>
                             <li class="submenu-item">
                                 <a class="submenu-link {{ ($segment2 == 'new_orders')?'active':'' }}" href="{{ url('admin/new_orders') }}">New Orders
@@ -117,7 +117,7 @@ $newOrdersCount = $commonmodel->get_all_new_product_order()->count();
                                 <a class="submenu-link {{ ($segment2 == 'all_orders')?'active':'' }}" href="{{ url('admin/all_orders') }}">All Orders
                                 <span class="badge bg-danger ms-2">{{ $newOrdersCount ?? 0 }}</span>
                                 </a>
-                            </li> */ ?>
+                            </li>
                             <li class="submenu-item"><a class="submenu-link {{ ($segment2 == 'appointment')?'active':'' }}" href="{{ url('admin/appointment') }}">Appointment Weekly</a>
                             </li>
                             <li class="submenu-item"><a class="submenu-link {{ ($segment2 == 'appointment-list')?'active':'' }}" href="{{ url('admin/appointment-list') }}">Appointment List</a>

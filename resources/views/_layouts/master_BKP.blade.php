@@ -2,43 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Skin Canberra | Advanced Skin & Laser Clinic in Canberra</title>
-    <!-- <link rel="icon" type="image/png" href="{{ url('assets/frontend/images/skin-canberra.svg') }}"> -->
-    <link rel="icon" type="image/x-icon" href="https://skincanberra.com.au/assets/frontend/images/skin-canberra.svg">
-    <meta name="description" content="Skin Canberra offers advanced skin, laser, and cosmetic treatments. Book your free consultation with Canberra’s trusted skin experts today!" />
-    <meta name="keywords" content="skin clinic Canberra, laser treatment Canberra, cosmetic treatments Canberra, skin care experts" />
-    <meta name="author" content="Skin Canberra" />
-    <link rel="canonical" href="https://skincanberra.com.au/" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Skin Canberra | Advanced Skin & Laser Clinic in Canberra" />
-    <meta property="og:description" content="Book your free consultation with Canberra’s trusted skin and laser experts." />
-    <meta property="og:url" content="https://skincanberra.com.au/" />
-    <meta property="og:image" content="https://skincanberra.com.au/assets/frontend/images/skin-canberra.svg" />
-    <meta property="og:site_name" content="Skin Canberra" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Skin Canberra | Advanced Skin & Laser Clinic" />
-    <meta name="twitter:description" content="Skin Canberra offers advanced cosmetic and skin treatments with modern laser technology." />
-    <meta name="twitter:image" content="https://skincanberra.com.au/assets/frontend/images/skin-canberra.svg" />
-
-    <meta name="theme-color" content="#ffffff" />
-
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-
-    <meta name="language" content="English" />
-    <meta name="geo.region" content="AU-ACT" />
-    <meta name="geo.placename" content="Canberra" />
-    <meta name="geo.position" content="-35.2809;149.1300" />
-    <meta name="ICBM" content="-35.2809, 149.1300" />
-    <meta name="google-site-verification" content="UwD1fwh8r2wuvXMOy7z_4qwRRqg4IfdgU-IAu2rbIAE" />
-    <!-- Google tag (gtag.js) --> 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJCY459H0G"></script> 
-    <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-TJCY459H0G'); </script>
-
+    <title> Skin Canberra </title>
+    <link rel="icon" type="image/png" href="{{ url('assets/frontend/images/skin-canberra.svg') }}">
     <link rel="stylesheet" href="{{ url('assets/frontend/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url('assets/frontend/css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ url('assets/frontend/css/style.css') }}">
@@ -119,10 +85,13 @@
 <body>
     @include('_layouts.preloader')
     @include('_layouts.ajaxloader')
+    
     @include('_layouts.header')
     @yield('content')
     <!-- footer panel section  -->
     @include('_layouts.footer')
+
+    
     <!-- Video Modal -->
     <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -242,7 +211,7 @@
             </div>
         </div>
     </div>
-    <div class="loader" id="loader" style="display:none;"></div>
+
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

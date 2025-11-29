@@ -56,7 +56,7 @@ class SendBookingReminders extends Command
             if($send){
                 DB::table('tbl_service_book_online')
                 ->whereIn('id', $ids)
-                ->update(['remind' => 1]);
+                ->update(['remind' => 1, 'update_at'=>date('Y-m-d H:i:s')]);
                 $this->info("Reminder email sent successfully!");
             }
         }else{

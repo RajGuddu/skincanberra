@@ -127,9 +127,9 @@
                     <!-- <li class="nav-item">
                         <a class="nav-link py-0" href="#">Courses</a>
                     </li> -->
-                    <?php /* <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link py-0" href="{{ url('products') }}">Products</a>
-                    </li> */ ?>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link py-0" href="{{ url('about-us') }}">About</a>
                     </li>
@@ -155,21 +155,21 @@
                     $checkoutUrl = url('checkout');
                 }
                 @endphp
-                <?php /* <div class="position-relative">
+                <div class="position-relative">
                     <a href="{{ $checkoutUrl }}" class="cart-icon" id="cart-icon">
                         <img src="{{ url('assets/frontend/images/cart-icon.svg') }}" alt="Cart">
                     </a>
                     <!-- Bootstrap 5 badge for counter -->
-                    <?php /* <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {{ $cart_count }}
                         <span class="visually-hidden">items in cart</span>
-                    </span> *
+                    </span>
                 </div>
 
-                <a href="javascript:void(0)" class="user-icon">
+                <?php /* <a href="javascript:void(0)" class="user-icon">
                     <img src="{{ url('assets/frontend/images/user-icon.svg') }}" alt="User">
-                </a>
-                <?php /* <div class="dropdown">
+                </a> */ ?>
+                <div class="dropdown">
                     <a class="dropdown-toggle d-inline-block" 
                         href="#" 
                         id="userDropdown" 
@@ -220,7 +220,7 @@
                         </li>
                         @endif
                     </ul>
-                </div> */ ?>
+                </div> 
 
             </div>
 

@@ -32,7 +32,7 @@
                             <h6>Quick links (labels)</h6>
                             <ul>
                                 <li><a href="{{ url('services') }}">Services</a></li>
-                                <!-- <li><a href="#">Packages & Offers</a></li> -->
+                                <li><a href="{{ url('products') }}">Products</a></li>
                                 <!-- <li><a href="#">Gallery</a></li> -->
                                 <!-- <li><a href="#">Testimonials</a></li> -->
                                 <li><a href="{{ url('about-us') }}">About Us</a></li>

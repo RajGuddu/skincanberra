@@ -30,7 +30,7 @@
 
                 <div class="app-card shadow-sm mb-4">
                     {{-- Header --}}
-                    <div class="app-card-header p-3 d-flex justify-content-between align-items-center" style="background:#F9F5F0;">
+                    <div class="app-card-header p-3 d-flex justify-content-between align-items-center" style="background:#E8DFD0;">
                         <div>
                             <strong>Order ID:</strong> {{ $order->order_id }} <br>
                             <small class="text-muted">Order Date: {{ date('M d, Y', strtotime($order->orderdate)) }}</small>
