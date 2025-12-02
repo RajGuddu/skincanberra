@@ -131,8 +131,11 @@
           </div>
         </div>
 
-        <button type="submit" class="btn w-100" style="background-color:#B4903A; color:white;">
+        <?php /* <button type="submit" class="btn w-100" style="background-color:#B4903A; color:white;">
           Place Order (COD)
+        </button> */ ?>
+        <button type="submit" class="btn w-100" style="background-color:#B4903A; color:white;">
+          Place Order ($<?= number_format(cart()->getTotal(), 2) ?>)
         </button>
       </form>
     </div>
