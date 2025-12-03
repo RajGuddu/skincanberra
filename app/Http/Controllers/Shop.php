@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 use App\Services\CartService;
 use App\Models\Common_model;
@@ -114,12 +115,25 @@ class Shop extends Controller
                     'product_details' => json_encode($product_details),
                     'total_qty' => $totalitems,
                     'net_total' => $total,
+                    'status' => 1,
                     'orderdate' => date('Y-m-d H:i:s'),
-                    'status' => 1
                 );
-                $insertId = $this->commonmodel->crudOperation('C','tbl_product_order',$orderData);
+                $insertId = $this->commonmodel->crudOperation('C','tbl_product_order_log',$orderData);
                 if($insertId){
-                    $cart->clear();
+                    $session = $this->createStripeCheckout([
+                        'amount'      => $total * 100, // (in paise)
+                        'name'        => 'Skin Canberra',
+                        'description' => 'Product Payment',
+                        'images'      => [],
+                        'metadata'    => [
+                                            'log_id' => $insertId,
+                                            'txnId'  => 'TXN' . time() . rand(1000, 9999),
+                                        ],
+                        'success_url' => url('product-payment-success') . '?sid={CHECKOUT_SESSION_ID}',
+                        'cancel_url'  => url('payment-cancel'),
+                    ]);
+                    return redirect($session->url);
+                    //$cart->clear();
                     /*$member_info = $this->commonmodel->crudOperation('R1','tbl_member','',['m_id'=>$m_id]);
                     $sessionData = array(
                         'm_id' => $member_info->m_id,
@@ -146,6 +160,60 @@ class Shop extends Controller
             $data['addresses'] = $this->commonmodel->crudOperation('RA','tbl_member_address','',[['m_id','=',session('m_id')],['status','=',1]]);
         }
         return view('checkout',$data);
+    }
+    public function product_payment_success(Request $request){
+        $sessionId = $request->get('sid');
+        
+        $result = $this->verifyStripeSuccess($sessionId);
+        // echo '<pre>'; print_r($result); 
+        if($result['success'] && $result['status'] == 'succeeded'){
+            // echo '<pre>'; print_r($result);
+            $paymentIntentId = $result['paymentIntentId'];
+            $paymentIntentExists = $this->commonmodel->isExists('tbl_product_order', ['paymentIntentId'=>$paymentIntentId]);
+            if($paymentIntentExists){
+                return redirect()->to(url('/'));
+            }
+            $paymentMode = $result['paymentMode'];
+            $log_id = $result['meta']['log_id'];
+            $txnId = $result['meta']['txnId'];
+
+            $logData = $this->commonmodel->getOneRecordArray('tbl_product_order_log',['log_id'=>$log_id]);
+            if($logData){
+                unset($logData['log_id']);
+                $logData['payment_mode'] = $paymentMode;
+                $logData['payment_status'] = 'succeeded';
+                $logData['paymentIntentId'] = $paymentIntentId;
+                $logData['txnId'] = $txnId;
+
+                $insertId = $this->commonmodel->crudOperation('C','tbl_product_order',$logData);
+                if($insertId){
+                    cart()->clear();
+
+                    $mailData = [
+                        'client_name'   => session('name'),
+                        'order_id'  => $logData['order_id'],
+                        'amount'  => $logData['net_total'],
+                        'payment_mode'  => $logData['payment_mode'],
+                        'date_time' => date('Y-m-d H:i:s'),
+                    ];
+                    $mailTo = session('email');
+                    Mail::send('emailer.order_confirm', $mailData, function ($message) use ($mailTo){
+                        $message->to($mailTo)
+                                ->subject('Your Order Confirmation');
+                    });
+                    Mail::send('emailer.order_received', $mailData, function ($message) use ($mailData){
+                        $message->to(ADMIN_MAIL_TO)
+                                ->subject('New Order Received –'.$mailData['order_id']);
+                    });
+                    
+                }
+
+            }
+            return redirect()->to(url('payment-success'));
+
+        }else{
+            return redirect()->to(url('payment-cancel'));
+        }
     }
     public function remove_item(Request $request, $id){
         if($this->cart->remove($id)){

@@ -69,6 +69,7 @@ Route::get('book48', [Test::class,'book48']);
 
 Route::middleware(['MemberAuth'])->group(function () {
     Route::match(['get','post'],'checkout', [Shop::class,'checkout']);
+    Route::get('product-payment-success', [Shop::class,'product_payment_success']); // for data update
     Route::get('member-dashboard', [Member::class,'dashboard']);
     Route::get('member-orders', [Member::class,'orders']);
     Route::match(['get','post'],'member-addresses', [Member::class,'addresses']);
