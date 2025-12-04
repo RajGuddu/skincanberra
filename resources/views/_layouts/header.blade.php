@@ -170,7 +170,7 @@
                     <img src="{{ url('assets/frontend/images/user-icon.svg') }}" alt="User">
                 </a> */ ?>
                 <div class="dropdown">
-                    <a class="dropdown-toggle d-inline-block" 
+                    <a class="user-icon dropdown-toggle d-inline-block" 
                         href="#" 
                         id="userDropdown" 
                         role="button" 
