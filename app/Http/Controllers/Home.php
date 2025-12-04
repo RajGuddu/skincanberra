@@ -338,6 +338,26 @@ class Home extends Controller
                     $post['sv_id'] = $request->input('sv_id');
                     $post['vid'] = $request->input('vid');
                     $post['st_id'] = $request->input('selected_st_id');
+
+                    $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$post['vid']]);
+                    
+                    $sp = $variant->sp; 
+                    $option = $request->input('book_deposit'); 
+                    $payAmount = $sp;
+                    if ($option == 1) {
+                        $payAmount = $sp; 
+                    } elseif ($option == 2) {
+                        $payAmount = $sp * 0.50; 
+                    } elseif ($option == 3) {
+                        $payAmount = $sp * 0.25; 
+                    }
+                    $payAmount = ceil($payAmount);
+                    $dues = $sp - $payAmount;
+
+                    $post['total_amount'] = (int)$sp;
+                    $post['paid_amount'] = $payAmount;
+                    $post['dues_amount'] = $dues;
+                    
                     $post['service_date'] = $request->input('selected_date');
                     $post['first_name'] = $request->input('first_name');
                     $post['last_name'] = $request->input('last_name');
@@ -353,13 +373,13 @@ class Home extends Controller
                     if($insertId){
                         
                         $service = $this->commonmodel->crudOperation('R1','tbl_services','',['sv_id'=>$post['sv_id']]);
-                        $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$post['vid']]);
                         $serviceTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>$post['st_id']]);
 
                         $serviceName = $service->service_name ?? '';
                         $variantName = $variant->v_name ?? '';
                         $selected_time = $serviceTime->serv_time ?? '';
-                        $amount = (int)$variant->sp;
+                        // $amount = (int)$variant->sp;
+                        $amount = $payAmount;
 
                         session()->forget([
                             'vid',
@@ -436,7 +456,10 @@ class Home extends Controller
                         'service_name'  => $serviceName.' ('.$variantName.')',
                         'selected_date' => Carbon::parse($logData['service_date'])->format('l j F'),
                         'selected_time' => $selected_time,
-                        'date_time'     => Carbon::parse($logData['service_date'] . ' ' . $selected_time)->format('d F Y \a\t h:i a')
+                        'date_time'     => Carbon::parse($logData['service_date'] . ' ' . $selected_time)->format('d F Y \a\t h:i a'),
+                        'total_amount'  => $logData['total_amount'],
+                        'paid_amount'   => $logData['paid_amount'],
+                        'dues_amount'   => $logData['dues_amount']
                     ];
                     Mail::to($logData['email'])->send(new ClientBookingMail($mailData));
                     // Mail::to(ADMIN_MAIL_TO)->send(new AdminBookingMail($data));

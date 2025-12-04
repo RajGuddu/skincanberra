@@ -16,6 +16,7 @@
                         <input type="hidden" name="vid" value="{{ session('vid') }}">
                         <input type="hidden" name="selected_date" value="{{ session('selected_date') }}">
                         <input type="hidden" name="selected_st_id" value="{{ session('selected_st_id') }}">
+                        <input type="hidden" name="book_deposit" id="book_deposit" value="1">
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">First Name <span class="text-danger">*</span></label>
@@ -75,6 +76,15 @@
                     <p class="small text-muted mb-2">{{ $formattedDateTime }}</p>
                     <!-- <a href="#" class="small text-decoration-none" style="color:#B4903A;">More details</a> -->
 
+                    <div class="mb-3">
+                        <label class="form-label">Select Booking Deposit</label>
+                        <input type="hidden" name="sp" id="sp" value="{{ $serviceDtls->sp }}">
+                        <select class="form-control" name="booking_deposit" id="booking_deposit" onchange="calculate_price()">
+                            <option value="1">100% Payment</option>
+                            <option value="2">50% Deposit</option>
+                            <option value="3">25% Deposit</option>
+                        </select>
+                    </div>
                     <hr>
 
                     <a href="#" data-bs-toggle="modal" data-bs-target="#policyModal" class="small text-decoration-none" style="color:#B4903A;">View Policy</a>
@@ -108,7 +118,33 @@
 </div>
 
 <script>
+
+    function calculate_price() {
+        var sp = parseFloat($("#sp").val());
+
+        var option = $("#booking_deposit").val();
+        $("#book_deposit").val(option);
+
+        var payAmount = sp; // Default 100%
+
+        // Calculate logic
+        if(option == "1"){ 
+            payAmount = sp; // 100%
+        } 
+        else if(option == "2"){ 
+            payAmount = sp * 0.50; // 50%
+        } 
+        else if(option == "3"){ 
+            payAmount = sp * 0.25; // 25%
+        }
+
+        payAmount = Math.ceil(payAmount);
+
+        // Button update
+        $("#bookNowBtn").text("Pay Now ($" + payAmount + ")");
+    }
     $(document).ready(function() {
+        
         $('#bookNowBtn').on('click', function(e) {
             e.preventDefault();
 

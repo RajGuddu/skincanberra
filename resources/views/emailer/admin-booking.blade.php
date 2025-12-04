@@ -41,6 +41,18 @@
                   <td style="border: 1px solid #ddd;">Preferred Date & Time</td>
                   <td style="border: 1px solid #ddd;">{{ $date_time }}</td>
                 </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd;">Total Amount</td>
+                  <td style="border: 1px solid #ddd;">${{ $total_amount }}</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd;">Paid Amount</td>
+                  <td style="border: 1px solid #ddd;">${{ $paid_amount }}</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd;">Dues Amount</td>
+                  <td style="border: 1px solid #ddd;">${{ $dues_amount }}</td>
+                </tr>
                 
               </table>
 

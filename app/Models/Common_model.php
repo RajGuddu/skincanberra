@@ -297,6 +297,9 @@ class Common_model extends Model
                 DB::raw("CONCAT(b.first_name, ' ', b.last_name) AS name"),
                 'b.id as book_id',
                 'b.status',
+                'b.total_amount',
+                'b.paid_amount',
+                'b.dues_amount',
                 's.service_name as service',
                 'b.service_date as date',
                 't.serv_time as start',
@@ -325,7 +328,10 @@ class Common_model extends Model
                 'start'    => $start24,
                 'variant'  => $row->variant,
                 'duration' => $duration,
-                'price'    => '$' . $row->price,
+                'price'    => $row->price,
+                'total_amount'    => $row->total_amount,
+                'paid_amount'    => $row->paid_amount,
+                'dues_amount'    => $row->dues_amount,
             ];
         });
         return json_encode($formatted);

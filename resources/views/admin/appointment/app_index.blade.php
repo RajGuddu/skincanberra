@@ -112,7 +112,12 @@
                     <span style="color:#b8f9e5;">Email:</span> {{ $record->email ?? 'N/A' }} <br>
                     <span style="color:#b8f9e5;">Service:</span> {{ $record->service_name ?? 'N/A' }} ({{ $record->variant ?? 'N/A' }})<br>
                     <span style="color:#b8f9e5;">Duration :</span> {{ $record->duration ?? 'N/A' }} Minutes<br>
-                    <span style="color:#b8f9e5;">Price :</span> ${{ $record->price ?? 'N/A' }}
+                    <!-- <span style="color:#b8f9e5;">Price :</span> ${{ $record->price ?? 'N/A' }} -->
+                    <li class="list-group-item">
+                        <span style="color:#b8f9e5;">Total Amount :</span> ${{ $record->total_amount ?? 'N/A' }}
+                        <span style="color:#b8f9e5;">Total Paid :</span> ${{ $record->paid_amount ?? 'N/A' }}
+                        <span style="color:#b8f9e5;">Total Dues :</span> ${{ $record->dues_amount ?? 'N/A' }}
+                    </li>
 
                 </div>
             </div>
@@ -185,7 +190,12 @@
           <li class="list-group-item"><strong>Date:</strong> <span id="modalDate"></span></li>
           <li class="list-group-item"><strong>Start Time:</strong> <span id="modalStart"></span></li>
           <li class="list-group-item"><strong>Duration:</strong> <span id="modalDuration"></span> minutes</li>
-          <li class="list-group-item"><strong>Price:</strong> <span id="modalPrice"></span> </li>
+          <!-- <li class="list-group-item"><strong>Price:</strong> <span id="modalPrice"></span> </li> -->
+          <li class="list-group-item d-flex justify-content-between">
+              <span><strong>Total Amount:</strong> $<span id="totalAmount"></span></span>
+              <span><strong>Total Paid:</strong> $<span id="totalPaid"></span></span>
+              <span><strong>Total Dues:</strong> $<span id="totalDues"></span></span>
+          </li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -455,7 +465,10 @@ function showErrorToast(msg) {
     document.getElementById('modalDate').textContent = new Date(appt.date).toLocaleDateString('en-GB');
     document.getElementById('modalStart').textContent = time12;
     document.getElementById('modalDuration').textContent = appt.duration;
-    document.getElementById('modalPrice').textContent = appt.price;
+    // document.getElementById('modalPrice').textContent = appt.price;
+    document.getElementById('totalAmount').textContent = appt.total_amount;
+    document.getElementById('totalPaid').textContent = appt.paid_amount;
+    document.getElementById('totalDues').textContent = appt.dues_amount;
   }
 
   function formatHour(h, m) {

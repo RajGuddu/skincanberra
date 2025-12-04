@@ -3,7 +3,7 @@
 <style>
     .table-fixed {
         width: 100%;
-        table-layout: fixed;   
+        /* table-layout: fixed;    */
         word-wrap: break-word; 
     }
 </style>
@@ -44,15 +44,15 @@
                             <table class="table app-table-hover mb-0 text-left table-fixed">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th >#</th>
                                         <th>Service Date</th>
-                                        <th>Client Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Service</th>
-                                        <th>Duration</th>
-                                        <th>Price</th>
-                                        <!-- <th>Message</th> -->
+                                        <th >Client Details</th>
+                                        <!-- <th>Email</th> -->
+                                        <!-- <th>Phone</th> -->
+                                        <th >Service Details</th>
+                                        <th>Total Amount</th>
+                                        <th>Paid</th>
+                                        <th>Dues</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -60,15 +60,21 @@
                                 <tbody>
                                     @forelse($listData as $index => $item)
                                         <tr>
-                                            <td class="cell">{{ $index + 1 }}</td>
-                                            <td class="cell">{{ \Carbon\Carbon::parse($item->service_date . ' ' . $item->serv_time)->format('d M Y \a\t h:i a') }}</td>
-                                            <td class="cell">{{ $item->name }}</td>
-                                            <td class="cell">{{ $item->email }}</td>
-                                            <td class="cell">{{ $item->phone }}</td>
-                                            <td class="cell">{{ $item->service_name.' ('.$item->variant.')' }}</td>
-                                            <td class="cell">{{ $item->duration ?? 0 }} Minutes</td>
-                                            <td class="cell">${{ $item->price }}</td>
-                                            <td class="cell">
+                                            <td class="">{{ $index + 1 }}</td>
+                                            <td class="">{{ \Carbon\Carbon::parse($item->service_date . ' ' . $item->serv_time)->format('d M Y \a\t h:i a') }}</td>
+                                            <td class="" >
+                                                <strong>{{ $item->name }}</strong><br>
+                                                <span style="color:#777;">{{ $item->email }}</span><br>
+                                                <span style="color:#777;">{{ $item->phone }}</span>
+                                            </td>
+                                            <td class="">
+                                                {{ $item->service_name.' ('.$item->variant.')' }}<br>
+                                                <span style="color:#777;">Duration: {{ $item->duration ?? 0 }} min</span>
+                                            </td>
+                                            <td class="">${{ $item->total_amount }}</td>
+                                            <td class="">${{ $item->paid_amount }}</td>
+                                            <td class="">${{ $item->dues_amount }}</td>
+                                            <td class="">
                                                 @if($item->status == 1)
                                                     <span class="badge bg-secondary">Pending</span>
                                                 @elseif($item->status == 2)

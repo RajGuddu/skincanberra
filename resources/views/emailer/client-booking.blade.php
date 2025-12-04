@@ -33,6 +33,18 @@
                   <td style="border: 1px solid #ddd;">Location</td>
                   <td style="border: 1px solid #ddd;">Skin Canberra</td>
                 </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd;">Total Amount</td>
+                  <td style="border: 1px solid #ddd;">${{ $total_amount }}</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd;">Paid Amount</td>
+                  <td style="border: 1px solid #ddd;">${{ $paid_amount }}</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd;">Dues Amount</td>
+                  <td style="border: 1px solid #ddd;">${{ $dues_amount }}</td>
+                </tr>
               </table>
 
               <p style="color: #555555; font-size: 15px; margin-top: 20px;">Our team will review your request and confirm your appointment shortly.You will receive another email once your booking is approved.</p>
