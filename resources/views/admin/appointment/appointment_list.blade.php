@@ -73,7 +73,7 @@
                                             </td>
                                             <td class="">${{ $item->total_amount }}</td>
                                             <td class="">${{ $item->paid_amount }}</td>
-                                            <td class="">${{ $item->dues_amount }}</td>
+                                            <td class="{{ ($item->dues_amount > 0)?'text-danger':'' }}">${{ $item->dues_amount }}</td>
                                             <td class="">
                                                 @if($item->status == 1)
                                                     <span class="badge bg-secondary">Pending</span>
@@ -87,7 +87,10 @@
                                             </td>
                                             @php $tdStyle = ''; if(isset($record) && $record->id == $item->id) $tdStyle = 'background-color:#d4edda !important;'; @endphp
                                             <td style="{{ $tdStyle }}">
-                                                <a class="btn-sm app-btn-secondary" href="{{ url('admin/appointment-list/'.$item->id) }}">Edit</a>
+                                                <a class="btn-sm app-btn-secondary" href="{{ url('admin/appointment-list/'.$item->id) }}">Edit</a>{!! ($tableCol == 8)?'<br>':'' !!}
+                                                @if($item->dues_amount > 0)
+                                                <a class="btn-sm app-btn-secondary openPopup" href="javascript:void(0)" data-id="{{ $item->id }}" data-name="{{ $item->name }}" data-dues_amount="{{ $item->dues_amount }}">Dues Received</a>
+                                                @endif
 									            <a class="btn-sm app-btn-secondary" onclick="return confirm('Are u sure?')" href="{{ url('admin/delete_appointment/'.$item->id) }}">Delete</a>
                                             </td>
                                         </tr>
@@ -110,7 +113,9 @@
                     <div class="card-body">
                         <form action="{{ url()->current() }}" id="appointmentForm" method="post">
                         @csrf
+                        <input type="hidden" name="formname" value="appoint">
                         <input type="hidden" name="id" value="{{ $record->id ?? '' }}">
+                        <input type="hidden" name="total_amount" value="{{ $record->total_amount ?? 0 }}">
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-md-6">
@@ -190,7 +195,11 @@
                             </select>
                             <input type="hidden" name="old_vid" value="{{ $record->vid ?? '' }}" >
                         </div>
-
+                        <div class="mb-3">
+                            <label class="form-label">Amount Received ($)</label>
+                            <input type="text" name="paid_amount" id="paid_amount" value="{{ old('paid_amount', $record->paid_amount ?? 0) }}" class="form-control">
+                            <input type="hidden" name="old_paid_amount" value="{{ $record->paid_amount ?? 0 }}">
+                        </div>
                         <div class="mb-3">
                         <label class="form-label">Status</label>
                         <select id="status" class="form-select" name="status">
@@ -214,7 +223,76 @@
     </div><!--//container-fluid-->
 </div><!--//app-content-->
 
+<div class="modal fade" id="duesModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white">Dues Received</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+          <!-- <p><strong>ID:</strong> <span id="modalId"></span></p> -->
+        <p><strong>Name:</strong> <span id="modalName"></span></p>
+        <form action="{{ url()->current() }}" method="post" id="duesForm">
+            @csrf
+            <input type="hidden" name="formname" value="dues">
+
+            <input type="hidden" name="id" id="duesid" value="">
+            <input type="hidden" name="olddues" id="olddues" value="">
+            <div class="mb-3">
+                <label class="form-label">Enter Amount <span class="text-danger">*</span></label>
+                <input type="number" name="damount" value="" id="damount" class="form-control">
+                <small id="errorMsg" class="text-danger d-none">Please enter a valid amount</small>
+            </div>
+            <div class="mb-3 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 <script>
+    $("#duesForm").on("submit", function(e) {
+        let amount = $("#damount").val().trim();
+        let olddues = parseFloat($("#olddues").val().trim());
+
+        $("#errorMsg").addClass("d-none");
+
+        if (amount === "" || isNaN(amount) || amount <= 0) {
+            e.preventDefault();   // Stop form submit
+            $("#errorMsg").removeClass("d-none").text("Please enter a valid amount");
+            $("#damount").focus();
+            return false;
+        }
+        if (amount > olddues) {
+            e.preventDefault();
+            $("#errorMsg").removeClass("d-none").text("Amount cannot be greater than old dues (" + olddues + ")");
+            $("#damount").focus();
+            return false;
+        }
+
+        return true; 
+    });
+    $(document).on('click', '.openPopup', function () {
+    
+        let id = $(this).data('id');
+        let name = $(this).data('name');
+        let dues_amount = $(this).data('dues_amount');
+
+        $('#duesid').val(id);
+        $('#modalName').text(name);
+        $('#olddues').val(dues_amount);
+
+        $("#errorMsg").addClass("d-none");
+        $('#duesModal').modal('show');
+    });
+
     $(document).ready(function() {
 
         $('#serviceDate').on('change', function () {

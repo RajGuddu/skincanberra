@@ -368,6 +368,7 @@ class Home extends Controller
                     $post['status'] = 1; //for new
                     $post['added_at'] = Carbon::now();
 
+                    $this->commonmodel->crudOperation('D','tbl_service_book_log');
                     $insertId = $this->commonmodel->crudOperation('C','tbl_service_book_log',$post);
 
                     if($insertId){
@@ -441,7 +442,20 @@ class Home extends Controller
                 $logData['txnId'] = $txnId;
 
                 $insertId = $this->commonmodel->crudOperation('C','tbl_service_book_online',$logData);
+                
                 if($insertId){
+
+                    //store payment log
+                    $ptData['sbo_id'] = $insertId;
+                    $ptData['pay_from'] = 'service';
+                    $ptData['paid_amount'] = $logData['paid_amount'];
+                    $ptData['payment_mode'] = $logData['payment_mode'];
+                    $ptData['payment_status'] = $logData['payment_status'];
+                    $ptData['paymentIntentId'] = $logData['paymentIntentId'];
+                    $ptData['txnId'] = $logData['txnId'];
+                    $ptData['added_at'] = date('Y-m-d H:i:s');
+                    $this->commonmodel->crudOperation('C','tbl_payment_transaction',$ptData);
+
                     $service = $this->commonmodel->crudOperation('R1','tbl_services','',['sv_id'=>$logData['sv_id']]);
                     $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$logData['vid']]);
                     $serviceTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>$logData['st_id']]);

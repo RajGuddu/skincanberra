@@ -132,78 +132,139 @@ class Appointment extends Controller
     // ==========================Appointment List==============================
     public function appointment_list(Request $request, $id=null){
         if($request->isMethod('POST')){
-            // echo '<pre>'; print_r($_POST); exit;
-            $post['sv_id'] = $_POST['sv_id'];
-            $post['vid'] = $_POST['vid'];
-            $post['st_id'] = $_POST['st_id'];
-            $post['service_date'] = $_POST['service_date'];
-            $post['first_name'] = $_POST['first_name'];
-            $post['last_name'] = $_POST['last_name'];
-            $post['email'] = $_POST['email'];
-            $post['country'] = 'AU';
-            $post['phone'] = $_POST['phone'];
-            $post['status'] = $_POST['status'];
-            $post['added_at'] = date('Y-m-d H:i:s');
+            if($request->formname == 'dues'){
+                // print_r($_POST); exit;
+                $bookId = $request->id;
+                $damount = $request->damount;
+                $record = $this->commonmodel->crudOperation('R1','tbl_service_book_online','',['id'=>$bookId]);
+                if($record){
+                    $paid_amount = (int)$record->paid_amount + (int)$damount;
+                    $dues_amount = (int)$record->dues_amount - (int)$damount;
+                    $upData['paid_amount'] = $paid_amount;
+                    $upData['dues_amount'] = $dues_amount;
+                    $upData['update_at'] = date('Y-m-d H:i:s');
+                    $updated = $this->commonmodel->crudOperation('U','tbl_service_book_online',$upData,['id'=>$bookId]);
 
-            if(!$id){
-                $post['added_at'] = date('Y-m-d H:i:s');
-                $inserted = $this->commonmodel->crudOperation('C','tbl_service_book_online',$post);
-            }else{
-                $post['update_at'] = date('Y-m-d H:i:s');
-                $updated = $this->commonmodel->crudOperation('U','tbl_service_book_online',$post,['id'=>$id]);
-            }
-            if(isset($inserted)){
-                $request->session()->flash('message',['msg'=>'Record added successfully!','type'=>'success']);
-            }elseif(isset($updated)){
-                $request->session()->flash('message',['msg'=>'Record updated successfully!','type'=>'success']);
-            }else{
-                $request->session()->flash('message',['msg'=>'Please Try After Sometimes...','type'=>'danger']);
-            }
-
-            //mail
-            $bookedId = (isset($inserted))?$inserted:$id;
-            $record = $this->commonmodel->get_one_appointment_data($bookedId);
-            $mailTo = $record->email;
-
-            $mailData = [
-                'client_name' => $record->name,
-                'service_name' => $record->service_name.' ('.$record->variant.')',
-                'selected_date' => Carbon::parse($record->service_date . ' ' . $record->serv_time)->format('d F Y \a\t h:i a'),
-            ];
-
-            if($_POST['status'] != $_POST['old_status']){
-                if($_POST['status'] == 2){ // approved
-                    Mail::send('emailer.approve_appoint', $mailData, function ($message) use ($mailTo){
-                        $message->to($mailTo)
-                                ->subject('Your Appointment is Confirmed – Skin Canberra');
-                    });
-                    Mail::send('emailer.approve_appoint_admin', $mailData, function ($message) use ($mailData){
-                        $message->to(ADMIN_MAIL_TO)
-                                ->subject('Booking Approved –'.$mailData['client_name']);
-                    });
-                }else if($_POST['status'] == 3){ // Declined
-                    Mail::send('emailer.declined_appoint', $mailData, function ($message) use ($mailTo){
-                        $message->to($mailTo)
-                                ->subject('Update on Your Booking Request – Skin Canberra');
-                    });
-                    Mail::send('emailer.declined_appoint_admin', $mailData, function ($message) use ($mailData){
-                        $message->to(ADMIN_MAIL_TO)
-                                ->subject('Booking Declined –'.$mailData['client_name']);
-                    });
+                    if(isset($updated)){
+                        //store payment log
+                        $ptData['sbo_id'] = $bookId;
+                        $ptData['pay_from'] = 'service Dues';
+                        $ptData['paid_amount'] = $damount;
+                        $ptData['payment_mode'] = 'Admin';
+                        $ptData['payment_status'] = 'Dues Received';
+                        // $ptData['paymentIntentId'] = $logData['paymentIntentId'];
+                        // $ptData['txnId'] = $logData['txnId'];
+                        $ptData['added_at'] = date('Y-m-d H:i:s');
+                        $this->commonmodel->crudOperation('C','tbl_payment_transaction',$ptData);
+                        $request->session()->flash('message',['msg'=>'Dues Received successfully!','type'=>'success']);
+                    }else{
+                        $request->session()->flash('message',['msg'=>'Please Try After Sometimes...','type'=>'danger']);
+                    }
                 }
             }
-            if($id && ($_POST['service_date'] != $_POST['old_service_date'] || $_POST['st_id'] != $_POST['old_st_id'] || $_POST['sv_id'] != $_POST['old_sv_id'] || $_POST['vid'] != $_POST['old_vid'])){
-                Mail::send('emailer.reschedule_appoint', $mailData, function ($message) use ($mailTo){
-                    $message->to($mailTo)
-                            ->subject('Your Appointment Has Been Rescheduled – Skin Canberra');
-                });
+            if($request->formname == 'appoint'){
+                // echo '<pre>'; print_r($_POST); exit;
+                $post['sv_id'] = $_POST['sv_id'];
+                $post['vid'] = $_POST['vid'];
+                $post['st_id'] = $_POST['st_id'];
+                $post['service_date'] = $_POST['service_date'];
+                $post['first_name'] = $_POST['first_name'];
+                $post['last_name'] = $_POST['last_name'];
+                $post['email'] = $_POST['email'];
+                $post['country'] = 'AU';
+                $post['phone'] = $_POST['phone'];
+                $post['status'] = $_POST['status'];
+                $post['added_at'] = date('Y-m-d H:i:s');
 
-                $oldTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>$_POST['old_st_id']]);
-                $mailData['old_date'] = Carbon::parse($_POST['old_service_date'] . ' ' . $oldTime->serv_time)->format('d F Y \a\t h:i a');
-                Mail::send('emailer.reschedule_appoint_admin', $mailData, function ($message) use ($mailData){
-                    $message->to(ADMIN_MAIL_TO)
-                            ->subject('Reschedule Approved –'.$mailData['client_name']);
-                });
+                
+                $record = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$request->vid]);
+                if(!$id){
+                    $post['total_amount'] = $record->sp ?? '';
+                }
+                $post['paid_amount'] = $request->paid_amount;
+                if(!$id && isset($record->sp)){
+                    $post['dues_amount'] = (int)$record->sp - (int)$request->paid_amount;
+                }else{
+                    $post['dues_amount'] = (int)$request->total_amount - (int)$request->paid_amount;
+                }
+                
+
+                if(!$id){
+                    $post['added_at'] = date('Y-m-d H:i:s');
+                    $inserted = $this->commonmodel->crudOperation('C','tbl_service_book_online',$post);
+                }else{
+                    $post['update_at'] = date('Y-m-d H:i:s');
+                    $updated = $this->commonmodel->crudOperation('U','tbl_service_book_online',$post,['id'=>$id]);
+                }
+                if(isset($inserted)){
+                    $request->session()->flash('message',['msg'=>'Record added successfully!','type'=>'success']);
+                }elseif(isset($updated)){
+                    $request->session()->flash('message',['msg'=>'Record updated successfully!','type'=>'success']);
+                }else{
+                    $request->session()->flash('message',['msg'=>'Please Try After Sometimes...','type'=>'danger']);
+                }
+
+                //mail
+                $bookedId = (isset($inserted))?$inserted:$id;
+
+                //insert payment log
+                if($request->paid_amount != $request->old_paid_amount){
+                    $paid_amount = (int)$request->paid_amount - (int)$request->old_paid_amount;
+                    $ptData['sbo_id'] = $bookedId;
+                    $ptData['pay_from'] = 'service';
+                    $ptData['paid_amount'] = $paid_amount;
+                    $ptData['payment_mode'] = 'Admin';
+                    $ptData['payment_status'] = ($id)?'Edit Appointment':'Add Appointment';
+                    // $ptData['paymentIntentId'] = $logData['paymentIntentId'];
+                    // $ptData['txnId'] = $logData['txnId'];
+                    $ptData['added_at'] = date('Y-m-d H:i:s');
+                    $this->commonmodel->crudOperation('C','tbl_payment_transaction',$ptData);
+                }
+
+                $record = $this->commonmodel->get_one_appointment_data($bookedId);
+                $mailTo = $record->email;
+
+                $mailData = [
+                    'client_name' => $record->name,
+                    'service_name' => $record->service_name.' ('.$record->variant.')',
+                    'selected_date' => Carbon::parse($record->service_date . ' ' . $record->serv_time)->format('d F Y \a\t h:i a'),
+                ];
+
+                if($_POST['status'] != $_POST['old_status']){
+                    if($_POST['status'] == 2){ // approved
+                        Mail::send('emailer.approve_appoint', $mailData, function ($message) use ($mailTo){
+                            $message->to($mailTo)
+                                    ->subject('Your Appointment is Confirmed – Skin Canberra');
+                        });
+                        Mail::send('emailer.approve_appoint_admin', $mailData, function ($message) use ($mailData){
+                            $message->to(ADMIN_MAIL_TO)
+                                    ->subject('Booking Approved –'.$mailData['client_name']);
+                        });
+                    }else if($_POST['status'] == 3){ // Declined
+                        Mail::send('emailer.declined_appoint', $mailData, function ($message) use ($mailTo){
+                            $message->to($mailTo)
+                                    ->subject('Update on Your Booking Request – Skin Canberra');
+                        });
+                        Mail::send('emailer.declined_appoint_admin', $mailData, function ($message) use ($mailData){
+                            $message->to(ADMIN_MAIL_TO)
+                                    ->subject('Booking Declined –'.$mailData['client_name']);
+                        });
+                    }
+                }
+                if($id && ($_POST['service_date'] != $_POST['old_service_date'] || $_POST['st_id'] != $_POST['old_st_id'] || $_POST['sv_id'] != $_POST['old_sv_id'] || $_POST['vid'] != $_POST['old_vid'])){
+                    Mail::send('emailer.reschedule_appoint', $mailData, function ($message) use ($mailTo){
+                        $message->to($mailTo)
+                                ->subject('Your Appointment Has Been Rescheduled – Skin Canberra');
+                    });
+
+                    $oldTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>$_POST['old_st_id']]);
+                    $mailData['old_date'] = Carbon::parse($_POST['old_service_date'] . ' ' . $oldTime->serv_time)->format('d F Y \a\t h:i a');
+                    Mail::send('emailer.reschedule_appoint_admin', $mailData, function ($message) use ($mailData){
+                        $message->to(ADMIN_MAIL_TO)
+                                ->subject('Reschedule Approved –'.$mailData['client_name']);
+                    });
+                }
+                
             }
             if($id){
                 $redirect = url('admin/appointment-list/'.$id);
