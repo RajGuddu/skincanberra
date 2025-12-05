@@ -115,7 +115,7 @@
                         @csrf
                         <input type="hidden" name="formname" value="appoint">
                         <input type="hidden" name="id" value="{{ $record->id ?? '' }}">
-                        <input type="hidden" name="total_amount" value="{{ $record->total_amount ?? 0 }}">
+                        <input type="hidden" name="total_amount" id="total_amount" value="{{ $record->total_amount ?? 0 }}">
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-md-6">
@@ -189,7 +189,7 @@
                                 @php
                                     $selected = '';
                                     if(isset($record) && $record->vid == $variant->vid) $selected = 'selected'; @endphp
-                                <option value="{{ $variant->vid }}" {{ $selected }}>{{ $variant->v_name.' $'.$variant->sp }} </option>
+                                <option value="{{ $variant->vid }}" data-sp="{{ $variant->sp }}" {{ $selected }}>{{ $variant->v_name.' $'.$variant->sp }} </option>
                                 @endforeach
                                 @endif
                             </select>
@@ -337,6 +337,8 @@
             let service = $('#sv_id').val();
             let variant = $('#vid').val();
             let status = $('#status').val();
+            let sp = parseInt($('#vid option:selected').data('sp')) || 0;
+            let paid = parseInt($('#paid_amount').val()) || 0;
 
             // Reset previous errors
             $('.is-invalid').removeClass('is-invalid');
@@ -383,7 +385,11 @@
                 errors.push("Please select service time.");
                 $('#serviceTime').addClass('is-invalid');
             }
-
+            if (paid > sp) {
+                isValid = false;
+                errors.push('Amount Received cannot be greater than Variant Price ($' + sp + ')');
+                $('#paid_amount').addClass('is-invalid');
+            }
             // Validate Status
             if (status === "" || status === null) {
                 isValid = false;

@@ -179,7 +179,7 @@ class Home extends Controller
             $html = '<option value="">Please select variants!</option>';
             if($variants->isNotEmpty()){
                 foreach($variants as $list){
-                    $html .= '<option value="'.$list->vid.'">'.$list->v_name.' $'.$list->sp.'</option>';
+                    $html .= '<option value="'.$list->vid.'" data-sp="'.$list->sp.'">'.$list->v_name.' $'.$list->sp.'</option>';
                 }
                 $result['success'] = true;
                 $result['html'] = $html;
