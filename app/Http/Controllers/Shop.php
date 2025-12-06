@@ -188,6 +188,16 @@ class Shop extends Controller
                 $insertId = $this->commonmodel->crudOperation('C','tbl_product_order',$logData);
                 if($insertId){
                     cart()->clear();
+                    //store payment log
+                    $ptData['pay_from'] = 'Product';
+                    $ptData['order_id'] = $logData['order_id'];
+                    $ptData['paid_amount'] = $logData['net_total'];
+                    $ptData['payment_mode'] = $logData['payment_mode'];
+                    $ptData['payment_status'] = $logData['payment_status'];
+                    $ptData['paymentIntentId'] = $logData['paymentIntentId'];
+                    $ptData['txnId'] = $logData['txnId'];
+                    $ptData['added_at'] = date('Y-m-d H:i:s');
+                    $this->commonmodel->crudOperation('C','tbl_payment_transaction',$ptData);
 
                     $mailData = [
                         'client_name'   => session('name'),

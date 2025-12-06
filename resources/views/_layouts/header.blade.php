@@ -155,22 +155,23 @@
                     $checkoutUrl = url('checkout');
                 }
                 @endphp
-                <div class="position-relative">
+                <div class="use-for-mobile">
+                    <div class="position-relative">
                     <a href="{{ $checkoutUrl }}" class="cart-icon" id="cart-icon">
                         <img src="{{ url('assets/frontend/images/cart-icon.svg') }}" alt="Cart">
+                        <!-- Bootstrap 5 badge for counter -->
+                        <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $cart_count }}
+                            <span class="visually-hidden">items in cart</span>
+                        </span>
                     </a>
-                    <!-- Bootstrap 5 badge for counter -->
-                    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {{ $cart_count }}
-                        <span class="visually-hidden">items in cart</span>
-                    </span>
                 </div>
 
                 <?php /* <a href="javascript:void(0)" class="user-icon">
                     <img src="{{ url('assets/frontend/images/user-icon.svg') }}" alt="User">
                 </a> */ ?>
                 <div class="dropdown">
-                    <a class="user-icon dropdown-toggle d-inline-block" 
+                    <a class="dropdown-toggle d-inline-block" 
                         href="#" 
                         id="userDropdown" 
                         role="button" 
@@ -221,6 +222,7 @@
                         @endif
                     </ul>
                 </div> 
+                </div>
 
             </div>
 
