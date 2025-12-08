@@ -63,6 +63,7 @@ Route::get('payment-cancel', [Home::class,'payment_cancel']);
 
 //for testing
 Route::get('/viewmail', [Home::class,'viewmail']);
+Route::get('/testmail', [Home::class,'testmail']);
 Route::match(['get','post'],'add_to_cart', [Shop::class,'add_to_cart']);
 Route::match(['get','post'],'remove-item/{id}', [Shop::class,'remove_item']);
 Route::get('book48', [Test::class,'book48']);
