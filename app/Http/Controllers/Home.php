@@ -319,7 +319,7 @@ class Home extends Controller
         }
         return redirect()->to(url('book-online'));
     }
-    public function booking_form(Request $request){
+    /*public function booking_form(Request $request){
 
         if(session()->has('isBooking')){
             // dd(session()->all()); exit;
@@ -416,7 +416,7 @@ class Home extends Controller
             return view('booking_form', $data);
         }
         return redirect()->to(url('book-online'));
-    }
+    }*/
     public function booking_success(Request $request){
         $sessionId = $request->get('sid');
         
@@ -497,7 +497,7 @@ class Home extends Controller
     public function payment_cancel(Request $request){
         return view('payment_cancel');
     }
-    /*public function booking_form(Request $request){
+    public function booking_form(Request $request){
 
         if(session()->has('isBooking')){
             // dd(session()->all()); exit;
@@ -516,6 +516,13 @@ class Home extends Controller
                     $post['sv_id'] = $request->input('sv_id');
                     $post['vid'] = $request->input('vid');
                     $post['st_id'] = $request->input('selected_st_id');
+
+                    $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$post['vid']]);
+                    $sp = $variant->sp; 
+                    $post['total_amount'] = (int)$sp;
+                    $post['paid_amount'] = 0;
+                    $post['dues_amount'] = (int)$sp;
+
                     $post['service_date'] = $request->input('selected_date');
                     $post['first_name'] = $request->input('first_name');
                     $post['last_name'] = $request->input('last_name');
@@ -530,7 +537,7 @@ class Home extends Controller
 
                     if($inserted){
                         $service = $this->commonmodel->crudOperation('R1','tbl_services','',['sv_id'=>$post['sv_id']]);
-                        $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$post['vid']]);
+                        // $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$post['vid']]);
                         $serviceTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>$post['st_id']]);
 
                         $serviceName = $service->service_name ?? '';
@@ -543,7 +550,10 @@ class Home extends Controller
                             'service_name'  => $serviceName.' ('.$variantName.')',
                             'selected_date' => Carbon::parse($post['service_date'])->format('l j F'),
                             'selected_time' => $selected_time,
-                            'date_time'     => Carbon::parse($post['service_date'] . ' ' . $selected_time)->format('d F Y \a\t h:i a')
+                            'date_time'     => Carbon::parse($post['service_date'] . ' ' . $selected_time)->format('d F Y \a\t h:i a'),
+                            'total_amount'  => $post['total_amount'],
+                            'paid_amount'   => $post['paid_amount'],
+                            'dues_amount'   => $post['dues_amount']
                         ];
                         Mail::to($post['email'])->send(new ClientBookingMail($mailData));
                         // Mail::to(ADMIN_MAIL_TO)->send(new AdminBookingMail($data));
@@ -559,12 +569,13 @@ class Home extends Controller
                             'selected_st_id',
                             'isBooking'
                         ]);
-                        return json_encode([
-                            'status' => 'success'
-                        ]);
-                        exit;
+                        // return json_encode([
+                        //     'status' => 'success'
+                        // ]);
+                        // exit;
                     }
                 }
+                return redirect()->to(url('thank-you'));
             }
             $data['cms'] = $this->commonmodel->getOneRecord('tbl_cms',['status'=>1,'page'=>'privacy-policy']);
             $serviceTime = $this->commonmodel->crudOperation('R1','tbl_service_time','',['st_id'=>session('selected_st_id')]);
@@ -575,7 +586,7 @@ class Home extends Controller
             return view('booking_form', $data);
         }
         return redirect()->to(url('book-online'));
-    }*/
+    }
     public function save_book_appointment_h(Request $request){
         if($request->isMethod('POST')){
             $post = array();
