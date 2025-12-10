@@ -1,6 +1,7 @@
 @extends('_layouts.master')
 @section('content')
-<?php /* <!DOCTYPE html>
+<?php /* 
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -84,7 +85,8 @@
 
             </div>
         </nav>
-    </header> */ ?>
+    </header>
+    */ ?>
 
     <!-- banner panel -->
 
@@ -105,7 +107,7 @@
                 <div class="row g-4">
 
                     <div class="col-lg-4 col-md-6">
-                        <a href="{{ url('course-details') }}">
+                        <a href="{{ url('course-detail') }}">
                             <div class="courses-box">
                                 <div class="product-card">
                                     <div class="product-img position-relative mb-3">
@@ -364,7 +366,7 @@
             <h2 class="mb-5 text-center">Loved by Learners — Course Reviews</h2>
             <div class="review-slider">
                 <div class="item">
-                    <a href="#">
+                    <a href="">
                         <div class="courses-box bg-white">
                             <div class="product-card">
                                 <div class="product-img position-relative mb-3">
@@ -451,7 +453,8 @@
         </div>
     </section>
 
-<?php /* <!-- footer panel section  -->
+    <?php /* 
+    <!-- footer panel section  -->
 
     <footer class="footer panel-space pb-4" style="background-image: url(images/footer-bg-img.png);">
         <div class="container-fluid">

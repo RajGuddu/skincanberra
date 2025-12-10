@@ -1,6 +1,8 @@
 @extends('_layouts.master')
 @section('content')
-<?php /* <!DOCTYPE html>
+
+<?php /* 
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -86,7 +88,6 @@
         </nav>
     </header>
     */ ?>
-
 
 
     <!-- cousrse setail section -->
@@ -394,7 +395,8 @@
     </section>
 
 
-    <?php /* <!-- footer panel section  -->
+    <?php /* 
+    <!-- footer panel section  -->
 
     <footer class="footer panel-space pb-4" style="background-image: url(images/footer-bg-img.png);">
         <div class="container-fluid">
@@ -713,8 +715,6 @@
         });
 
     </script>
-
-
 
 </body>
 
