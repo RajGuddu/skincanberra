@@ -319,7 +319,7 @@ class Home extends Controller
         }
         return redirect()->to(url('book-online'));
     }
-    /*public function booking_form(Request $request){
+    public function booking_form(Request $request){
 
         if(session()->has('isBooking')){
             // dd(session()->all()); exit;
@@ -416,7 +416,7 @@ class Home extends Controller
             return view('booking_form', $data);
         }
         return redirect()->to(url('book-online'));
-    }*/
+    }
     public function booking_success(Request $request){
         $sessionId = $request->get('sid');
         
@@ -497,7 +497,7 @@ class Home extends Controller
     public function payment_cancel(Request $request){
         return view('payment_cancel');
     }
-    public function booking_form(Request $request){
+    /*public function booking_form(Request $request){
 
         if(session()->has('isBooking')){
             // dd(session()->all()); exit;
@@ -586,7 +586,7 @@ class Home extends Controller
             return view('booking_form', $data);
         }
         return redirect()->to(url('book-online'));
-    }
+    }*/
     public function courses(Request $request){
         return view('course');
     }

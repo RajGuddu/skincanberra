@@ -181,6 +181,19 @@ Route::middleware(['Authcheck'])->group(function () {
     /*****************************************Auth Controllers****************************** */
     Route::get('admin/logout', [Auth::class,'logout']);
     Route::match(['get','post'], 'admin/profile', [Auth::class,'edit_profile']);
+
+    /******************************************Pdf******************************************* */
+    Route::get('/secure-pdf/{filename}', function ($filename) {
+
+        $path = storage_path('app/pdf/' . $filename);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path);
+
+    })->name('secure.pdf');
 });
 Route::middleware(['Alreadyloggedcheck'])->group(function () {
     Route::match(['get','post'], '/'.ADMIN, [Auth::class,'login']);

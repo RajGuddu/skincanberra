@@ -73,10 +73,10 @@ class Courses extends Controller
                             $exists = $this->commonmodel->isExists('tbl_courses',['c_pdf'=>$pdfFilename]);
                         } while ($exists);
                         // $image = Image::make($file)->encode('webp', 80);
-                        $path = Storage::disk('public_root')->putFileAs('pdf/', $file, $pdfFilename);
+                        $path = Storage::disk('local')->putFileAs('pdf', $file, $pdfFilename);
                         if($path){
                             if (isset($_POST['old_c_pdf']) && !empty($_POST['old_c_pdf'])) {
-                                Storage::disk('public_root')->delete('pdf/' . $_POST['old_c_pdf']);
+                                Storage::disk('local')->delete('pdf/' . $_POST['old_c_pdf']);
                             }
                             $post['c_pdf'] = $pdfFilename;
                         }

@@ -69,7 +69,7 @@
                                             <td class=""><img src="{{ url(IMAGE_PATH.$item->c_image) }}" alt="course-image" width="70px" height="60px"></td>
                                             <td>
                                                 <button class="btn btn-primary btn-sm viewPdfBtn" 
-                                                        data-pdf="{{ asset('pdf/'.$item->c_pdf) }}">
+                                                        data-pdf="{{ route('secure.pdf', $item->c_pdf) }}">
                                                     View PDF
                                                 </button>
                                             </td>
@@ -190,7 +190,7 @@
 
         $('.viewPdfBtn').on('click', function() {
             var pdfUrl = $(this).data('pdf');
-            // alert(pdfUrl) ; return 0;
+            //alert(pdfUrl) ; return 0;
             $('#pdfFrame').attr('src', pdfUrl); 
             $('#pdfModal').modal('show'); 
         });
