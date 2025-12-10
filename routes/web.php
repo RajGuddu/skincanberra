@@ -59,6 +59,8 @@ Route::match(['get','post'],'booking-form', [Home::class,'booking_form']);
 Route::get('booking-success', [Home::class,'booking_success']); // for data update 
 Route::get('payment-success', [Home::class,'payment_success']); // for thank you page
 Route::get('payment-cancel', [Home::class,'payment_cancel']);
+Route::get('courses', [Home::class,'courses']);
+Route::get('course-details', [Home::class,'course_details']);
 
 
 //for testing

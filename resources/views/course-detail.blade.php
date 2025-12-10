@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+@extends('_layouts.master')
+@section('content')
+<?php /* <!DOCTYPE html>
 <html>
 
 <head>
@@ -83,6 +85,7 @@
             </div>
         </nav>
     </header>
+    */ ?>
 
 
 
@@ -93,7 +96,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <figure class="deatail-thimbnail mb-4">
-                        <img src="images/detail-thumbnail.jpg" alt="">
+                        <img src="{{ url('assets/frontend/images/detail-thumbnail.jpg') }}" alt="">
                     </figure>
 
                     <h3 class="text-28">Course Overview</h3>
@@ -115,7 +118,7 @@
                     <div class="instructor-card d-flex flex-column flex-md-row align-items-center gap-4">
                         <div class="col-md-4">
                             <figure class="instructor-card-figure">
-                                <img src="images/marcus.png" alt="Instructor" class="instructor-image">
+                                <img src="{{ url('assets/frontend/images/marcus.png') }}" alt="Instructor" class="instructor-image">
                             </figure>
                         </div>
                         <div class="instructor-info col-md-8">
@@ -254,7 +257,7 @@
                                         <div class="courses-box bg-white">
                                             <div class="product-card">
                                                 <div class="product-img position-relative mb-3">
-                                                    <img src="images/review1.jpg" alt="Lifting Lymphatic Drainage"
+                                                    <img src="{{ url('assets/frontend/images/review1.jpg') }}" alt="Lifting Lymphatic Drainage"
                                                         class="img-fluid rounded-4">
                                                 </div>
 
@@ -285,7 +288,7 @@
                                         <div class="courses-box bg-white">
                                             <div class="product-card">
                                                 <div class="product-img position-relative mb-3">
-                                                    <img src="images/review2.jpg" alt="Lifting Lymphatic Drainage"
+                                                    <img src="{{ url('assets/frontend/images/review2.jpg') }}" alt="Lifting Lymphatic Drainage"
                                                         class="img-fluid rounded-4">
                                                 </div>
 
@@ -316,7 +319,7 @@
                                         <div class="courses-box bg-white">
                                             <div class="product-card">
                                                 <div class="product-img position-relative mb-3">
-                                                    <img src="images/review3.jpg" alt="Lifting Lymphatic Drainage"
+                                                    <img src="{{ url('assets/frontend/images/review3.jpg') }}" alt="Lifting Lymphatic Drainage"
                                                         class="img-fluid rounded-4">
                                                 </div>
 
@@ -391,7 +394,7 @@
     </section>
 
 
-    <!-- footer panel section  -->
+    <?php /* <!-- footer panel section  -->
 
     <footer class="footer panel-space pb-4" style="background-image: url(images/footer-bg-img.png);">
         <div class="container-fluid">
@@ -716,3 +719,6 @@
 </body>
 
 </html>
+
+*/ ?>
+@endsection

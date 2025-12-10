@@ -124,9 +124,9 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link py-0" href="#">Courses</a>
-                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link py-0" href="{{ url('courses') }}">Courses</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link py-0" href="{{ url('products') }}">Products</a>
                     </li>

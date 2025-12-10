@@ -2,7 +2,6 @@
     <div class="container-fluid py-2">
         <div class="app-header-content">
             <div class="row justify-content-between align-items-center">
-
                 <div class="col-auto">
                     <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img">
@@ -21,7 +20,6 @@
 							<button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fa-solid fa-magnifying-glass"></i></button> 
 				        </form>
 		            </div><!--//app-search-box--> */ ?>
-
                 <div class="app-utilities col-auto">
                     <?php /* <div class="app-utility-item app-notifications-dropdown dropdown">
 								<a class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle"
@@ -36,7 +34,6 @@
 									</svg>
 									<span class="icon-badge">3</span>
 								</a><!--//dropdown-toggle-->
-
 								<div class="dropdown-menu p-0" aria-labelledby="notifications-dropdown-toggle">
 									<div class="dropdown-menu-header p-3">
 										<h5 class="dropdown-menu-title mb-0">Notifications</h5>
@@ -120,11 +117,9 @@
 											<a class="link-mask" href="notifications.html"></a>
 										</div><!--//item-->
 									</div><!--//dropdown-menu-content-->
-
 									<div class="dropdown-menu-footer p-2 text-center">
 										<a href="notifications.html">View all</a>
 									</div>
-
 								</div><!--//dropdown-menu-->
 							</div><!--//app-utility-item--> */ ?>
                     <div class="app-utility-item">
@@ -139,7 +134,6 @@
                             </svg>
                         </a>
                     </div><!--//app-utility-item-->
-
                     <div class="app-utility-item app-user-dropdown dropdown">
                         <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#"
                             role="button" aria-expanded="false"><img

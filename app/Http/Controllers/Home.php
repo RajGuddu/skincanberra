@@ -587,6 +587,14 @@ class Home extends Controller
         }
         return redirect()->to(url('book-online'));
     }
+    public function courses(Request $request){
+        $data = [];
+        return view('course', $data);
+    }
+    public function course_details(Request $request){
+        $data = [];
+        return view('course-detail', $data);
+    }
     public function save_book_appointment_h(Request $request){
         if($request->isMethod('POST')){
             $post = array();
