@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AboutContent;
 use App\Http\Controllers\Admin\Products;
 use App\Http\Controllers\Admin\Customers;
 use App\Http\Controllers\Admin\Appointment;
+use App\Http\Controllers\Admin\Courses;
 use App\Http\Controllers\Shop;
 use App\Http\Controllers\Member;
 use App\Http\Controllers\Test;
@@ -59,6 +60,8 @@ Route::match(['get','post'],'booking-form', [Home::class,'booking_form']);
 Route::get('booking-success', [Home::class,'booking_success']); // for data update 
 Route::get('payment-success', [Home::class,'payment_success']); // for thank you page
 Route::get('payment-cancel', [Home::class,'payment_cancel']);
+Route::get('courses', [Home::class,'courses']);
+// Route::get('course-detail', [Home::class,'course_detail']);
 
 
 //for testing
@@ -169,6 +172,10 @@ Route::middleware(['Authcheck'])->group(function () {
     Route::match(['get','post'],'admin/search_reset', [Appointment::class,'search_reset']);
 
     Route::get('admin/get-times-by-date', [Appointment::class,'get_times_by_date']); // ajax
+
+    /*******************************************Courses*************************************** */
+    Route::match(['get', 'post'], 'admin/courses', [Courses::class,'index']);
+    Route::match(['get', 'post'], 'admin/courses/{id}', [Courses::class,'index']);
 
 
     /*****************************************Auth Controllers****************************** */

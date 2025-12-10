@@ -457,6 +457,29 @@
                 }
             }
         });
+        $('.review-slider').owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: true,
+            dots: false,
+            smartSpeed: 1000,
+            autoplayTimeout: 2000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                768: {
+                    items: 3
+                },
+                1200: {
+                    items: 3
+                }
+            }
+        });
         $(document).ready(function () {
             var owl = $('.nav-tab-slider');
 

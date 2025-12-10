@@ -1,3 +1,6 @@
+@extends('_layouts.master')
+@section('content')
+<?php /* 
 <!DOCTYPE html>
 <html>
 
@@ -83,10 +86,11 @@
             </div>
         </nav>
     </header>
+    */ ?>
 
     <!-- banner panel -->
 
-    <div class="banner" style="background-image: url(images/course-banner.jpg);">
+    <div class="banner" style="background-image: url({{ url('assets/frontend/images/course-banner.jpg') }});">
         <div class="container">
             <h1 class="banner-title cormorant aos-init aos-animate" data-aos="fade-up">Discover Courses That Inspire
                 Learning & Creativity</h1>
@@ -103,11 +107,11 @@
                 <div class="row g-4">
 
                     <div class="col-lg-4 col-md-6">
-                        <a href="#">
+                        <a href="{{ url('course-detail') }}">
                             <div class="courses-box">
                                 <div class="product-card">
                                     <div class="product-img position-relative mb-3">
-                                        <img src="images/course1.jpg" alt="Lifting Lymphatic Drainage"
+                                        <img src="{{ url('assets/frontend/images/course1.jpg') }}" alt="Lifting Lymphatic Drainage"
                                             class="img-fluid rounded-4">
                                     </div>
 
@@ -149,7 +153,7 @@
                             <div class="courses-box">
                                 <div class="product-card">
                                     <div class="product-img position-relative mb-3">
-                                        <img src="images/course2.jpg" alt="Lifting Lymphatic Drainage"
+                                        <img src="{{ url('assets/frontend/images/course2.jpg') }}" alt="Lifting Lymphatic Drainage"
                                             class="img-fluid rounded-4">
                                     </div>
 
@@ -190,7 +194,7 @@
                             <div class="courses-box">
                                 <div class="product-card">
                                     <div class="product-img position-relative mb-3">
-                                        <img src="images/course3.jpg" alt="Lifting Lymphatic Drainage"
+                                        <img src="{{ url('assets/frontend/images/course3.jpg') }}" alt="Lifting Lymphatic Drainage"
                                             class="img-fluid rounded-4">
                                     </div>
 
@@ -231,7 +235,7 @@
                             <div class="courses-box">
                                 <div class="product-card">
                                     <div class="product-img position-relative mb-3">
-                                        <img src="images/course4.jpg" alt="Lifting Lymphatic Drainage"
+                                        <img src="{{ url('assets/frontend/images/course4.jpg') }}" alt="Lifting Lymphatic Drainage"
                                             class="img-fluid rounded-4">
                                     </div>
 
@@ -272,7 +276,7 @@
                             <div class="courses-box">
                                 <div class="product-card">
                                     <div class="product-img position-relative mb-3">
-                                        <img src="images/course5.jpg" alt="Lifting Lymphatic Drainage"
+                                        <img src="{{ url('assets/frontend/images/course5.jpg') }}" alt="Lifting Lymphatic Drainage"
                                             class="img-fluid rounded-4">
                                     </div>
 
@@ -313,7 +317,7 @@
                             <div class="courses-box">
                                 <div class="product-card">
                                     <div class="product-img position-relative mb-3">
-                                        <img src="images/course6.jpg" alt="Lifting Lymphatic Drainage"
+                                        <img src="{{ url('assets/frontend/images/course6.jpg') }}" alt="Lifting Lymphatic Drainage"
                                             class="img-fluid rounded-4">
                                     </div>
 
@@ -362,11 +366,11 @@
             <h2 class="mb-5 text-center">Loved by Learners — Course Reviews</h2>
             <div class="review-slider">
                 <div class="item">
-                    <a href="#">
+                    <a href="">
                         <div class="courses-box bg-white">
                             <div class="product-card">
                                 <div class="product-img position-relative mb-3">
-                                    <img src="images/review1.jpg" alt="Lifting Lymphatic Drainage"
+                                    <img src="{{ url('assets/frontend/images/review1.jpg') }}" alt="Lifting Lymphatic Drainage"
                                         class="img-fluid rounded-4">
                                 </div>
 
@@ -394,7 +398,7 @@
                         <div class="courses-box bg-white">
                             <div class="product-card">
                                 <div class="product-img position-relative mb-3">
-                                    <img src="images/review2.jpg" alt="Lifting Lymphatic Drainage"
+                                    <img src="{{ url('assets/frontend/images/review2.jpg') }}" alt="Lifting Lymphatic Drainage"
                                         class="img-fluid rounded-4">
                                 </div>
 
@@ -422,7 +426,7 @@
                         <div class="courses-box bg-white">
                             <div class="product-card">
                                 <div class="product-img position-relative mb-3">
-                                    <img src="images/review3.jpg" alt="Lifting Lymphatic Drainage"
+                                    <img src="{{ url('assets/frontend/images/review3.jpg') }}" alt="Lifting Lymphatic Drainage"
                                         class="img-fluid rounded-4">
                                 </div>
 
@@ -449,6 +453,7 @@
         </div>
     </section>
 
+    <?php /* 
     <!-- footer panel section  -->
 
     <footer class="footer panel-space pb-4" style="background-image: url(images/footer-bg-img.png);">
@@ -774,3 +779,6 @@
 </body>
 
 </html>
+
+*/ ?>
+@endsection
