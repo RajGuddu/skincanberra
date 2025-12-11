@@ -106,6 +106,21 @@ class Common_model extends Model
         }
         return $result;
     }
+    //----------------------------Admin & Front courses---------------------------
+    public function get_courses($status = null){
+        $builder = DB::table('tbl_courses');
+        if(session()->has('search')){
+            $search = session('search');
+            $builder->where('course_name', 'LIKE', "%{$search}%");
+        }
+        if($status != null){
+            $builder->where('status', $status);
+        }
+        $builder->orderby('c_id', 'desc');
+        $result = $builder->get();
+        return $result;
+    }
+    //------------------------------------------------------------
     public function get_custom_testimonials(){
         $photoRecord = $this->getAllRecord('tbl_testimonial',[['name', '!=', NULL], ['post', '!=', NULL],['status','=',1]]);
         $videoRecord = $this->getAllRecord('tbl_testimonial',[['video', '!=', NULL],['status','=',1]]);

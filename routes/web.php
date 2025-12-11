@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\Courses As CoursesFront;
 use App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\Settings;
@@ -60,8 +61,8 @@ Route::match(['get','post'],'booking-form', [Home::class,'booking_form']);
 Route::get('booking-success', [Home::class,'booking_success']); // for data update 
 Route::get('payment-success', [Home::class,'payment_success']); // for thank you page
 Route::get('payment-cancel', [Home::class,'payment_cancel']);
-Route::get('courses', [Home::class,'courses']);
-Route::get('course-detail', [Home::class,'course_detail']);
+Route::get('courses', [CoursesFront::class,'index']);
+Route::get('course-detail', [CoursesFront::class,'course_detail']);
 
 
 //for testing
@@ -81,6 +82,10 @@ Route::middleware(['MemberAuth'])->group(function () {
     Route::match(['get','post'],'member-deladdress/{id}', [Member::class,'delete_address']);
     Route::match(['get','post'],'member-profile', [Member::class,'profile']);
     Route::match(['get','post'],'member-changepassword', [Member::class,'change_password']);
+    /******************************************Courses****************************************** */
+    Route::get('buy-course/{id}', [CoursesFront::class,'buy_course']);
+    Route::get('course-payment-success', [CoursesFront::class,'course_payment_success']); // for data update
+
     Route::get('member-logout', [Member::class,'logout']);
 });
 Route::middleware(['AlreadyloggedMember'])->group(function () {
@@ -176,6 +181,9 @@ Route::middleware(['Authcheck'])->group(function () {
     /*******************************************Courses*************************************** */
     Route::match(['get', 'post'], 'admin/courses', [Courses::class,'index']);
     Route::match(['get', 'post'], 'admin/courses/{id}', [Courses::class,'index']);
+    Route::get('admin/delete_course/{id}', [Courses::class,'delete_course']);
+    Route::match(['get', 'post'], 'admin/search_course', [Courses::class,'search_course']);
+    Route::get('admin/c_search_reset', [Courses::class,'search_reset']);
 
 
     /*****************************************Auth Controllers****************************** */

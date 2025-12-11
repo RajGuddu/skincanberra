@@ -90,64 +90,70 @@
 
     <!-- banner panel -->
 
-    <div class="banner" style="background-image: url({{ url('assets/frontend/images/course-banner.jpg') }});">
+    @php
+        $url = url('assets/frontend/images/course-banner.jpg');
+        if(isset($banner) && $banner->image != '')
+            $url = url(IMAGE_PATH.$banner->image);
+        
+    @endphp
+
+    <div class="banner" style="background-image: url({{ url($url) }});">
         <div class="container">
-            <h1 class="banner-title cormorant aos-init aos-animate" data-aos="fade-up">Discover Courses That Inspire
-                Learning & Creativity</h1>
-            <p class="banner-content">From glow-boosting facials to precision haircuts and advanced skin therapies — our
-                professional team delivers personalised treatments with care and clarity.</p>
+            <h1 class="banner-title cormorant aos-init aos-animate" data-aos="fade-up">{{ $banner->main_title ?? '' }}</h1>
+            <p class="banner-content">{{ $banner->sub_title ?? '' }}</p>
         </div>
     </div>
 
     <section class="course-panel panel-space">
         <div class="container-fluid">
             <div class="container-fluid">
-
-
                 <div class="row g-4">
-
+                    @if(isset($courses) && $courses->isNotEmpty())
+                    @foreach($courses as $list)
                     <div class="col-lg-4 col-md-6">
-                        <a href="{{ url('course-detail') }}">
-                            <div class="courses-box">
-                                <div class="product-card">
-                                    <div class="product-img position-relative mb-3">
-                                        <img src="{{ url('assets/frontend/images/course1.jpg') }}" alt="Lifting Lymphatic Drainage"
-                                            class="img-fluid rounded-4">
-                                    </div>
+                        <div class="courses-box">
+                            <div class="product-card">
+                                <a href="javascript:void(0)">
+                                <div class="product-img position-relative mb-3">
+                                    <img src="{{ url(IMAGE_PATH.$list->c_image) }}" alt="Lifting Lymphatic Drainage"
+                                        class="img-fluid rounded-4">
+                                </div>
+                                    </a>
 
-                                    <div class="product-info">
-                                        <h5 class="fw-semibold mb-1 text-black">Trumpet Basics</h5>
-                                        <p class="mb-4">
-                                            Master the foundations of trumpet playing with step-by-step lessons. Perfect
-                                            for beginners looking to build confidence a
-                                        </p>
+                                <div class="product-info">
+                                    <h5 class="fw-semibold mb-1 text-black">{{ $list->course_name }}</h5>
+                                    <p class="mb-4">
+                                        {{ $list->short_desc }}
+                                    </p>
 
-                                        <div
-                                            class="d-flex align-items-center justify-content-between mb-2 weight-500 text-18">
-                                            <div class="d-flex align-items-center">
-                                                <span class="me-2 text-black"><i
-                                                        class="fa-solid fa-calendar-days"></i></span>
-                                                <sapn class="mb-0 view-price text-black">4 Weeks</sapn>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <span class="me-2 text-black"><i class="fa-solid fa-user"></i></span>
-                                                <sapn class="mb-0 view-price text-black">+ 1.36K <span
-                                                        class="label">Students</span></sapn>
-                                            </div>
-
+                                    <?php /* 
+                                    <div class="d-flex align-items-center justify-content-between mb-2 weight-500 text-18">
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-2 text-black"><i
+                                                    class="fa-solid fa-calendar-days"></i></span>
+                                            <sapn class="mb-0 view-price text-black">4 Weeks</sapn>
                                         </div>
-
-                                        <span class="btn add-cart-btn w-100 mt-3">
-                                            Join Class — $400
-                                        </span>
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-2 text-black"><i class="fa-solid fa-user"></i></span>
+                                            <sapn class="mb-0 view-price text-black">+ 1.36K <span
+                                                    class="label">Students</span></sapn>
+                                        </div>
                                     </div>
+                                    */ ?>
+
+                                    <a href="{{ url('buy-course/'.$list->c_id) }}" class="btn add-cart-btn w-100 mt-3"  onclick="return confirm('Are you sure you want to buy this course?\nYou will be redirected to the payment page.');">
+                                        Buy Course — ${{ $list->c_price }}
+                                    </a>
                                 </div>
                             </div>
-                        </a>
-
+                        </div>
                     </div>
+                    @endforeach
+                    @else
+                        <span class="text-danger text-center">No course available!</span>
+                    @endif
 
-
+                    <?php /* 
                     <div class="col-lg-4 col-md-6">
                         <a href="#">
                             <div class="courses-box">
@@ -352,6 +358,7 @@
                         </a>
 
                     </div>
+                    */ ?>
 
                 </div>
             </div>
@@ -360,7 +367,7 @@
 
 
     <!-- course reviews -->
-
+    <?php /* 
     <section class="course-reviews-panel panel-space" style="background-color:#F2F2F2;">
         <div class="container-fluid">
             <h2 class="mb-5 text-center">Loved by Learners — Course Reviews</h2>
@@ -452,6 +459,7 @@
             </div>
         </div>
     </section>
+    */ ?>
 
     <?php /* 
     <!-- footer panel section  -->

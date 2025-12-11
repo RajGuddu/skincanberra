@@ -109,10 +109,42 @@ class Courses extends Controller
         if($id){
             $data['record'] = $this->commonmodel->crudOperation('R1','tbl_courses','',['c_id'=>$id]);
         }
-        $data['listData'] = $this->commonmodel->crudOperation('RA','tbl_courses','','',['c_id','DESC']);
+        $data['listData'] = $this->commonmodel->get_courses();
         return view('admin.courses.course_index', $data);
     }
-    public function get_times_by_date(){
+    public function delete_course(Request $request, $id=null){
+        if($id){
+            $record = $this->commonmodel->crudOperation('R1','tbl_courses','',['c_id'=>$id]);
+            if(!empty($record)){
+                $pdfPath = 'pdf/' . $record->c_pdf;
+                if (Storage::exists($pdfPath)) {
+                    Storage::delete($pdfPath);
+                }
+                if($this->commonmodel->crudOperation('D','tbl_courses','',['c_id'=>$id])){
+                    $request->session()->flash('message',['msg'=>'Record Deleted.','type'=>'success']);
+                }else{
+                    $request->session()->flash('message',['msg'=>'Please Try After Sometimes...','type'=>'danger']);
+                }
+            }
+        }
+        return redirect()->to('admin/courses');
+    }
+    public function search_course(Request $request){
+        if($request->isMethod('POST')){
+            session([
+                'search' => $request->search,
+                // 'search_email' => $request->email,
+            ]);
+        }
+        return redirect()->to('admin/courses');
+    }
+    public function search_reset(Request $request){
+        if(session()->has('search')){
+            session()->remove('search');
+        }
+        return redirect()->to('admin/courses');
+    }
+    /* public function get_times_by_date(){
         $selectedDate = $_GET['date'] ?? '';
         $html = '';
         if($selectedDate){
@@ -296,31 +328,6 @@ class Courses extends Controller
         $data['services'] = $this->commonmodel->crudOperation('RA','tbl_services','',['status'=>1],['sv_id','DESC']);
         return view('admin.appointment.appointment_list', $data);
 
-    }
-    public function delete_appointment(Request $request, $id=null){
-        if($id){
-            
-            if($this->commonmodel->crudOperation('D','tbl_service_book_online','',['id'=>$id])){
-                $request->session()->flash('message',['msg'=>'Record Deleted.','type'=>'success']);
-            }else{
-                $request->session()->flash('message',['msg'=>'Please Try After Sometimes...','type'=>'danger']);
-            }
-        }
-        return redirect()->to('admin/appointment-list');
-    }
-    public function search_appointment(Request $request){
-        if($request->isMethod('POST')){
-            session([
-                'search' => $request->search,
-                // 'search_email' => $request->email,
-            ]);
-        }
-        return redirect()->to('admin/appointment-list');
-    }
-    public function search_reset(Request $request){
-        if(session()->has('search')){
-            session()->remove('search');
-        }
-        return redirect()->to('admin/appointment-list');
-    }
+    } */
+   
 }

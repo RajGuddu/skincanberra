@@ -15,10 +15,10 @@
                 <h1 class="app-page-title mb-4">Course List</h1>
             </div>
             <div class="col-auto">
-            <form action="{{ url('admin/courses') }}" method="post" class="mb-3">
+            <form action="{{ url('admin/search_course') }}" method="post" class="mb-3">
                 @csrf
                 <div class="input-group" style="max-width:400px;">
-                    <input type="text" name="search" class="form-control" placeholder="Search by name or email"
+                    <input type="text" name="search" class="form-control" placeholder="Search by course name"
                         value="{{ old('search', session('search')) }}" required>
                     <button class="btn btn-primary" type="submit">Search</button>
                     <a href="{{ url('admin/c_search_reset') }}" class="btn btn-secondary ms-2">Reset</a>
@@ -88,7 +88,7 @@
                                             <td style="{{ $tdStyle }}">
                                                 <a class="btn-sm app-btn-secondary" href="{{ url('admin/courses/'.$item->c_id) }}">Edit</a>
                                                
-									            <a class="btn-sm app-btn-secondary" onclick="return confirm('Are u sure?')" href="{{ url('admin/delete_appointment/'.$item->c_id) }}">Delete</a>
+									            <a class="btn-sm app-btn-secondary" onclick="return confirm('Are u sure?')" href="{{ url('admin/delete_course/'.$item->c_id) }}">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
