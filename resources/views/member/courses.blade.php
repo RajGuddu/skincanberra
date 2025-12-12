@@ -45,10 +45,10 @@
                             @php 
                             $downloadFileName = \Illuminate\Support\Str::slug($list->course_name, '_').'.pdf';
                             @endphp
-                            <a href="{{ route('course.pdf', $list->c_pdf, $downloadFileName) }}?v={{ time() }}" class="btn btn-sm text-white" style="background-color:#B4903A;"><i class="fas fa-download"></i> Download</a>
+                            <a href="{{ route('course.pdf', [$list->c_pdf, $downloadFileName]) }}?v={{ time() }}" class="btn btn-sm text-white" style="background-color:#B4903A;"><i class="fas fa-download"></i> Download</a>
 
-                            @if($list->youtube_link == '')
-                            <a href="{{ url('member-deladdress/'.$list->id) }}" class="btn btn-sm text-white" style="background-color:#B4903A;">Video</a>
+                            @if($list->youtube_link != '')
+                            <a href="{{ url('course-video/'.$list->id) }}" class="btn btn-sm text-white" style="background-color:#B4903A;">Video</a>
                             @endif
                           </td>
                         </tr>

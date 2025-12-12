@@ -6,5 +6,5 @@
     defined('STRIPE_KEY')   || define('STRIPE_KEY', env('STRIPE_KEY'));  
     defined('STRIPE_SECRET')   || define('STRIPE_SECRET', env('STRIPE_SECRET'));  
 
-    defined('STRIPE_CURRENCY')   || define('STRIPE_CURRENCY', 'USD');
+    defined('STRIPE_CURRENCY')   || define('STRIPE_CURRENCY', 'AUD');
 

@@ -123,13 +123,21 @@ class Common_model extends Model
         return $result;
     }
     //---------------------------------------------------------------------------
-    public function get_purchased_courses(){
+    public function get_purchased_courses($id=null){
         $builder = DB::table($this->purchasedCourseTbl.' AS pc') ;
         $builder->select('pc.*',DB::raw('c.course_name,c.short_desc,c.c_image,c.c_pdf,c.youtube_link'));
         $builder->leftJoin($this->coursesTbl.' AS c','pc.c_id','=','c.c_id');
         $builder->where('pc.m_id', session('m_id'));
+        if($id != null){
+            $builder->where('pc.id', $id);
+        }
         $builder->orderBy('pc.id','DESC');
-        $value = $builder->get();
+
+        if($id != null){
+            $value = $builder->first();
+        }else{
+            $value = $builder->get();
+        }
         return $value;
     }
     public function get_custom_testimonials(){

@@ -77,7 +77,6 @@ Route::middleware(['MemberAuth'])->group(function () {
     Route::get('product-payment-success', [Shop::class,'product_payment_success']); // for data update
     Route::get('member-dashboard', [Member::class,'dashboard']);
     Route::get('member-orders', [Member::class,'orders']);
-    Route::get('member-courses', [Member::class,'courses']);
     Route::match(['get','post'],'member-addresses', [Member::class,'addresses']);
     Route::match(['get','post'],'member-addresses/{id}', [Member::class,'addresses']);
     Route::match(['get','post'],'member-deladdress/{id}', [Member::class,'delete_address']);
@@ -86,6 +85,8 @@ Route::middleware(['MemberAuth'])->group(function () {
     /******************************************Courses****************************************** */
     Route::get('buy-course/{id}', [CoursesFront::class,'buy_course']);
     Route::get('course-payment-success', [CoursesFront::class,'course_payment_success']); // for data update
+    Route::get('member-courses', [Member::class,'courses']);
+    Route::get('course-video/{id}', [Member::class,'course_video']);
 
     Route::get('member-logout', [Member::class,'logout']);
 
@@ -98,16 +99,16 @@ Route::middleware(['MemberAuth'])->group(function () {
             abort(404);
         }
         // $customName = 'course_'.time().'.pdf';
-        // return response()->download($path, $customName); 
+        return response()->download($path, $customName); 
         /*return response()->file($path)->withHeaders([
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'attachment; filename="'.$customName.'"',
-        ]);*/
+        ]);
         return response()->streamDownload(function () use ($path) {
             echo file_get_contents($path);
         }, $customName, [
-        'Content-Type' => 'application/pdf',
-    ]);
+            'Content-Type' => 'application/pdf',
+        ]);*/
 
     })->name('course.pdf');
 });

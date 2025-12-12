@@ -110,6 +110,11 @@ class Member extends Controller
         $data['courses'] = $this->commonmodel->get_purchased_courses();
         return view('member.courses', $data);
     }
+    public function course_video($id){
+        
+        $data['course'] = $this->commonmodel->get_purchased_courses($id);
+        return view('member.course-video', $data);
+    }
     public function addresses(Request $request, $id=null){
         $data = $post = [];
         if ($request->isMethod('POST')){
