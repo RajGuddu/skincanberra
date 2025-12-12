@@ -77,6 +77,7 @@ Route::middleware(['MemberAuth'])->group(function () {
     Route::get('product-payment-success', [Shop::class,'product_payment_success']); // for data update
     Route::get('member-dashboard', [Member::class,'dashboard']);
     Route::get('member-orders', [Member::class,'orders']);
+    Route::get('member-courses', [Member::class,'courses']);
     Route::match(['get','post'],'member-addresses', [Member::class,'addresses']);
     Route::match(['get','post'],'member-addresses/{id}', [Member::class,'addresses']);
     Route::match(['get','post'],'member-deladdress/{id}', [Member::class,'delete_address']);
@@ -87,6 +88,28 @@ Route::middleware(['MemberAuth'])->group(function () {
     Route::get('course-payment-success', [CoursesFront::class,'course_payment_success']); // for data update
 
     Route::get('member-logout', [Member::class,'logout']);
+
+    //Download Pdf Secure
+    Route::get('/course-pdf/{filename}/{customName}', function ($filename, $customName) {
+
+        $path = storage_path('app/pdf/' . $filename);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+        // $customName = 'course_'.time().'.pdf';
+        // return response()->download($path, $customName); 
+        /*return response()->file($path)->withHeaders([
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="'.$customName.'"',
+        ]);*/
+        return response()->streamDownload(function () use ($path) {
+            echo file_get_contents($path);
+        }, $customName, [
+        'Content-Type' => 'application/pdf',
+    ]);
+
+    })->name('course.pdf');
 });
 Route::middleware(['AlreadyloggedMember'])->group(function () {
     Route::match(['get','post'],'member-login', [Member::class,'login']);

@@ -19,6 +19,8 @@ class Common_model extends Model
         $this->productCategoryTbl = 'tbl_product_category';
         $this->productOrderTbl = 'tbl_product_order';
         $this->memberAddressTbl = 'tbl_member_address';
+        $this->purchasedCourseTbl = 'tbl_purchased_course';
+        $this->coursesTbl = 'tbl_courses';
 
     }
     /*public function isvalidate($email){
@@ -120,7 +122,16 @@ class Common_model extends Model
         $result = $builder->get();
         return $result;
     }
-    //------------------------------------------------------------
+    //---------------------------------------------------------------------------
+    public function get_purchased_courses(){
+        $builder = DB::table($this->purchasedCourseTbl.' AS pc') ;
+        $builder->select('pc.*',DB::raw('c.course_name,c.short_desc,c.c_image,c.c_pdf,c.youtube_link'));
+        $builder->leftJoin($this->coursesTbl.' AS c','pc.c_id','=','c.c_id');
+        $builder->where('pc.m_id', session('m_id'));
+        $builder->orderBy('pc.id','DESC');
+        $value = $builder->get();
+        return $value;
+    }
     public function get_custom_testimonials(){
         $photoRecord = $this->getAllRecord('tbl_testimonial',[['name', '!=', NULL], ['post', '!=', NULL],['status','=',1]]);
         $videoRecord = $this->getAllRecord('tbl_testimonial',[['video', '!=', NULL],['status','=',1]]);

@@ -102,8 +102,13 @@ class Member extends Controller
     }
     public function orders(){
         
-        $data['orders'] = $data['records'] = $this->commonmodel->crudOperation('RA','tbl_product_order','',['m_id'=>session('m_id')],['id','DESC']);
+        $data['orders'] = $this->commonmodel->crudOperation('RA','tbl_product_order','',['m_id'=>session('m_id')],['id','DESC']);
         return view('member.orders', $data);
+    }
+    public function courses(){
+        
+        $data['courses'] = $this->commonmodel->get_purchased_courses();
+        return view('member.courses', $data);
     }
     public function addresses(Request $request, $id=null){
         $data = $post = [];
