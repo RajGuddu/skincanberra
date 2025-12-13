@@ -226,8 +226,10 @@ class Products extends Controller
         if($id){
             $data['record'] = $this->commonmodel->crudOperation('R1','tbl_product','',['pro_id'=>$id]);
             $data['attributes'] = $this->commonmodel->crudOperation('RA','tbl_product_attributes','',[['pro_id','=',$id]]);
-            if($attrId)
+            if($attrId){
+                $this->commonmodel->crudOperation('U','tbl_product',['activeTab'=>3],['pro_id'=>$id]);
                 $data['attr'] = $this->commonmodel->crudOperation('R1','tbl_product_attributes','',['attrId'=>$attrId]);
+            }
         }
         $data['proCategory'] = $this->commonmodel->crudOperation('RA','tbl_product_category','',['status'=>1]);
         return view('admin.product.add_edit_product', $data);

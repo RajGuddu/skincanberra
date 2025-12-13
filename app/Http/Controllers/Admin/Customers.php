@@ -44,6 +44,12 @@ class Customers extends Controller
         $data['orders'] = $this->commonmodel->crudOperation('RA','tbl_product_order','',[['m_id','=',$id]]);
         return view('admin.customers.customer_orders', $data);
     }
+    public function purchased_courses(Request $request, $id){
+        $data = [];
+        $data['customer'] = $this->commonmodel->crudOperation('R1','tbl_member','',['m_id'=>$id]);
+        $data['orders'] = $this->commonmodel->crudOperation('RA','tbl_product_order','',[['m_id','=',$id]]);
+        return view('admin.customers.customer_orders', $data);
+    }
     public function new_orders(Request $request){
         $data = [];
         // $data['customer'] = $this->commonmodel->crudOperation('R1','tbl_member','',['m_id'=>$id]);

@@ -190,6 +190,7 @@ Route::middleware(['Authcheck'])->group(function () {
     Route::get('admin/new_orders', [Customers::class,'new_orders']);
     Route::match(['get','post'],'admin/change_order_status', [Customers::class,'change_order_status']);
     Route::get('admin/all_orders', [Customers::class,'all_orders']);
+    Route::get('admin/purchased_courses/{id}', [Customers::class,'purchased_courses']);
 
     /******************************************Appointment************************************ */
     Route::get('admin/appointment', [Appointment::class,'index']);

@@ -98,6 +98,8 @@ class Member extends Controller
         $data['ODshipped'] = $this->commonmodel->getCountRecord('tbl_product_order', [['m_id','=',session('m_id')],['status','=',2]]);
         $data['ODdlvd'] = $this->commonmodel->getCountRecord('tbl_product_order', [['m_id','=',session('m_id')],['status','=',3]]);
         $data['ODcanceled'] = $this->commonmodel->getCountRecord('tbl_product_order', [['m_id','=',session('m_id')],['status','=',4]]);
+        $data['PCourses'] = $this->commonmodel->getCountRecord('tbl_purchased_course', [['m_id','=',session('m_id')]]);
+
         return view('member.dashboard', $data);
     }
     public function orders(){

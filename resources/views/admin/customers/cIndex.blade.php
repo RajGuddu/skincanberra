@@ -61,6 +61,9 @@
                                         <a class="btn-sm app-btn-secondary" href="{{ url('admin/customer_orders/'.$customer->m_id) }}">
                                             Orders
                                         </a>
+                                        <a class="btn-sm app-btn-secondary" href="{{ url('admin/purchased_courses/'.$customer->m_id) }}">
+                                            Purcahsed Courses
+                                        </a>
                                     </td>
                                 </tr>
                             @empty

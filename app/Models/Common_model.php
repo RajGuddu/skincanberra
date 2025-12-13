@@ -108,6 +108,12 @@ class Common_model extends Model
         }
         return $result;
     }
+    public function total_business(){
+        $totalPaidAmount = DB::table('tbl_payment_transaction')
+            ->sum('paid_amount');
+
+        return $totalPaidAmount;
+    }
     //----------------------------Admin & Front courses---------------------------
     public function get_courses($status = null){
         $builder = DB::table('tbl_courses');

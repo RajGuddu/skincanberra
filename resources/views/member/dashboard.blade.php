@@ -49,6 +49,16 @@
               </div>
             </div>
           </div>
+
+          <div class="col-6 col-lg-3">
+            <div class="card border-0 shadow-sm text-center py-3">
+              <div class="card-body">
+                <h6 class="text-muted mb-2">Purchased Course</h6>
+                <h4 class="fw-bold" style="color:#B4903A;">{{ $PCourses }}</h4>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
