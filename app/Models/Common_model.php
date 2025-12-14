@@ -146,6 +146,15 @@ class Common_model extends Model
         }
         return $value;
     }
+    public function get_purchased_courses_by_customers($m_id){
+        $builder = DB::table($this->purchasedCourseTbl.' AS pc') ;
+        $builder->select('pc.*',DB::raw('c.course_name,c.short_desc,c.c_image,c.c_pdf,c.youtube_link'));
+        $builder->leftJoin($this->coursesTbl.' AS c','pc.c_id','=','c.c_id');
+        $builder->where('pc.m_id', $m_id);
+        $builder->orderBy('pc.id','DESC');
+        $value = $builder->get();
+        return $value;
+    }
     public function get_custom_testimonials(){
         $photoRecord = $this->getAllRecord('tbl_testimonial',[['name', '!=', NULL], ['post', '!=', NULL],['status','=',1]]);
         $videoRecord = $this->getAllRecord('tbl_testimonial',[['video', '!=', NULL],['status','=',1]]);
@@ -282,11 +291,13 @@ class Common_model extends Model
         $result = $builder->first();
         return $result;
     }
-    public function get_all_new_product_order(){
+    public function get_all_new_product_order($status=null){
         $builder = DB::table($this->productOrderTbl.' AS po') ;
         $builder->select('po.*','ma.name','ma.phone','ma.address');
         $builder->leftJoin($this->memberAddressTbl.' AS ma','po.add_id','=','ma.add_id');
-        $builder->where('po.status', 1);
+        if($status != null){
+            $builder->where('po.status', 1);
+        }
         $builder->orderBy('po.id','DESC');
         // $builder->where('at.attrId', $attrid);
         $result = $builder->get();

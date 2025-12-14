@@ -6,7 +6,7 @@
 
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0">All New Orders</h1>
+                <h1 class="app-page-title mb-0">{{ $pageTitle }}</h1>
                 <p class="text-muted">View all customer orders with details</p>
             </div>
         </div><!--//row-->

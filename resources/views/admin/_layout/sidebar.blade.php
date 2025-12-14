@@ -3,7 +3,8 @@ $segment1 = Request::segment(1);
 $segment2 = Request::segment(2);
 use App\Models\Common_model;
 $commonmodel = new Common_model;
-$newOrdersCount = $commonmodel->get_all_new_product_order()->count();
+$newOrdersCount = $commonmodel->get_all_new_product_order(1)->count();
+$allOrdersCount = $commonmodel->get_all_new_product_order()->count();
 @endphp
 <div id="app-sidepanel" class="app-sidepanel">
     <div id="sidepanel-drop" class="sidepanel-drop"></div>
@@ -104,9 +105,9 @@ $newOrdersCount = $commonmodel->get_all_new_product_order()->count();
                             </svg>
                         </span><!--//submenu-arrow-->
                     </a><!--//nav-link-->
-                    <div id="Customer" class="collapse submenu Customer {{ ($segment2 == 'appointment' || $segment2 == 'appointment-list' || $segment2 == 'customers' || $segment2 == 'customer_orders' || $segment2 == 'new_orders' || $segment2 == 'testimonials' || $segment2 == 'add_edit_testimonial' || $segment2 == 'contact_us' )?'show':'' }}" data-bs-parent="#menu-accordion">
+                    <div id="Customer" class="collapse submenu Customer {{ ($segment2 == 'appointment' || $segment2 == 'appointment-list' || $segment2 == 'customers' || $segment2 == 'customer_orders' || $segment2 == 'new_orders' || $segment2 == 'testimonials' || $segment2 == 'add_edit_testimonial' || $segment2 == 'contact_us' || $segment2 == 'purchased_courses' || $segment2 == 'all_orders')?'show':'' }}" data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
-                            <li class="submenu-item"><a class="submenu-link {{ ($segment2 == 'customers' || $segment2 == 'customer_orders')?'active':'' }}" href="{{ url('admin/customers') }}">Customers</a>
+                            <li class="submenu-item"><a class="submenu-link {{ ($segment2 == 'customers' || $segment2 == 'customer_orders' || $segment2 == 'purchased_courses')?'active':'' }}" href="{{ url('admin/customers') }}">Customers</a>
                             </li>
                             <li class="submenu-item">
                                 <a class="submenu-link {{ ($segment2 == 'new_orders')?'active':'' }}" href="{{ url('admin/new_orders') }}">New Orders
@@ -115,7 +116,7 @@ $newOrdersCount = $commonmodel->get_all_new_product_order()->count();
                             </li>
                             <li class="submenu-item">
                                 <a class="submenu-link {{ ($segment2 == 'all_orders')?'active':'' }}" href="{{ url('admin/all_orders') }}">All Orders
-                                <span class="badge bg-danger ms-2">{{ $newOrdersCount ?? 0 }}</span>
+                                <span class="badge bg-danger ms-2">{{ $allOrdersCount ?? 0 }}</span>
                                 </a>
                             </li>
                             <li class="submenu-item"><a class="submenu-link {{ ($segment2 == 'appointment')?'active':'' }}" href="{{ url('admin/appointment') }}">Appointment Weekly</a>
