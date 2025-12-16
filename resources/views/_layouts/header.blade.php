@@ -3,36 +3,12 @@
     use App\Models\Admin\SettingsModel;
     use App\Models\Common_model;
     $commonmodel = new Common_model;
-
     $settings = SettingsModel::where(['id'=>1])->first();
     $services = $commonmodel->getAllRecord('tbl_services',['status'=>1]);
     $segment1 = Request::segment(1);
     $segment2 = Request::segment(2);
 @endphp
-<style>
-    .header-button .position-relative {
-        display: inline-block;
-    }
 
-    .header-button .badge {
-        font-size: 0.65rem;
-        padding: 0.35em 0.5em;
-    }
-    .user-icon img {
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-    .user-icon img:hover {
-        transform: scale(1.1);
-    }
-    .header-button .dropdown-menu {
-        position: absolute !important;
-        /* min-width: 160px;
-        font-size: 14px; */
-        z-index: 1050;
-    }
-
-</style>
 <header class="header">
     <div class="top-banner">
         <div class="container-fluid position-relative">
@@ -166,7 +142,6 @@
                         </span>
                     </a>
                 </div>
-
                 <?php /* <a href="javascript:void(0)" class="user-icon">
                     <img src="{{ url('assets/frontend/images/user-icon.svg') }}" alt="User">
                 </a> */ ?>
@@ -181,7 +156,6 @@
                             alt="User" 
                             style="width:30px; height:30px; cursor:pointer;">
                     </a>
-
                     <ul class="dropdown-menu dropdown-menu-end shadow" 
                         aria-labelledby="userDropdown" 
                         style="border:1px solid #B4903A; border-radius:10px;">
@@ -194,7 +168,6 @@
                             <i class="bi bi-speedometer2 me-2" style="color:#B4903A;"></i> Dashboard
                             </a>
                         </li>
-
                         <li>
                             <a class="dropdown-item" 
                             href="{{ url('member-logout') }}" 
@@ -211,7 +184,6 @@
                             <i class="bi bi-box-arrow-in-right me-2" style="color:#B4903A;"></i> Login
                             </a>
                         </li>
-
                         <li>
                             <a class="dropdown-item" 
                             href="{{ url('member-register') }}" 
@@ -223,9 +195,7 @@
                     </ul>
                 </div> 
                 </div>
-
             </div>
-
         </div>
     </nav>
 </header>

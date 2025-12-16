@@ -1,18 +1,5 @@
     <!-- What Our Clients Say -->
-     <style>
-        .profile-pic {
-            width: 60px;
-            height: 60px;
-            background-color: #ccc;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 60px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #555;
-            display: inline-block;
-        }
-     </style>
+     
     
     <section class="testimonial panel-space overflow-hidden">
         <div class="container-fluid">
