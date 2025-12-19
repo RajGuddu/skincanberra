@@ -124,7 +124,7 @@
                                         type="button" role="tab">Description</button>
                                 </span>
                                 <span role="presentation">
-                                    <button class="tab " id="desc-tab" data-bs-toggle="tab" data-bs-target="#app"
+                                    <button class="tab " id="app-tab" data-bs-toggle="tab" data-bs-target="#app"
                                         type="button" role="tab">Application</button>
                                 </span>
                                 <?php /* 
@@ -359,7 +359,7 @@
                             <!-- <span class="discount-badge me-2">15% Off</span> -->
                             <div class="d-flex align-items-center mb-2 weight-500 text-18">
                                 <div class="d-flex align-items-center">
-                                    <sapn class="mb-0 view-price text-black">${{ $list->sp }}</sapn>
+                                    <span class="mb-0 view-price text-black">${{ $list->sp }}</span>
                                     <!-- <del class="ms-2 del-price">$80</del> -->
                                 </div>
                                 <span class="ms-auto ml-size">Size: {{ $list->value }} {{ $list->unit }}</span>
@@ -394,7 +394,7 @@
                                 <span class="discount-badge me-2">15% Off</span>
                                 <div class="d-flex align-items-center mb-2 weight-500 text-18">
                                     <div class="d-flex align-items-center">
-                                        <sapn class="mb-0 view-price text-black">$69</sapn>
+                                        <span class="mb-0 view-price text-black">$69</span>
                                         <del class="ms-2 del-price">$80</del>
                                     </div>
                                     <span class="ms-auto ml-size">Size: 30 ml</span>
@@ -426,7 +426,7 @@
                                 <span class="discount-badge me-2">15% Off</span>
                                 <div class="d-flex align-items-center mb-2 weight-500 text-18">
                                     <div class="d-flex align-items-center">
-                                        <sapn class="mb-0 view-price text-black">$69</sapn>
+                                        <span class="mb-0 view-price text-black">$69</span>
                                         <del class="ms-2 del-price">$80</del>
                                     </div>
                                     <span class="ms-auto ml-size">Size: 30 ml</span>
@@ -458,7 +458,7 @@
                                 <span class="discount-badge me-2">15% Off</span>
                                 <div class="d-flex align-items-center mb-2 weight-500 text-18">
                                     <div class="d-flex align-items-center">
-                                        <sapn class="mb-0 view-price text-black">$69</sapn>
+                                        <span class="mb-0 view-price text-black">$69</span>
                                         <del class="ms-2 del-price">$80</del>
                                     </div>
                                     <span class="ms-auto ml-size">Size: 30 ml</span>

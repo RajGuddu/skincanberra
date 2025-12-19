@@ -171,13 +171,13 @@
                 isValid = false;
             }
 
-            if (email === "") {
+            /*if (email === "") {
                 $('.error-email').text("Email is required!").show();
                 isValid = false;
             } else if (!validateEmail(email)) {
                 $('.error-email').text("Invalid email format!").show();
                 isValid = false;
-            }
+            }*/
 
             if (phone === "") {
                 $('.error-phone').show();

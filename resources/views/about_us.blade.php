@@ -162,7 +162,7 @@
                             if($content->sec3_image1 != '')
                                 $sec3Image1 = url(IMAGE_PATH.$content->sec3_image1);
                         @endphp
-                        <img src="{{ $sec3Image1 }}" alt="Sample" />
+                        <img src="{{ $sec3Image1 }}" alt="Sample" >
                     </div>
 
                 </div>
@@ -187,7 +187,7 @@
                             if($content->sec3_image2 != '')
                                 $sec3Image2 = url(IMAGE_PATH.$content->sec3_image2);
                         @endphp
-                        <img src="{{ $sec3Image2 }}" alt="Sample" />
+                        <img src="{{ $sec3Image2 }}" alt="Sample" >
                     </div>
 
                 </div>

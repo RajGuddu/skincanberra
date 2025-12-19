@@ -83,7 +83,7 @@
                 <div class="card border-0 shadow-sm p-4" style="background-color:#B4903A1A;">
                     <h5 class="fw-bold mb-3" style="color:#000;">Service Details</h5>
                     <form action="{{ url('book-online') }}" method="post" onsubmit="return validateForm();">
-                    @csrf
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="selected_date" id="selected_date" value="{{ $firstWorkingDate }}">
                     <input type="hidden" name="selected_st_id" id="selected_st_id" value="{{ $st_id }}">
                     <div class="mb-3">

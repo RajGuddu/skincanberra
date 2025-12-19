@@ -55,7 +55,7 @@
                             <!-- <span class="discount-badge me-2">15% Off</span> -->
                             <div class="d-flex align-items-center mb-2 weight-500 text-18">
                                 <div class="d-flex align-items-center">
-                                    <sapn class="mb-0 view-price text-black">${{ $list->sp }}</sapn>
+                                    <span class="mb-0 view-price text-black">${{ $list->sp }}</span>
                                     <!-- <del class="ms-2 del-price">${{ $list->mrp }}</del> -->
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
     </div>
 </section>
 <!-- Appointment Modal -->
-<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true" >
+<div class="modal fade" id="appointmentModal" tabindex="-1" role="dialog" aria-labelledby="appointmentModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content appointment-modal">
             <div class="modal-header border-0">
@@ -191,7 +191,7 @@
                                 @endforeach
                                 @endif
                             </select>
-                            <small id="svH-error" class="text-danger"></small>
+                            <small id="vids-error" class="text-danger"></small>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Preferred Date*</label>
@@ -211,7 +211,7 @@
                         </div>
                         <div class="mt-3">
                             <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control text-area-field" name="message" id="message" placeholder="Your message..."></textarea>
+                            <textarea class="form-control text-area-field" name="message" id="message2" placeholder="Your message..."></textarea>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-dark w-100 py-2">Book Now</button>

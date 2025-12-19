@@ -328,7 +328,7 @@ class Home extends Controller
                 $rules = [
                     'first_name' => 'required|string',
                     'last_name' => 'required|string',
-                    'email' => 'required|email',
+                    // 'email' => 'required|email',
                     'phone' => 'required|numeric|digits:10',
                     
                 ];

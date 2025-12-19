@@ -128,7 +128,7 @@
                                 <source src="{{ url('assets/frontend/images/doctor.mp4') }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video> -->
-                            <iframe id="youtubeVideo" width="600" height="500" src="" title="Skin Canberra" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe id="youtubeVideo" width="600" height="500" src="https://www.youtube.com/embed/pgQPquFKKpc" title="Skin Canberra"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
         </div>
     </div>
     <!-- Appointment Modal -->
-    <div class="modal fade" id="appointmentModalH" tabindex="-1" aria-labelledby="appointmentModalHLabel"
+    <div class="modal fade" id="appointmentModalH" tabindex="-1" role="dialog" aria-labelledby="appointmentModalHLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content appointment-modal">
