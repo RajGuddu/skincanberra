@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class Common_model extends Model
 {
     
@@ -474,6 +475,28 @@ class Common_model extends Model
         $builder->whereDate('b.service_date', '=', now()->addDays(2)->toDateString());
         $result = $builder->get();
         return $result;
+    }
+    public function getAllHolidayDates()
+    {
+        $holidays = DB::table('tbl_holiday')
+            ->where('status', 1)
+            ->select('date_from', 'date_to')
+            ->get();
+
+        $allDates = [];
+
+        foreach ($holidays as $holiday) {
+            $start = Carbon::parse($holiday->date_from);
+            $end = Carbon::parse($holiday->date_to);
+
+            for ($date = $start; $date->lte($end); $date->addDay()) {
+                $allDates[] = $date->toDateString();
+            }
+        }
+
+        $allDates = array_unique($allDates);
+
+        return $allDates;
     }
 
     /**************************settings********************** */

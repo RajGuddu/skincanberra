@@ -141,7 +141,8 @@ class Home extends Controller
             '2026-01-26', // Example: Republic Day
         ]; */
         $customHolidays = $this->commonmodel->get_all_fully_booked_date_array();
-        // print_r($customHolidays); exit;
+        $holidays = $this->commonmodel->getAllHolidayDates();
+        // print_r($holidays); exit;
 
         $events = [];
         $firstWorkingDate = null;
@@ -149,8 +150,9 @@ class Home extends Controller
         for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
             $isWeekend = in_array($date->dayOfWeek, $weeklyHolidays);
             $isCustomHoliday = in_array($date->toDateString(), $customHolidays);
+            $isHoliday = in_array($date->toDateString(), $holidays);
 
-            if (! $isWeekend && ! $isCustomHoliday) {
+            if (! $isWeekend && ! $isCustomHoliday && ! $isHoliday) {
                 if (is_null($firstWorkingDate)) {
                     $firstWorkingDate = $date->toDateString();
                 }
@@ -286,6 +288,7 @@ class Home extends Controller
                 '2026-01-26', 
             ]; */
             $customHolidays = $this->commonmodel->get_all_fully_booked_date_array();
+            $holidays = $this->commonmodel->getAllHolidayDates();
 
             $inputDate = Carbon::parse($c_date);
             if ($inputDate->lt($today)) {
@@ -293,7 +296,7 @@ class Home extends Controller
             } else {
                 $date = $inputDate->copy()->addDay();
             }
-            while (in_array($date->dayOfWeek, $weeklyHolidays) || in_array($date->toDateString(), $customHolidays)) {
+            while (in_array($date->dayOfWeek, $weeklyHolidays) || in_array($date->toDateString(), $customHolidays) || in_array($date->toDateString(), $holidays)) {
                 $date->addDay();
             }
             $nextWorkingDate = $date->toDateString();
