@@ -491,6 +491,7 @@ class Common_model extends Model
     {
         $holidays = DB::table('tbl_holiday')
             ->where('status', 1)
+            ->where('alltime',1)
             ->select('date_from', 'date_to')
             ->get();
 
@@ -509,7 +510,13 @@ class Common_model extends Model
 
         return $allDates;
     }
-
+    public function isServiceTimeSlotClosed($date, $slotId){
+        $exists = DB::table('tbl_holiday')
+            ->whereRaw('? BETWEEN date_from AND date_to', [$date])
+            ->whereRaw('FIND_IN_SET(?, time_slot)', [$slotId])
+            ->exists();
+        return $exists;
+    }
     /**************************settings********************** */
     /*public function get_setting(){
         $builder = DB::table($this->settingTbl);

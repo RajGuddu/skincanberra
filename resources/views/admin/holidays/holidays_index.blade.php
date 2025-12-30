@@ -71,8 +71,8 @@
                                             {{ date('d-M-Y',strtotime($item->date_to)) }}
                                         </td>
                                         <td>
-                                            @php if($item->alldays == 1){
-                                              echo '<span class="badge bg-danger">All Days</span>';
+                                            @php if($item->alltime == 1){
+                                              echo '<span class="badge bg-danger">All Time</span>';
                                             }else{
                                                 echo $commonmodel->get_service_time_name($item->time_slot);
                                             } 
@@ -151,12 +151,12 @@
                                     $allCheck = '';
                                     if(isset($serviceTime) && $serviceTime->count() == count($oldSlots)){
                                         $allCheck = 'checked';
-                                    }elseif(isset($record->alldays) && $record->alldays == 1){
+                                    }elseif(isset($record->alltime) && $record->alltime == 1){
                                         $allCheck = 'checked';
                                     }
                                 @endphp
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" id="checkAllSlots" value="1" name="alldays"
+                                    <input class="form-check-input" type="checkbox" id="checkAllSlots" value="1" name="alltime"
                                     {{ $allCheck }}
                                     >
                                     <label class="form-check-label fw-bold" for="checkAllSlots">
@@ -170,7 +170,7 @@
                                 @php $oneCheck = '';
                                 if(in_array($list->st_id, $oldSlots))
                                     $oneCheck = 'checked';
-                                elseif(isset($record->alldays) && $record->alldays == 1)
+                                elseif(isset($record->alltime) && $record->alltime == 1)
                                     $oneCheck = 'checked';
                                 elseif(isset($record->time_slot) && in_array($list->st_id, explode(',',$record->time_slot)))
                                     $oneCheck = 'checked';

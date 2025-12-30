@@ -43,12 +43,12 @@ class Holidays extends Controller
                 $post['h_name'] = $request->input('occasion_name');
                 $post['date_from'] = date('Y-m-d', strtotime($request->input('date_from')));
                 $post['date_to'] = date('Y-m-d', strtotime($request->input('date_to')));
-                if(isset($request->alldays)){
-                    $post['alldays'] = $request->alldays;
+                if(isset($request->alltime)){
+                    $post['alltime'] = $request->alltime;
                     $post['time_slot'] = null;
                 }else{
                     $post['time_slot'] = implode(',', $request->time_slot);
-                    $post['alldays'] = null;
+                    $post['alltime'] = null;
                     // print_r($post); exit;
                 }
 
