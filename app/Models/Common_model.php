@@ -193,6 +193,17 @@ class Common_model extends Model
         else
             return 'N/A';
     }
+    public function get_service_time_name($st_ids){
+        $servTimeName = [];
+        foreach(explode(',', $st_ids) as $val){
+            $servTime = $this->getOneRecord('tbl_service_time', ['st_id'=>$val])->serv_time ?? '';
+            $servTimeName[] = '<span class="badge bg-warning">'.$servTime.'</span>';
+        }
+        if(!empty($servTimeName))
+            return implode(' ', array_filter($servTimeName));
+        else
+            return 'N/A';
+    }
     public function get_banner_list(){
         $builder = DB::table($this->bannerTbl.' AS b') ;
         $builder->select('b.*',DB::raw('p.page_name'));

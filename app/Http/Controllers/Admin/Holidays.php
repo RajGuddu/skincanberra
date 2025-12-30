@@ -27,10 +27,13 @@ class Holidays extends Controller
     public function index(Request $request, $id=null){
         $data = [];
         if($request->isMethod('POST')){
+            // print_r($_POST); exit;
             $rules = [
                 'occasion_name' => 'required',
                 'date_from' => 'required',
                 'date_to' => 'required',
+                'time_slot' => 'required|array|min:1',
+                'time_slot.*' => 'required',
                 'status' => 'required',
             ];
             $validated = $this->validate($request, $rules);
@@ -40,13 +43,22 @@ class Holidays extends Controller
                 $post['h_name'] = $request->input('occasion_name');
                 $post['date_from'] = date('Y-m-d', strtotime($request->input('date_from')));
                 $post['date_to'] = date('Y-m-d', strtotime($request->input('date_to')));
+                if(isset($request->alldays)){
+                    $post['alldays'] = $request->alldays;
+                    $post['time_slot'] = null;
+                }else{
+                    $post['time_slot'] = implode(',', $request->time_slot);
+                    $post['alldays'] = null;
+                    // print_r($post); exit;
+                }
 
                 $post['status'] = $request->input('status');
                 $post['added_at'] = date('Y-m-d H:i:s');
+                
                 if(!$id){
                     $inserted = $this->commonmodel->crudOperation('C','tbl_holiday',$post);
                 }else{
-                    $updated = $this->commonmodel->crudOperation('U','tbl_holiday',$post,['id'=>$id]);
+                    $updated = $this->commonmodel->updateRecord('tbl_holiday',$post,['id'=>$id]);
                 }
                 if(isset($inserted)){
                     $request->session()->flash('message',['msg'=>'Record added successfully!','type'=>'success']);
@@ -63,6 +75,7 @@ class Holidays extends Controller
             $data['record'] = $this->commonmodel->crudOperation('R1','tbl_holiday','',['id'=>$id]);
         }
         $data['listData'] = $this->commonmodel->crudOperation('RA','tbl_holiday','','',['date_from','ASC']);
+        $data['serviceTime'] = $this->commonmodel->crudOperation('RA','tbl_service_time','',[['status','=',1]]); 
         return view('admin.holidays.holidays_index', $data);
     }
     public function delete_holiday(Request $request, $id=null){
