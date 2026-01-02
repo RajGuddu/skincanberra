@@ -317,11 +317,13 @@ class Home extends Controller
 
                     $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$post['vid']]);
                     
-                    $sp = $variant->sp; 
+                    $sp = $variant->sp; //full payment 
                     $option = $request->input('book_deposit'); 
-                    $payAmount = $sp;
+                    // $payAmount = $sp;
+                    $payAmount = 50;
                     if ($option == 1) {
-                        $payAmount = $sp; 
+                        // $payAmount = $sp; 
+                        $payAmount = 50; 
                     } elseif ($option == 2) {
                         $payAmount = $sp * 0.50; 
                     } elseif ($option == 3) {

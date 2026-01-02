@@ -417,10 +417,12 @@ class Common_model extends Model
     public function get_times_by_date($service_date){ // ajax
 
         $availableTimes = DB::table('tbl_service_time')
+            ->where('status', 1)
             ->whereNotIn('st_id', function ($query) use ($service_date) {
                 $query->select('st_id')
                     ->from('tbl_service_book_online')
                     ->where('service_date', $service_date);
+                    
             })
             ->get();
 

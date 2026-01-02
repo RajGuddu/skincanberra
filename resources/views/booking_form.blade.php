@@ -80,7 +80,7 @@
                         <label class="form-label">Select Booking Deposit</label>
                         <input type="hidden" name="sp" id="sp" value="{{ $serviceDtls->sp }}">
                         <select class="form-control" name="booking_deposit" id="booking_deposit" onchange="calculate_price()">
-                            <option value="1">100% Payment</option>
+                            <option value="1">$50 Deposit</option>
                             <option value="2">50% Deposit</option>
                             <option value="3">25% Deposit</option>
                         </select>
@@ -91,8 +91,9 @@
 
                     <div class="d-grid mt-4">
                         <!-- <button class="btn btn-outline-dark py-2 mb-2">Add to Cart</button> -->
-                        <button id="bookNowBtn" class="btn text-white py-2" style="background-color:#000;">Pay Now(${{ $serviceDtls->sp }})</button>
-                        <?php /* <button id="bookNowBtn" class="btn text-white py-2" style="background-color:#000;">Book Now</button> */ ?>
+                        <button id="bookNowBtn" class="btn text-white py-2" style="background-color:#000;">Pay Now($50)</button>
+                        <?php /* <button id="bookNowBtn" class="btn text-white py-2" style="background-color:#000;">Pay Now(${{ $serviceDtls->sp }})</button>
+                        <button id="bookNowBtn" class="btn text-white py-2" style="background-color:#000;">Book Now</button> */ ?>
                     </div>
                 </div>
             </div>
@@ -126,11 +127,13 @@
         var option = $("#booking_deposit").val();
         $("#book_deposit").val(option);
 
-        var payAmount = sp; // Default 100%
+        // var payAmount = sp; // Default 100%
+        var payAmount = 50; // Default $50
 
         // Calculate logic
         if(option == "1"){ 
-            payAmount = sp; // 100%
+            // payAmount = sp; // 100%
+            payAmount = 50; // $50
         } 
         else if(option == "2"){ 
             payAmount = sp * 0.50; // 50%
