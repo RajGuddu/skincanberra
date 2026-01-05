@@ -110,6 +110,9 @@
                     
                     <span style="color:#b8f9e5;">Phone:</span> {{ $record->phone ?? 'N/A' }} <br>
                     <span style="color:#b8f9e5;">Email:</span> {{ $record->email ?? 'N/A' }} <br>
+                    @if(isset($record) && $record->dob != null)
+                    <span style="color:#b8f9e5;">DOB:</span> {{ date('d M,Y',strtotime($record->dob)) ?? 'N/A' }} <br>
+                    @endif
                     <span style="color:#b8f9e5;">Service:</span> {{ $record->service_name ?? 'N/A' }} ({{ $record->variant ?? 'N/A' }})<br>
                     <span style="color:#b8f9e5;">Duration :</span> {{ $record->duration ?? 'N/A' }} Minutes<br>
                     <!-- <span style="color:#b8f9e5;">Price :</span> ${{ $record->price ?? 'N/A' }} -->

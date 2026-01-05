@@ -65,7 +65,10 @@
                                             <td class="" >
                                                 <strong>{{ $item->name }}</strong><br>
                                                 <span style="color:#777;">{{ $item->email }}</span><br>
-                                                <span style="color:#777;">{{ $item->phone }}</span>
+                                                <span style="color:#777;">{{ $item->phone }}</span><br>
+                                                @if($item->dob != null)
+                                                <span style="color:#777;">{{ date('d M,Y',strtotime($item->dob)) }}</span>
+                                                @endif
                                             </td>
                                             <td class="">
                                                 {{ $item->service_name.' ('.$item->variant.')' }}<br>
@@ -132,6 +135,10 @@
                         <div class="mb-3">
                             <label class="form-label">Email <span class="text-danger">*</span></label>
                             <input type="email" name="email" value="{{ old('email', $record->email ?? '') }}" id="email" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">DOB </label>
+                            <input type="date" name="dob" value="{{ old('dob', $record->dob ?? '') }}" id="dob" class="form-control">
                         </div>
 
                         <div class="mb-3">
@@ -313,10 +320,10 @@
                     $('#serviceTime').empty();
 
                     if (response.length > 0) {
-                    $('#serviceTime').html(response);
+                        $('#serviceTime').html(response);
                         
                     } else {
-                    $('#serviceTime').append('<option>No slots available</option>');
+                        $('#serviceTime').append('<option>No slots available</option>');
                     }
                 }
             });

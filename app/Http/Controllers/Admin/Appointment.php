@@ -114,13 +114,20 @@ class Appointment extends Controller
                 echo '<option value="">No slots available (Weekly Holiday)</option>';
                 exit;
             }
+            $isHoliday = $this->commonmodel->isFullDayHoliday($selectedDate);
+            if($isHoliday){
+                echo '<option value="">No slots available (Holiday)</option>';
+                exit;
+            }
 
             // Normal available time fetch
             $availableTimes = $this->commonmodel->get_times_by_date($selectedDate);
             
             if($availableTimes->isNotEmpty()){
                 foreach($availableTimes as $list){
-                    $html .= '<option value="'.$list->st_id.'">'.$list->serv_time.'</option>';
+                    $isClosed = $this->commonmodel->isServiceTimeSlotClosed($selectedDate, $list->st_id);
+                    if(!$isClosed)
+                        $html .= '<option value="'.$list->st_id.'">'.$list->serv_time.'</option>';
                 }
             }else{
                 $html = '<option>No slots available</option>';
@@ -171,6 +178,7 @@ class Appointment extends Controller
                 $post['first_name'] = $_POST['first_name'];
                 $post['last_name'] = $_POST['last_name'];
                 $post['email'] = $_POST['email'];
+                $post['dob'] = date('Y-m-d',strtotime($_POST['dob']));
                 $post['country'] = 'AU';
                 $post['phone'] = $_POST['phone'];
                 $post['status'] = $_POST['status'];

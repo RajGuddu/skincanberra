@@ -32,11 +32,19 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control border-dark" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
-                            <span class="text-danger error-email" style="display:none;">Please enter a valid email!</span>
-                            @error('email') <span class="text-danger"> {{ $message }} </span> @enderror
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Email </label>
+                                <input type="email" class="form-control border-dark" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
+                                <span class="text-danger error-email" style="display:none;">Please enter a valid email!</span>
+                                @error('email') <span class="text-danger"> {{ $message }} </span> @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">DOB </label>
+                                <input type="date" class="form-control border-dark" id="dob" name="dob" value="{{ old('dob') }}" placeholder="Enter your date of birth">
+                                <span class="text-danger error-dob" style="display:none;">Please enter your date of birth!</span>
+                                @error('dob') <span class="text-danger"> {{ $message }} </span> @enderror
+                            </div>
                         </div>
 
                         <div class="mb-3">

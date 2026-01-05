@@ -403,27 +403,32 @@ class Common_model extends Model
     public function get_available_times($st_id, $service_date){
 
         $availableTimes = DB::table('tbl_service_time')
-            ->where('st_id', $st_id)
-            ->orWhereNotIn('st_id', function ($query) use ($service_date) {
-                $query->select('st_id')
-                    ->from('tbl_service_book_online')
-                    ->where('service_date', $service_date);
+            ->where('slot_status', 1)
+            ->where(function ($query) use ($st_id, $service_date) {
+                $query->where('st_id', $st_id)
+                    ->orWhereNotIn('st_id', function ($subQuery) use ($service_date) {
+                        $subQuery->select('st_id')
+                                ->from('tbl_service_book_online')
+                                ->where('service_date', $service_date);
+                    });
             })
+            ->orderBy('serv_time', 'ASC')
             ->get();
 
-        return $availableTimes;
+            return $availableTimes;
 
     }
     public function get_times_by_date($service_date){ // ajax
 
         $availableTimes = DB::table('tbl_service_time')
-            ->where('status', 1)
+            ->where('slot_status', 1)
             ->whereNotIn('st_id', function ($query) use ($service_date) {
                 $query->select('st_id')
                     ->from('tbl_service_book_online')
                     ->where('service_date', $service_date);
                     
             })
+            ->orderBy('serv_time', 'ASC')
             ->get();
 
         return $availableTimes;
@@ -512,8 +517,17 @@ class Common_model extends Model
 
         return $allDates;
     }
-    public function isServiceTimeSlotClosed($date, $slotId){
+    public function isFullDayHoliday($date){
         $exists = DB::table('tbl_holiday')
+                ->where('status', 1)
+                ->where('alltime',1)
+                ->whereRaw('? BETWEEN date_from AND date_to', [$date])
+                ->exists();
+        return $exists;
+    }
+    public function isServiceTimeSlotClosed($date, $slotId){ //use in both (admin+front)
+        $exists = DB::table('tbl_holiday')
+            ->where('status', 1)
             ->whereRaw('? BETWEEN date_from AND date_to', [$date])
             ->whereRaw('FIND_IN_SET(?, time_slot)', [$slotId])
             ->exists();

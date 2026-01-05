@@ -340,6 +340,7 @@ class Home extends Controller
                     $post['first_name'] = $request->input('first_name');
                     $post['last_name'] = $request->input('last_name');
                     $post['email'] = $request->input('email');
+                    $post['dob'] = date('Y-m-d',strtotime($request->input('dob')));
                     $post['country'] = $request->input('country');
                     $post['phone'] = $request->input('phone');
                     $post['message'] = $request->input('message');
