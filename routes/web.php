@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\Products;
 use App\Http\Controllers\Admin\Customers;
 use App\Http\Controllers\Admin\Appointment;
 use App\Http\Controllers\Admin\Courses;
+use App\Http\Controllers\Admin\Holidays;
 use App\Http\Controllers\Shop;
 use App\Http\Controllers\Member;
 use App\Http\Controllers\Test;
@@ -209,6 +210,11 @@ Route::middleware(['Authcheck'])->group(function () {
     Route::get('admin/delete_course/{id}', [Courses::class,'delete_course']);
     Route::match(['get', 'post'], 'admin/search_course', [Courses::class,'search_course']);
     Route::get('admin/c_search_reset', [Courses::class,'search_reset']);
+
+    /*******************************************Holidays*************************************** */
+    Route::match(['get', 'post'], 'admin/holidays', [Holidays::class,'index']);
+    Route::match(['get', 'post'], 'admin/holidays/{id}', [Holidays::class,'index']);
+    Route::get('admin/delete_holiday/{id}', [Holidays::class,'delete_holiday']);
 
 
     /*****************************************Auth Controllers****************************** */

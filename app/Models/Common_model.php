@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class Common_model extends Model
 {
     
@@ -189,6 +190,17 @@ class Common_model extends Model
         }
         if(!empty($variantName))
             return implode(', ', array_filter($variantName));
+        else
+            return 'N/A';
+    }
+    public function get_service_time_name($st_ids){
+        $servTimeName = [];
+        foreach(explode(',', $st_ids) as $val){
+            $servTime = $this->getOneRecord('tbl_service_time', ['st_id'=>$val])->serv_time ?? '';
+            $servTimeName[] = '<span class="badge bg-warning">'.$servTime.'</span>';
+        }
+        if(!empty($servTimeName))
+            return implode(' ', array_filter($servTimeName));
         else
             return 'N/A';
     }
@@ -405,10 +417,12 @@ class Common_model extends Model
     public function get_times_by_date($service_date){ // ajax
 
         $availableTimes = DB::table('tbl_service_time')
+            ->where('status', 1)
             ->whereNotIn('st_id', function ($query) use ($service_date) {
                 $query->select('st_id')
                     ->from('tbl_service_book_online')
                     ->where('service_date', $service_date);
+                    
             })
             ->get();
 
@@ -475,7 +489,36 @@ class Common_model extends Model
         $result = $builder->get();
         return $result;
     }
+    public function getAllHolidayDates()
+    {
+        $holidays = DB::table('tbl_holiday')
+            ->where('status', 1)
+            ->where('alltime',1)
+            ->select('date_from', 'date_to')
+            ->get();
 
+        $allDates = [];
+
+        foreach ($holidays as $holiday) {
+            $start = Carbon::parse($holiday->date_from);
+            $end = Carbon::parse($holiday->date_to);
+
+            for ($date = $start; $date->lte($end); $date->addDay()) {
+                $allDates[] = $date->toDateString();
+            }
+        }
+
+        $allDates = array_unique($allDates);
+
+        return $allDates;
+    }
+    public function isServiceTimeSlotClosed($date, $slotId){
+        $exists = DB::table('tbl_holiday')
+            ->whereRaw('? BETWEEN date_from AND date_to', [$date])
+            ->whereRaw('FIND_IN_SET(?, time_slot)', [$slotId])
+            ->exists();
+        return $exists;
+    }
     /**************************settings********************** */
     /*public function get_setting(){
         $builder = DB::table($this->settingTbl);

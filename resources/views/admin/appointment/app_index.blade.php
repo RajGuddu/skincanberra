@@ -306,7 +306,7 @@ function showErrorToast(msg) {
 </script>
 
 <script>
-  const startHour = 9;
+  const startHour = 10;
   const endHour = 18;
   const slotMinutes = 15;
   const colors = ["#198754", "#0d6efd", "#ffc107", "#20c997", "#fd7e14"];

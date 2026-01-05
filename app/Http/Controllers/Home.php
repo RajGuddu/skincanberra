@@ -141,7 +141,8 @@ class Home extends Controller
             '2026-01-26', // Example: Republic Day
         ]; */
         $customHolidays = $this->commonmodel->get_all_fully_booked_date_array();
-        // print_r($customHolidays); exit;
+        $holidays = $this->commonmodel->getAllHolidayDates();
+        // print_r($holidays); exit;
 
         $events = [];
         $firstWorkingDate = null;
@@ -149,8 +150,9 @@ class Home extends Controller
         for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
             $isWeekend = in_array($date->dayOfWeek, $weeklyHolidays);
             $isCustomHoliday = in_array($date->toDateString(), $customHolidays);
+            $isHoliday = in_array($date->toDateString(), $holidays);
 
-            if (! $isWeekend && ! $isCustomHoliday) {
+            if (! $isWeekend && ! $isCustomHoliday && ! $isHoliday) {
                 if (is_null($firstWorkingDate)) {
                     $firstWorkingDate = $date->toDateString();
                 }
@@ -222,7 +224,8 @@ class Home extends Controller
                 $k = 0;
                 foreach($serviceTime as $list){
                     $isBooked = $this->commonmodel->crudOperation('RA','tbl_service_book_online','',[['st_id','=',$list->st_id],['service_date','=',$date]]);
-                    if(!$isBooked || $isBooked->count() == 0) {
+                    $isClosed = $this->commonmodel->isServiceTimeSlotClosed($date, $list->st_id);
+                    if((!$isBooked || $isBooked->count() == 0) && !$isClosed) {
                         $active = '';
                         if($k == 0) { $st_id=$list->st_id; $active = 'active'; }
                         $html .= '<div class="col-6 d-grid">
@@ -239,35 +242,7 @@ class Home extends Controller
             'st_id' => $st_id,
             'html' => $html
         ];
-
-            /*<div class="col-6 d-grid">
-                <button class="btn btn-outline-dark active" >9:00 am</button>
-            </div>
-            <div class="col-6 d-grid">
-                <button class="btn btn-outline-dark">10:00 am</button>
-            </div>
-            <div class="col-6 d-grid">
-                <button class="btn btn-outline-dark">11:00 am</button>
-            </div>
-            <div class="col-6 d-grid">
-                <button class="btn btn-outline-dark">12:00 pm</button>
-            </div>
-            <div class="col-6 d-grid">
-                <button class="btn btn-outline-dark">1:00 pm</button>
-            </div>
-            <div class="col-6 d-grid">
-                <button class="btn btn-outline-dark">2:00 pm</button>
-            </div>
-            <div class="col-6 d-grid">
-                <button class="btn btn-outline-dark">3:00 pm</button>
-            </div>
-            <div class="col-6 d-grid">
-                <button class="btn btn-outline-dark">4:00 pm</button>
-            </div>
-            <div class="col-6 d-grid">
-                <button class="btn btn-outline-dark">5:00 pm</button>
-            </div>
-        </div>'; */
+            
     }
     public function check_next_availability_by_ajax(Request $request){
         if($request->isMethod('POST')){
@@ -286,6 +261,7 @@ class Home extends Controller
                 '2026-01-26', 
             ]; */
             $customHolidays = $this->commonmodel->get_all_fully_booked_date_array();
+            $holidays = $this->commonmodel->getAllHolidayDates();
 
             $inputDate = Carbon::parse($c_date);
             if ($inputDate->lt($today)) {
@@ -293,7 +269,7 @@ class Home extends Controller
             } else {
                 $date = $inputDate->copy()->addDay();
             }
-            while (in_array($date->dayOfWeek, $weeklyHolidays) || in_array($date->toDateString(), $customHolidays)) {
+            while (in_array($date->dayOfWeek, $weeklyHolidays) || in_array($date->toDateString(), $customHolidays) || in_array($date->toDateString(), $holidays)) {
                 $date->addDay();
             }
             $nextWorkingDate = $date->toDateString();
@@ -341,11 +317,13 @@ class Home extends Controller
 
                     $variant = $this->commonmodel->crudOperation('R1','tbl_services_variants','',['vid'=>$post['vid']]);
                     
-                    $sp = $variant->sp; 
+                    $sp = $variant->sp; //full payment 
                     $option = $request->input('book_deposit'); 
-                    $payAmount = $sp;
+                    // $payAmount = $sp;
+                    $payAmount = 50;
                     if ($option == 1) {
-                        $payAmount = $sp; 
+                        // $payAmount = $sp; 
+                        $payAmount = 50; 
                     } elseif ($option == 2) {
                         $payAmount = $sp * 0.50; 
                     } elseif ($option == 3) {
