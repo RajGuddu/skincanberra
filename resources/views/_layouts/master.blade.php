@@ -6,21 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
     <title>Skin Canberra | Advanced Skin & Laser Clinic in Canberra</title>
     <!-- <link rel="icon" type="image/png" href="{{ url('assets/frontend/images/skin-canberra.svg') }}"> -->
-    <link rel="icon" type="image/x-icon" href="https://skincanberra.com.au/assets/frontend/images/skin-canberra.svg">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/frontend/images/skin-canberra.svg') }}">
     <meta name="description" content="Skin Canberra offers advanced skin, laser, and cosmetic treatments. Book your free consultation with Canberra’s trusted skin experts today!" >
     <meta name="keywords" content="skin clinic Canberra, laser treatment Canberra, cosmetic treatments Canberra, skin care experts" >
     <meta name="author" content="Skin Canberra" >
-    <link rel="canonical" href="https://skincanberra.com.au/" >
+    <link rel="canonical" href="{{ url('/') }}" >
     <meta property="og:type" content="website" >
     <meta property="og:title" content="Skin Canberra | Advanced Skin & Laser Clinic in Canberra">
     <meta property="og:description" content="Book your free consultation with Canberra’s trusted skin and laser experts." >
-    <meta property="og:url" content="https://skincanberra.com.au/" >
-    <meta property="og:image" content="https://skincanberra.com.au/assets/frontend/images/skin-canberra.svg" >
+    <meta property="og:url" content="{{ url('/') }}" >
+    <meta property="og:image" content="{{ asset('assets/frontend/images/skin-canberra.svg') }}" >
     <meta property="og:site_name" content="Skin Canberra" >
     <meta name="twitter:card" content="summary_large_image" >
     <meta name="twitter:title" content="Skin Canberra | Advanced Skin & Laser Clinic" >
     <meta name="twitter:description" content="Skin Canberra offers advanced cosmetic and skin treatments with modern laser technology." >
-    <meta name="twitter:image" content="https://skincanberra.com.au/assets/frontend/images/skin-canberra.svg" >
+    <meta name="twitter:image" content="{{ asset('assets/frontend/images/skin-canberra.svg') }}" >
     <meta name="theme-color" content="#ffffff" >
     <meta name="robots" content="index, follow" >
     <meta name="googlebot" content="index, follow" >
@@ -33,47 +33,59 @@
     <!-- Google tag (gtag.js) --> 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJCY459H0G"></script> 
     <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-TJCY459H0G'); </script>
-    <link rel="stylesheet" href="{{ url('assets/frontend/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url('assets/frontend/css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ url('assets/frontend/css/style.css') }}">
-    <link rel="stylesheet" href="{{ url('assets/frontend/css/media-query.css') }}">
-    <!-- for datepicker and timepicker -->
+
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/media-query.css') }}">
+    <?php /* <!-- for datepicker and timepicker -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- Multiselect CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui-multiselect-widget@3.0.0/jquery.multiselect.css">
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <!-- Multiselect plugin JS -->
     <script src="https://cdn.jsdelivr.net/npm/jquery-ui-multiselect-widget@3.0.0/src/jquery.multiselect.min.js"></script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
-    <!-- end -->
+    <!-- end --> */ ?>
+
+    <!-- Vite bundled CSS -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts (lazy load) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" 
+          rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Roboto&display=swap" rel="stylesheet">
+    </noscript>
+    
+    <?php /*<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" >
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> */ ?>
     <!-- Lightbox2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
     <!-- Toastr CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-    <!-- Toastr JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/toastr.min.css') }}">
+    
     
     <!-- custom css -->
-    <link rel="stylesheet" href="{{ url('assets/frontend/css/preloader.css') }}">
-    <link rel="stylesheet" href="{{ url('assets/frontend/css/ajaxloader.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url('assets/frontend/css/preloader.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/frontend/css/ajaxloader.css') }}"> -->
+
+    
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <style>
+    <?php /* <style>
     .ui-datepicker {
         position: absolute;
         z-index: 9999 !important;
@@ -108,7 +120,7 @@
         border-radius: 8px;
     }
     
-    </style>
+    </style> */ ?>
 </head>
 <body>
     @include('_layouts.preloader')
@@ -238,17 +250,27 @@
     </div>
     <div class="loader" id="loader" style="display:none;"></div>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <?php /* <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script> */?> 
+    <?php $segment1 = Request::segment(1);
+    if($segment1 == 'book-online'){ ?>
+        <link rel="stylesheet" href="{{ url('assets/calender/assets/simple-calendar.css') }}">
+        <script src="{{ url('assets/calender/assets/jquery.simple-calendar.js') }}"></script>
+    <?php } ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     
-    <script src="{{ url('assets/frontend/js/custom.js') }}"></script>
-    <script src="{{ url('assets/frontend/js/owl.carousel.js') }}"></script>
+    <script>
+        window.APP_URL = "{{ url('/') }}";
+    </script>
+    <script src="{{ asset('assets/frontend/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/owl.carousel.js') }}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Lightbox2 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <?php /* <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> */ ?>
-    
+    <!-- Toastr JS -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
+    <script src="{{ asset('assets/frontend/js/toastr.min.js') }}"></script>
     
     <script>
         AOS.init();
