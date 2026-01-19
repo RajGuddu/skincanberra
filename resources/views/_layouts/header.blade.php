@@ -40,7 +40,7 @@
     <nav class="navbar navbar-expand-lg clear-fix" aria-label="Fourth navbar example">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img class="d-lg-block" src="{{ url('assets/frontend/images/skin-canberra.svg') }}" alt="logo">
+                <img class="d-lg-block" src="{{ url('assets/frontend/images/skin-canberra-logo.png') }}" alt="logo">
             </a>
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"

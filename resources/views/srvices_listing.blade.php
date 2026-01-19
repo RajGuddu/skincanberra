@@ -230,7 +230,7 @@
     
 </div>
 <script>
-    $('#appointmentModal').on('shown.bs.modal', function () {
+    /* $('#appointmentModal').on('shown.bs.modal', function () {
         $("#date").datepicker({
             dateFormat: "yy-mm-dd"
         });
@@ -246,12 +246,12 @@
     });
     $('#appointmentModal').on('hidden.bs.modal', function () {
         $('.ui-multiselect-menu').css('display', 'none');
-    });
+    }); 
     function book_service(vid){
         // alert(vid);
         /*$("#date").datepicker({
             dateFormat: "yy-mm-dd"
-        });*/
+        });*
         $("#fname-error, #lname-error, #email-error, #phone-error, #date-error, #time-error").html('');
         document.getElementById("appointmentForm").reset();
         document.getElementById("vids").value = vid;
@@ -308,7 +308,7 @@
             }
         })
         
-    });
+    }); */ 
     
 </script>
 @endsection

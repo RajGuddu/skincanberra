@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
     <title>Skin Canberra | Advanced Skin & Laser Clinic in Canberra</title>
-    <!-- <link rel="icon" type="image/png" href="{{ url('assets/frontend/images/skin-canberra.svg') }}"> -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/frontend/images/skin-canberra.svg') }}">
+    <!-- <link rel="icon" type="image/png" href="{{ url('assets/frontend/images/skin-canberra-logo.png') }}"> -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/frontend/images/skin-canberra-logo.png') }}">
     <meta name="description" content="Skin Canberra offers advanced skin, laser, and cosmetic treatments. Book your free consultation with Canberra’s trusted skin experts today!" >
     <meta name="keywords" content="skin clinic Canberra, laser treatment Canberra, cosmetic treatments Canberra, skin care experts" >
     <meta name="author" content="Skin Canberra" >
@@ -15,12 +15,12 @@
     <meta property="og:title" content="Skin Canberra | Advanced Skin & Laser Clinic in Canberra">
     <meta property="og:description" content="Book your free consultation with Canberra’s trusted skin and laser experts." >
     <meta property="og:url" content="{{ url('/') }}" >
-    <meta property="og:image" content="{{ asset('assets/frontend/images/skin-canberra.svg') }}" >
+    <meta property="og:image" content="{{ asset('assets/frontend/images/skin-canberra-logo.png') }}" >
     <meta property="og:site_name" content="Skin Canberra" >
     <meta name="twitter:card" content="summary_large_image" >
     <meta name="twitter:title" content="Skin Canberra | Advanced Skin & Laser Clinic" >
     <meta name="twitter:description" content="Skin Canberra offers advanced cosmetic and skin treatments with modern laser technology." >
-    <meta name="twitter:image" content="{{ asset('assets/frontend/images/skin-canberra.svg') }}" >
+    <meta name="twitter:image" content="{{ asset('assets/frontend/images/skin-canberra-logo.png') }}" >
     <meta name="theme-color" content="#ffffff" >
     <meta name="robots" content="index, follow" >
     <meta name="googlebot" content="index, follow" >
@@ -34,10 +34,47 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJCY459H0G"></script> 
     <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-TJCY459H0G'); </script>
 
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.css') }}">
+    
+
+    <?php /* <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/media-query.css') }}"> */ ?>
+    <!-- Bootstrap -->
+    <link rel="preload" href="{{ asset('assets/frontend/css/bootstrap.css') }}"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.css') }}">
+    </noscript> 
+    <!-- Owl Carousel -->
+    <link rel="preload" href="{{ asset('assets/frontend/css/owl.carousel.css') }}"
+        as="style" onload="this.rel='stylesheet'">
+    <noscript>
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl.carousel.css') }}">
+    </noscript>
+
+    <!-- Toastr -->
+    <link rel="preload" href="{{ asset('assets/frontend/css/toastr.min.css') }}"
+        as="style" onload="this.rel='stylesheet'">
+    <noscript>
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/toastr.min.css') }}">
+    </noscript>
+
+    <!-- Main Style -->
+    <link rel="preload" href="{{ asset('assets/frontend/css/style.css') }}"
+        as="style" onload="this.rel='stylesheet'">
+    <noscript>
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
+    </noscript>
+
+    <!-- Media Queries (LAST) -->
+    <link rel="preload" href="{{ asset('assets/frontend/css/media-query.css') }}"
+        as="style" onload="this.rel='stylesheet'">
+    <noscript>
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/media-query.css') }}">
+    </noscript>
+
     <?php /* <!-- for datepicker and timepicker -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- Multiselect CSS -->
@@ -51,11 +88,29 @@
 
     <!-- Vite bundled CSS -->
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    <?php /* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> */ ?>
+    <!-- Font Awesome -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
+    <!-- Bootstrap Icons -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    </noscript>
+
+    <!-- AOS CSS -->
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    </noscript>
+
 
     <!-- Preconnect for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,10 +126,15 @@
     <?php /*<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> */ ?>
     <!-- Lightbox2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+    <?php /* <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet"> */ ?>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    </noscript>
+
     <!-- Toastr CSS -->
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/toastr.min.css') }}">
+    
     
     
     <!-- custom css -->
@@ -123,7 +183,7 @@
     </style> */ ?>
 </head>
 <body>
-    @include('_layouts.preloader')
+    <?php /* @include('_layouts.preloader') */ ?>
     @include('_layouts.ajaxloader')
     @include('_layouts.header')
     @yield('content')
@@ -250,28 +310,31 @@
     </div>
     <div class="loader" id="loader" style="display:none;"></div>
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="{{ asset('assets/frontend/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <?php /* <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script> */?> 
     <?php $segment1 = Request::segment(1);
     if($segment1 == 'book-online'){ ?>
         <link rel="stylesheet" href="{{ url('assets/calender/assets/simple-calendar.css') }}">
         <script src="{{ url('assets/calender/assets/jquery.simple-calendar.js') }}"></script>
     <?php } ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    
     
     <script>
         window.APP_URL = "{{ url('/') }}";
+        window.CSRF_TOKEN = "{{ csrf_token() }}";
     </script>
-    <script src="{{ asset('assets/frontend/js/custom.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/owl.carousel.js') }}"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Lightbox2 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-    <?php /* <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> */ ?>
     <!-- Toastr JS -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
     <script src="{{ asset('assets/frontend/js/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/custom.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
+    <?php /* <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> */ ?>
     <script>
         AOS.init();
     </script>
@@ -326,7 +389,7 @@
         $('#videoModal').on('hidden.bs.modal', function () {
             $("#youtubeVideo").attr("src", $("#youtubeVideo").attr("src"));
         });
-        $('#appointmentModalH').on('shown.bs.modal', function () {
+        /*$('#appointmentModalH').on('shown.bs.modal', function () {
             $("#dateH").datepicker({
                 dateFormat: "yy-mm-dd"
             });
@@ -392,7 +455,7 @@
                 }
             })
             
-        });
+        }); */
     </script>
     <script>
         const videoModal = document.getElementById('videoModal');
@@ -402,7 +465,7 @@
         });
     </script>
     <script>
-        
+        if ($('.text-slider').length) {
         $('.text-slider').owlCarousel({
             loop: true,
             margin: 30,
@@ -426,6 +489,8 @@
                 }
             }
         });
+        }
+        if ($('.gallery-slider').length) {
         $('.gallery-slider').owlCarousel({
             loop: true,
             margin: 30,
@@ -449,6 +514,8 @@
                 }
             }
         });
+        }
+        if ($('.testimonial-slider').length) {
         $('.testimonial-slider').owlCarousel({
             loop: true,
             margin: 20,
@@ -472,6 +539,8 @@
                 }
             }
         });
+        }
+        if ($('.review-slider').length) {
         $('.review-slider').owlCarousel({
             loop: true,
             margin: 20,
@@ -495,6 +564,7 @@
                 }
             }
         });
+        }
         $(document).ready(function () {
             var owl = $('.nav-tab-slider');
             owl.owlCarousel({

@@ -12,7 +12,7 @@
         <div class="row g-5">
             <div class="col-lg-4 pe-lg-5">
                 <a href="{{ url('/') }}" class="footer-logo mb-4 d-block"><img
-                        src="{{ url('assets/frontend/images/skin-canberra.svg') }}" alt=""></a>
+                        src="{{ url('assets/frontend/images/skin-canberra-logo.png') }}" alt=""></a>
                 <p class="text-black mb-4">Personalised, evidence-led skin and hair care that helps you feel
                     confident —
                     naturally.</p>

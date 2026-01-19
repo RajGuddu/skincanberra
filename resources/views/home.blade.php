@@ -28,7 +28,7 @@
                     <div class="col-lg-3 col-md-6">
                         <a href="{{ url('service/'.$list->serv_url) }}">
                             <div class="service-card position-relative overflow-hidden">
-                                <img src="{{ url(IMAGE_PATH.$list->photo) }}" alt="Make Up" class="img-fluid w-100">
+                                <img src="{{ url(IMAGE_PATH.$list->photo) }}" alt="Make Up" class="img-fluid w-100" loading="lazy">
                                 <div class="overlay d-flex align-items-center justify-content-center">
                                     <h3 class="text-white fw-bold text-uppercase mb-0">{{ $list->service_name }}</h3>
                                 </div>
@@ -93,7 +93,7 @@
                             if($content->about_image != '')
                                 $sec1Image = url(IMAGE_PATH.$content->about_image);
                         @endphp
-                        <img src="{{ $sec1Image }}" alt="" class="w-100">
+                        <img src="{{ $sec1Image }}" alt="{{ $content->about_title ?? '' }}" class="w-100" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -390,7 +390,7 @@
                             if($content->sec5_content_image1 != '')
                                 $sec5Image1 = url(IMAGE_PATH.$content->sec5_content_image1);
                             @endphp
-                            <img src="{{ $sec5Image1 }}" alt="" class="w-100">
+                            <img src="{{ $sec5Image1 }}" alt="{{ $content->sec5_content_title1 ?? '' }}" class="w-100" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -426,7 +426,7 @@
                             if($content->sec5_content_image3 != '')
                                 $sec5Image3 = url(IMAGE_PATH.$content->sec5_content_image3);
                             @endphp
-                            <img src="{{ $sec5Image3 }}" alt="" class="w-100">
+                            <img src="{{ $sec5Image3 }}" alt="{{ $content->sec5_content_title3 ?? '' }}" class="w-100" loading="lazy">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -476,7 +476,7 @@
                             if($content->pic2 != '')
                                 $pic2 = url(IMAGE_PATH.$content->pic2);
                             @endphp
-                        <img src="{{ $pic2 }}" alt="Signature Glow Facial">
+                        <img src="{{ $pic2 }}" alt="Signature Glow Facial" loading="lazy">
                         <div class="card-content">
                             <h3 class="card-title">{{ $content->pic_title2 ?? '' }}</h3>
                             <p class="card-sub text-white">{!! $content->pic_details2 ?? '' !!}</p>
@@ -490,7 +490,7 @@
                             if($content->pic3 != '')
                                 $pic3 = url(IMAGE_PATH.$content->pic3);
                             @endphp
-                        <img src="{{ $pic3 }}" alt="Signature Glow Facial">
+                        <img src="{{ $pic3 }}" alt="Signature Glow Facial" loading="lazy">
                         <div class="card-content">
                             <h3 class="card-title">{{ $content->pic_title3 ?? '' }}</h3>
                             <p class="card-sub text-white">{!! $content->pic_details3 ?? '' !!}</p>
@@ -504,7 +504,7 @@
                             if($content->pic4 != '')
                                 $pic4 = url(IMAGE_PATH.$content->pic4);
                             @endphp
-                        <img src="{{ $pic4 }}" alt="Signature Glow Facial">
+                        <img src="{{ $pic4 }}" alt="Signature Glow Facial" loading="lazy">
                         <div class="card-content">
                             <h3 class="card-title">{{ $content->pic_title4 ?? '' }}</h3>
                             <p class="card-sub text-white">{!! $content->pic_details4 ?? '' !!}</p>

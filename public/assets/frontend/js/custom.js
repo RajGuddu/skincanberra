@@ -1,33 +1,165 @@
+    function calculate_price() {
+        var sp = parseFloat($("#sp").val());
+
+        var option = $("#booking_deposit").val();
+        $("#book_deposit").val(option);
+
+        // var payAmount = sp; // Default 100%
+        var payAmount = 50; // Default $50
+
+        // Calculate logic
+        if(option == "1"){ 
+            // payAmount = sp; // 100%
+            payAmount = 50; // $50
+        } 
+        else if(option == "2"){ 
+            payAmount = sp * 0.50; // 50%
+        } 
+        else if(option == "3"){ 
+            payAmount = sp * 0.25; // 25%
+        }
+
+        payAmount = Math.ceil(payAmount);
+
+        // Button update
+        $("#bookNowBtn").text("Pay Now ($" + payAmount + ")");
+    }
+    
+    $(document).ready(function() {
+        
+        $('#bookNowBtn').on('click', function(e) {
+            e.preventDefault();
+
+            // Hide old errors
+            $('.text-danger').hide();
+            $('#ajax-loader').show();
+
+            let isValid = true;
+
+            // Simple validation rules
+            let firstName = $('#first_name').val().trim();
+            let lastName  = $('#last_name').val().trim();
+            let email     = $('#email').val().trim();
+            let phone     = $('input[name="phone"]').val().trim();
+
+            if (firstName == "") {
+                $('.error-first_name').show();
+                isValid = false;
+            }
+
+            if (lastName === "") {
+                $('.error-last_name').show();
+                isValid = false;
+            }
+
+            /*if (email === "") {
+                $('.error-email').text("Email is required!").show();
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                $('.error-email').text("Invalid email format!").show();
+                isValid = false;
+            }*/
+
+            if (phone === "") {
+                $('.error-phone').show();
+                isValid = false;
+            }
+            $('#ajax-loader').hide();
+            // If validation fails → stop here
+
+            if (!isValid) {
+                
+                return;
+            }
+
+            // Disable button while submitting
+            $('#bookNowBtn').prop('disabled', true).text('Processing...');
+
+            // Submit the form 
+            $('#bookingClientForm').submit();
+        });
+        function validateEmail(email) {
+            let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        /* $('#bookNowBtn').on('click', function(e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            $('.text-danger').hide();
+
+            let form = $('#bookingClientForm');
+            let formData = form.serialize();
+
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+
+                beforeSend: function() {
+                    $('#bookNowBtn').prop('disabled', true).text('Booking...');
+                    $('#ajax-loader').show();
+                },
+                success: function(response) {
+                    $('#bookNowBtn').prop('disabled', false).text('Book Now');
+
+                    if (response.status === 'success') {
+                        // alert('Booking successful!');
+                        window.location.href = "{{ url('thank-you') }}";
+                    } else {
+                        alert(response.message || 'Something went wrong!');
+                    }
+                },
+                error: function(xhr) {
+                    $('#bookNowBtn').prop('disabled', false).text('Book Now');
+                    if (xhr.status === 422) { // Laravel validation error
+                        let errors = xhr.responseJSON.errors;
+                        $.each(errors, function(key, value) {
+                            $('.error-' + key).text(value[0]).show();
+                        });
+                    } else {
+                        alert('Server error, please try again.');
+                    }
+                },
+                complete: function() {
+                    $('#ajax-loader').hide();
+                }
+            });
+        }); */
+    });
 /****************************book-online page************************* */
     var $calendar;
     $(document).ready(function () {
-        let container = $("#container").simpleCalendar({
-            fixedStartDay: 0, // begin weeks by sunday
-            disableEmptyDetails: true,
-            events:  window.EVENTS,
-            /*events: [
-              // generate new event after tomorrow for one hour
-              // {
-              //   startDate: new Date(new Date().setHours(new Date().getHours() + 24)).toDateString(),
-              //   endDate: new Date(new Date().setHours(new Date().getHours() + 25)).toISOString(),
-              //   summary: 'Visit of the Eiffel Tower'
-              // },
-              // generate new event for yesterday at noon
-              {
-                startDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 12, 0)).toISOString(),
-                endDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 11)).getTime(),
-                summary: 'Restaurant'
-              },
-              // generate new event for the last two days
-              {
-                startDate: new Date(new Date().setHours(new Date().getHours() - 48)).toISOString(),
-                endDate: new Date(new Date().setHours(new Date().getHours() - 24)).getTime(),
-                summary: 'Visit of the Louvre'
-              }
-            ],*/
+        if ($("#container").length) {
+            let container = $("#container").simpleCalendar({
+                fixedStartDay: 0, // begin weeks by sunday
+                disableEmptyDetails: true,
+                events:  window.EVENTS || [],
+                /*events: [
+                // generate new event after tomorrow for one hour
+                // {
+                //   startDate: new Date(new Date().setHours(new Date().getHours() + 24)).toDateString(),
+                //   endDate: new Date(new Date().setHours(new Date().getHours() + 25)).toISOString(),
+                //   summary: 'Visit of the Eiffel Tower'
+                // },
+                // generate new event for yesterday at noon
+                {
+                    startDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 12, 0)).toISOString(),
+                    endDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 11)).getTime(),
+                    summary: 'Restaurant'
+                },
+                // generate new event for the last two days
+                {
+                    startDate: new Date(new Date().setHours(new Date().getHours() - 48)).toISOString(),
+                    endDate: new Date(new Date().setHours(new Date().getHours() - 24)).getTime(),
+                    summary: 'Visit of the Louvre'
+                }
+                ],*/
 
-        });
-        $calendar = container.data('plugin_simpleCalendar')
+            });
+            $calendar = container.data('plugin_simpleCalendar')
+        }
 
         /*$(".services").multiselect({
             header: true,
@@ -48,10 +180,10 @@
         }
         $.ajax({
             type: "POST",
-            url: "<?=url('/get_available_time_by_ajax')?>",
+            url: window.APP_URL + "/get_available_time_by_ajax",
             dataType: "json",
             data: {
-                _token: "{{ csrf_token() }}",
+                _token: window.CSRF_TOKEN,
                 b_date: b_date,
                 sv_id: sv_id,
                 vid: vid
@@ -77,11 +209,11 @@
     // Check Availability button click event
     // $('#nextAvailBtn').on('click', function() {
     $(document).on('click', '#nextAvailBtn', function() {
-        var nextDate = $(this).data('next_date'); // data-next_date ka value lena
-        var $targetDay = $('.day[data-date="' + nextDate + '"]'); // calendar me matching date find karna
+        var nextDate = $(this).data('next_date'); 
+        var $targetDay = $('.day[data-date="' + nextDate + '"]'); 
 
         if ($targetDay.length) {
-            $targetDay.trigger('click'); // programmatically click karna
+            $targetDay.trigger('click'); 
         } else {
             toastr.error('No matching date found in calendar:');
         }
@@ -99,12 +231,12 @@
         const c_date = el.getAttribute('data-date');
         if(c_date){
             $.ajax({
-                url: "{{ url('check_next_availability_by_ajax') }}",
+                url: window.APP_URL + "/check_next_availability_by_ajax",
                 type: "POST",
                 dataType: "json",
                 
                 data: {
-                    _token: "{{ csrf_token() }}",
+                    _token: window.CSRF_TOKEN,
                     c_date: c_date,
                     
                 },
@@ -144,12 +276,12 @@
         var sv_id = obj.value;
         if(sv_id){
             $.ajax({
-                url: "{{ url('get_variants_by_ajax') }}",
+                url: window.APP_URL + "/get_variants_by_ajax",
                 type: "POST",
                 dataType: "json",
                 
                 data: {
-                    _token: "{{ csrf_token() }}",
+                    _token: window.CSRF_TOKEN,
                     sv_id: sv_id,
                     
                 },
